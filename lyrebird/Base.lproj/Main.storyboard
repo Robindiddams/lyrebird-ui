@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f1z-Hh-LCS">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Record-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController title="Record" id="BYZ-38-t0r" customClass="MainViewController" customModule="lyrebird" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vx4-U9-AG9">
+                                <rect key="frame" x="0.0" y="429" width="375" height="238"/>
+                                <connections>
+                                    <segue destination="DRP-fW-Xcr" kind="embed" id="Uor-Fc-Ln2"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Vx4-U9-AG9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="365" id="Cxe-PU-kSe"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Vx4-U9-AG9" secondAttribute="bottom" id="WOF-JP-6wX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Vx4-U9-AG9" secondAttribute="trailing" id="Wpp-L2-H1n"/>
+                            <constraint firstItem="Vx4-U9-AG9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jx1-l5-2Vu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Record" id="1CS-dD-vim"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="373.60000000000002" y="-99.400299850074973"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vwi-2k-ymc">
+            <objects>
+                <navigationController id="f1z-Hh-LCS" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="C1S-rj-EjH">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="2OY-KJ-kdz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ao9-6C-dMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-502" y="-99"/>
+        </scene>
+        <!--Record View Controller-->
+        <scene sceneID="03e-Xs-XL1">
+            <objects>
+                <viewController id="DRP-fW-Xcr" customClass="RecordViewController" customModule="lyrebird" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jdR-lY-JEE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="238"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="THL-8u-yAZ" customClass="AudioVisualizerView" customModule="lyrebird" customModuleProvider="target">
+                                <rect key="frame" x="6" y="20" width="362" height="152"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G7w-Zy-oLH" customClass="RecordButton" customModule="lyrebird" customModuleProvider="target">
+                                <rect key="frame" x="162.5" y="180" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="G7w-Zy-oLH" secondAttribute="height" multiplier="1:1" id="9qM-4Z-cif"/>
+                                    <constraint firstAttribute="width" constant="50" id="RqH-ym-QJb"/>
+                                    <constraint firstAttribute="height" constant="50" id="zuS-Zx-XeD"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isRecording" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="recordButtonFired:" destination="DRP-fW-Xcr" eventType="touchUpInside" id="fd2-iI-Tj9"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ey-hV-sKI">
+                                <rect key="frame" x="16" y="200" width="42" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="THL-8u-yAZ" secondAttribute="bottom" constant="66" id="0nn-CF-MRV"/>
+                            <constraint firstItem="G7w-Zy-oLH" firstAttribute="centerX" secondItem="jdR-lY-JEE" secondAttribute="centerX" id="2K7-2f-iYB"/>
+                            <constraint firstItem="THL-8u-yAZ" firstAttribute="top" secondItem="jdR-lY-JEE" secondAttribute="top" constant="20" id="6ng-VN-Prg"/>
+                            <constraint firstAttribute="trailing" secondItem="THL-8u-yAZ" secondAttribute="trailing" constant="7" id="bOY-ON-00U"/>
+                            <constraint firstItem="8Ey-hV-sKI" firstAttribute="top" secondItem="THL-8u-yAZ" secondAttribute="bottom" constant="28" id="gy8-7L-A6T"/>
+                            <constraint firstAttribute="bottom" secondItem="G7w-Zy-oLH" secondAttribute="bottom" constant="8" id="jcM-Ga-JnQ"/>
+                            <constraint firstItem="THL-8u-yAZ" firstAttribute="leading" secondItem="jdR-lY-JEE" secondAttribute="leading" constant="6" id="rMz-F1-rV0"/>
+                            <constraint firstItem="8Ey-hV-sKI" firstAttribute="leading" secondItem="jdR-lY-JEE" secondAttribute="leading" constant="16" id="yhR-EZ-1tm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="audioView" destination="THL-8u-yAZ" id="SjB-Ys-SKV"/>
+                        <outlet property="recordButton" destination="G7w-Zy-oLH" id="jIT-YO-UrE"/>
+                        <outlet property="timeLabel" destination="8Ey-hV-sKI" id="B7z-tL-knc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fj4-9Y-O7U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1285.5999999999999" y="151.12443778110946"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,0 +1,794 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		26E4CCCB21FF9E14009AC325 /* RecordingsViewController_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4CCCA21FF9E14009AC325 /* RecordingsViewController_old.swift */; };
+		26E4CCD021FF9F55009AC325 /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4CCCE21FF9F54009AC325 /* RecordButton.swift */; };
+		26E4CCD121FF9F55009AC325 /* RecordButtonKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4CCCF21FF9F54009AC325 /* RecordButtonKit.swift */; };
+		26E4CCD721FFA375009AC325 /* AudioVisualizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4CCD621FFA375009AC325 /* AudioVisualizerView.swift */; };
+		26E4CCD921FFA3CB009AC325 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4CCD821FFA3CA009AC325 /* Extensions.swift */; };
+		26E4CCDD21FFB1B4009AC325 /* StartRecording.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 26E4CCDB21FFB1B4009AC325 /* StartRecording.aiff */; };
+		26E4CCDE21FFB1B4009AC325 /* StopRecording.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 26E4CCDC21FFB1B4009AC325 /* StopRecording.aiff */; };
+		26E4CCE121FFB7A3009AC325 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4CCE021FFB7A3009AC325 /* RecordViewController.swift */; };
+		26FDF21121B0923F008D73C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDF21021B0923F008D73C1 /* AppDelegate.swift */; };
+		26FDF21321B0923F008D73C1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDF21221B0923F008D73C1 /* MainViewController.swift */; };
+		26FDF21621B0923F008D73C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26FDF21421B0923F008D73C1 /* Main.storyboard */; };
+		26FDF21B21B09242008D73C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26FDF21921B09242008D73C1 /* LaunchScreen.storyboard */; };
+		26FDF22621B09242008D73C1 /* lyrebirdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDF22521B09242008D73C1 /* lyrebirdTests.swift */; };
+		26FDF23121B09242008D73C1 /* lyrebirdUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDF23021B09242008D73C1 /* lyrebirdUITests.swift */; };
+		3D1C2DF5F4E320134AB9EC7E /* Pods_lyrebird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB3FADADAF5112E9ECD2122 /* Pods_lyrebird.framework */; };
+		F333B0EB3AEEC74C5DE53402 /* Pods_lyrebirdTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE1142A9A72EB44D042AB0B /* Pods_lyrebirdTests.framework */; };
+		FB1B139AAF3E6F0F2DC601EC /* Pods_lyrebirdUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6A15151407060B5B13F7C46 /* Pods_lyrebirdUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		26FDF22221B09242008D73C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 26FDF20521B0923F008D73C1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26FDF20C21B0923F008D73C1;
+			remoteInfo = lyrebird;
+		};
+		26FDF22D21B09242008D73C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 26FDF20521B0923F008D73C1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 26FDF20C21B0923F008D73C1;
+			remoteInfo = lyrebird;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0112F15C6CAAFEFCCD43ECDD /* Pods-lyrebirdUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lyrebirdUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lyrebirdUITests/Pods-lyrebirdUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		03D6BBD1B207A28703B35CB0 /* Pods-lyrebirdTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lyrebirdTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lyrebirdTests/Pods-lyrebirdTests.debug.xcconfig"; sourceTree = "<group>"; };
+		0DE1142A9A72EB44D042AB0B /* Pods_lyrebirdTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lyrebirdTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E5E6E9E2FA4D30CA00CAA34 /* Pods-lyrebirdTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lyrebirdTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-lyrebirdTests/Pods-lyrebirdTests.release.xcconfig"; sourceTree = "<group>"; };
+		26E4CCCA21FF9E14009AC325 /* RecordingsViewController_old.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingsViewController_old.swift; sourceTree = "<group>"; };
+		26E4CCCE21FF9F54009AC325 /* RecordButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
+		26E4CCCF21FF9F54009AC325 /* RecordButtonKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordButtonKit.swift; sourceTree = "<group>"; };
+		26E4CCD621FFA375009AC325 /* AudioVisualizerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioVisualizerView.swift; sourceTree = "<group>"; };
+		26E4CCD821FFA3CA009AC325 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		26E4CCDA21FFA3D6009AC325 /* VoiceMemosClone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VoiceMemosClone-Bridging-Header.h"; sourceTree = "<group>"; };
+		26E4CCDB21FFB1B4009AC325 /* StartRecording.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = StartRecording.aiff; sourceTree = "<group>"; };
+		26E4CCDC21FFB1B4009AC325 /* StopRecording.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = StopRecording.aiff; sourceTree = "<group>"; };
+		26E4CCE021FFB7A3009AC325 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		26FDF20D21B0923F008D73C1 /* lyrebird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lyrebird.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		26FDF21021B0923F008D73C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		26FDF21221B0923F008D73C1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		26FDF21521B0923F008D73C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		26FDF21A21B09242008D73C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		26FDF21C21B09242008D73C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26FDF22121B09242008D73C1 /* lyrebirdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lyrebirdTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		26FDF22521B09242008D73C1 /* lyrebirdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lyrebirdTests.swift; sourceTree = "<group>"; };
+		26FDF22721B09242008D73C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26FDF22C21B09242008D73C1 /* lyrebirdUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lyrebirdUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		26FDF23021B09242008D73C1 /* lyrebirdUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lyrebirdUITests.swift; sourceTree = "<group>"; };
+		26FDF23221B09242008D73C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CB3FADADAF5112E9ECD2122 /* Pods_lyrebird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lyrebird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C622C42870D06044B6FDEDC /* Pods-lyrebird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lyrebird.release.xcconfig"; path = "Pods/Target Support Files/Pods-lyrebird/Pods-lyrebird.release.xcconfig"; sourceTree = "<group>"; };
+		AEAEC22C4C907BDD9F79A6AD /* Pods-lyrebird.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lyrebird.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lyrebird/Pods-lyrebird.debug.xcconfig"; sourceTree = "<group>"; };
+		E5A9B87491505AED1182E035 /* Pods-lyrebirdUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lyrebirdUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-lyrebirdUITests/Pods-lyrebirdUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F6A15151407060B5B13F7C46 /* Pods_lyrebirdUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lyrebirdUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		26FDF20A21B0923F008D73C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D1C2DF5F4E320134AB9EC7E /* Pods_lyrebird.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26FDF21E21B09242008D73C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F333B0EB3AEEC74C5DE53402 /* Pods_lyrebirdTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26FDF22921B09242008D73C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB1B139AAF3E6F0F2DC601EC /* Pods_lyrebirdUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		26E4CCC921FF7A53009AC325 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				26E4CCCA21FF9E14009AC325 /* RecordingsViewController_old.swift */,
+				26FDF21221B0923F008D73C1 /* MainViewController.swift */,
+				26E4CCD521FFA34E009AC325 /* RecorderView */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		26E4CCD221FF9F66009AC325 /* RecordingButton */ = {
+			isa = PBXGroup;
+			children = (
+				26E4CCCF21FF9F54009AC325 /* RecordButtonKit.swift */,
+				26E4CCCE21FF9F54009AC325 /* RecordButton.swift */,
+			);
+			path = RecordingButton;
+			sourceTree = "<group>";
+		};
+		26E4CCD521FFA34E009AC325 /* RecorderView */ = {
+			isa = PBXGroup;
+			children = (
+				26E4CCE021FFB7A3009AC325 /* RecordViewController.swift */,
+				26E4CCD221FF9F66009AC325 /* RecordingButton */,
+			);
+			path = RecorderView;
+			sourceTree = "<group>";
+		};
+		26E4CCDF21FFB1C1009AC325 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				26E4CCDB21FFB1B4009AC325 /* StartRecording.aiff */,
+				26E4CCDC21FFB1B4009AC325 /* StopRecording.aiff */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		26FDF20421B0923F008D73C1 = {
+			isa = PBXGroup;
+			children = (
+				26FDF20F21B0923F008D73C1 /* lyrebird */,
+				26FDF22421B09242008D73C1 /* lyrebirdTests */,
+				26FDF22F21B09242008D73C1 /* lyrebirdUITests */,
+				26FDF20E21B0923F008D73C1 /* Products */,
+				E6EBCAEAC81C551FEDD5C159 /* Pods */,
+				AABAA8D8AF83A2CEDE3C3BBD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		26FDF20E21B0923F008D73C1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				26FDF20D21B0923F008D73C1 /* lyrebird.app */,
+				26FDF22121B09242008D73C1 /* lyrebirdTests.xctest */,
+				26FDF22C21B09242008D73C1 /* lyrebirdUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		26FDF20F21B0923F008D73C1 /* lyrebird */ = {
+			isa = PBXGroup;
+			children = (
+				26FDF21021B0923F008D73C1 /* AppDelegate.swift */,
+				26E4CCD821FFA3CA009AC325 /* Extensions.swift */,
+				26E4CCDA21FFA3D6009AC325 /* VoiceMemosClone-Bridging-Header.h */,
+				26E4CCD621FFA375009AC325 /* AudioVisualizerView.swift */,
+				26E4CCC921FF7A53009AC325 /* Controllers */,
+				26FDF21421B0923F008D73C1 /* Main.storyboard */,
+				26FDF21921B09242008D73C1 /* LaunchScreen.storyboard */,
+				26E4CCDF21FFB1C1009AC325 /* Resources */,
+				26FDF21C21B09242008D73C1 /* Info.plist */,
+			);
+			path = lyrebird;
+			sourceTree = "<group>";
+		};
+		26FDF22421B09242008D73C1 /* lyrebirdTests */ = {
+			isa = PBXGroup;
+			children = (
+				26FDF22521B09242008D73C1 /* lyrebirdTests.swift */,
+				26FDF22721B09242008D73C1 /* Info.plist */,
+			);
+			path = lyrebirdTests;
+			sourceTree = "<group>";
+		};
+		26FDF22F21B09242008D73C1 /* lyrebirdUITests */ = {
+			isa = PBXGroup;
+			children = (
+				26FDF23021B09242008D73C1 /* lyrebirdUITests.swift */,
+				26FDF23221B09242008D73C1 /* Info.plist */,
+			);
+			path = lyrebirdUITests;
+			sourceTree = "<group>";
+		};
+		AABAA8D8AF83A2CEDE3C3BBD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2CB3FADADAF5112E9ECD2122 /* Pods_lyrebird.framework */,
+				0DE1142A9A72EB44D042AB0B /* Pods_lyrebirdTests.framework */,
+				F6A15151407060B5B13F7C46 /* Pods_lyrebirdUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E6EBCAEAC81C551FEDD5C159 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AEAEC22C4C907BDD9F79A6AD /* Pods-lyrebird.debug.xcconfig */,
+				6C622C42870D06044B6FDEDC /* Pods-lyrebird.release.xcconfig */,
+				03D6BBD1B207A28703B35CB0 /* Pods-lyrebirdTests.debug.xcconfig */,
+				0E5E6E9E2FA4D30CA00CAA34 /* Pods-lyrebirdTests.release.xcconfig */,
+				0112F15C6CAAFEFCCD43ECDD /* Pods-lyrebirdUITests.debug.xcconfig */,
+				E5A9B87491505AED1182E035 /* Pods-lyrebirdUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		26FDF20C21B0923F008D73C1 /* lyrebird */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26FDF23521B09242008D73C1 /* Build configuration list for PBXNativeTarget "lyrebird" */;
+			buildPhases = (
+				8EFDB56AE2AE3C6FB1835448 /* [CP] Check Pods Manifest.lock */,
+				26FDF20921B0923F008D73C1 /* Sources */,
+				26FDF20A21B0923F008D73C1 /* Frameworks */,
+				26FDF20B21B0923F008D73C1 /* Resources */,
+				CD867FB565A266807DFE0C08 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = lyrebird;
+			productName = lyrebird;
+			productReference = 26FDF20D21B0923F008D73C1 /* lyrebird.app */;
+			productType = "com.apple.product-type.application";
+		};
+		26FDF22021B09242008D73C1 /* lyrebirdTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26FDF23821B09242008D73C1 /* Build configuration list for PBXNativeTarget "lyrebirdTests" */;
+			buildPhases = (
+				9E90C4950C23562CC58CEE46 /* [CP] Check Pods Manifest.lock */,
+				26FDF21D21B09242008D73C1 /* Sources */,
+				26FDF21E21B09242008D73C1 /* Frameworks */,
+				26FDF21F21B09242008D73C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				26FDF22321B09242008D73C1 /* PBXTargetDependency */,
+			);
+			name = lyrebirdTests;
+			productName = lyrebirdTests;
+			productReference = 26FDF22121B09242008D73C1 /* lyrebirdTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		26FDF22B21B09242008D73C1 /* lyrebirdUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26FDF23B21B09242008D73C1 /* Build configuration list for PBXNativeTarget "lyrebirdUITests" */;
+			buildPhases = (
+				31FFF3214B167EBBE11A78CC /* [CP] Check Pods Manifest.lock */,
+				26FDF22821B09242008D73C1 /* Sources */,
+				26FDF22921B09242008D73C1 /* Frameworks */,
+				26FDF22A21B09242008D73C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				26FDF22E21B09242008D73C1 /* PBXTargetDependency */,
+			);
+			name = lyrebirdUITests;
+			productName = lyrebirdUITests;
+			productReference = 26FDF22C21B09242008D73C1 /* lyrebirdUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		26FDF20521B0923F008D73C1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Robin Diddams";
+				TargetAttributes = {
+					26FDF20C21B0923F008D73C1 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					26FDF22021B09242008D73C1 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 26FDF20C21B0923F008D73C1;
+					};
+					26FDF22B21B09242008D73C1 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 26FDF20C21B0923F008D73C1;
+					};
+				};
+			};
+			buildConfigurationList = 26FDF20821B0923F008D73C1 /* Build configuration list for PBXProject "lyrebird" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 26FDF20421B0923F008D73C1;
+			productRefGroup = 26FDF20E21B0923F008D73C1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				26FDF20C21B0923F008D73C1 /* lyrebird */,
+				26FDF22021B09242008D73C1 /* lyrebirdTests */,
+				26FDF22B21B09242008D73C1 /* lyrebirdUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		26FDF20B21B0923F008D73C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26FDF21B21B09242008D73C1 /* LaunchScreen.storyboard in Resources */,
+				26E4CCDE21FFB1B4009AC325 /* StopRecording.aiff in Resources */,
+				26E4CCDD21FFB1B4009AC325 /* StartRecording.aiff in Resources */,
+				26FDF21621B0923F008D73C1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26FDF21F21B09242008D73C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26FDF22A21B09242008D73C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		31FFF3214B167EBBE11A78CC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-lyrebirdUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8EFDB56AE2AE3C6FB1835448 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-lyrebird-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E90C4950C23562CC58CEE46 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-lyrebirdTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD867FB565A266807DFE0C08 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-lyrebird/Pods-lyrebird-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/PRTween/PRTween.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PRTween.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-lyrebird/Pods-lyrebird-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		26FDF20921B0923F008D73C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26E4CCD021FF9F55009AC325 /* RecordButton.swift in Sources */,
+				26FDF21321B0923F008D73C1 /* MainViewController.swift in Sources */,
+				26E4CCD721FFA375009AC325 /* AudioVisualizerView.swift in Sources */,
+				26E4CCE121FFB7A3009AC325 /* RecordViewController.swift in Sources */,
+				26E4CCD921FFA3CB009AC325 /* Extensions.swift in Sources */,
+				26E4CCD121FF9F55009AC325 /* RecordButtonKit.swift in Sources */,
+				26FDF21121B0923F008D73C1 /* AppDelegate.swift in Sources */,
+				26E4CCCB21FF9E14009AC325 /* RecordingsViewController_old.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26FDF21D21B09242008D73C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26FDF22621B09242008D73C1 /* lyrebirdTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26FDF22821B09242008D73C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26FDF23121B09242008D73C1 /* lyrebirdUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		26FDF22321B09242008D73C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 26FDF20C21B0923F008D73C1 /* lyrebird */;
+			targetProxy = 26FDF22221B09242008D73C1 /* PBXContainerItemProxy */;
+		};
+		26FDF22E21B09242008D73C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 26FDF20C21B0923F008D73C1 /* lyrebird */;
+			targetProxy = 26FDF22D21B09242008D73C1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		26FDF21421B0923F008D73C1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				26FDF21521B0923F008D73C1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		26FDF21921B09242008D73C1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				26FDF21A21B09242008D73C1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		26FDF23321B09242008D73C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		26FDF23421B09242008D73C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		26FDF23621B09242008D73C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AEAEC22C4C907BDD9F79A6AD /* Pods-lyrebird.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CJYR4ZJ5FC;
+				INFOPLIST_FILE = lyrebird/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = robindiddams.lyrebird;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "lyrebird/VoiceMemosClone-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		26FDF23721B09242008D73C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6C622C42870D06044B6FDEDC /* Pods-lyrebird.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CJYR4ZJ5FC;
+				INFOPLIST_FILE = lyrebird/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = robindiddams.lyrebird;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "lyrebird/VoiceMemosClone-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		26FDF23921B09242008D73C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 03D6BBD1B207A28703B35CB0 /* Pods-lyrebirdTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CJYR4ZJ5FC;
+				INFOPLIST_FILE = lyrebirdTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = robindiddams.lyrebirdTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/lyrebird.app/lyrebird";
+			};
+			name = Debug;
+		};
+		26FDF23A21B09242008D73C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E5E6E9E2FA4D30CA00CAA34 /* Pods-lyrebirdTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CJYR4ZJ5FC;
+				INFOPLIST_FILE = lyrebirdTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = robindiddams.lyrebirdTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/lyrebird.app/lyrebird";
+			};
+			name = Release;
+		};
+		26FDF23C21B09242008D73C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0112F15C6CAAFEFCCD43ECDD /* Pods-lyrebirdUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CJYR4ZJ5FC;
+				INFOPLIST_FILE = lyrebirdUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = robindiddams.lyrebirdUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = lyrebird;
+			};
+			name = Debug;
+		};
+		26FDF23D21B09242008D73C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5A9B87491505AED1182E035 /* Pods-lyrebirdUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CJYR4ZJ5FC;
+				INFOPLIST_FILE = lyrebirdUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = robindiddams.lyrebirdUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = lyrebird;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		26FDF20821B0923F008D73C1 /* Build configuration list for PBXProject "lyrebird" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26FDF23321B09242008D73C1 /* Debug */,
+				26FDF23421B09242008D73C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		26FDF23521B09242008D73C1 /* Build configuration list for PBXNativeTarget "lyrebird" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26FDF23621B09242008D73C1 /* Debug */,
+				26FDF23721B09242008D73C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		26FDF23821B09242008D73C1 /* Build configuration list for PBXNativeTarget "lyrebirdTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26FDF23921B09242008D73C1 /* Debug */,
+				26FDF23A21B09242008D73C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		26FDF23B21B09242008D73C1 /* Build configuration list for PBXNativeTarget "lyrebirdUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26FDF23C21B09242008D73C1 /* Debug */,
+				26FDF23D21B09242008D73C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 26FDF20521B0923F008D73C1 /* Project object */;
+}
