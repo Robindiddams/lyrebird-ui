@@ -56,20 +56,20 @@
             </objects>
             <point key="canvasLocation" x="-502" y="-99"/>
         </scene>
-        <!--Record View Controller-->
+        <!--Recorder View Controller-->
         <scene sceneID="03e-Xs-XL1">
             <objects>
-                <viewController id="DRP-fW-Xcr" customClass="RecordViewController" customModule="lyrebird" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DRP-fW-Xcr" customClass="RecorderViewController" customModule="lyrebird" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jdR-lY-JEE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="238"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="THL-8u-yAZ" customClass="AudioVisualizerView" customModule="lyrebird" customModuleProvider="target">
-                                <rect key="frame" x="6" y="20" width="362" height="152"/>
+                                <rect key="frame" x="6" y="20" width="587" height="85"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G7w-Zy-oLH" customClass="RecordButton" customModule="lyrebird" customModuleProvider="target">
-                                <rect key="frame" x="162.5" y="180" width="50" height="50"/>
+                                <rect key="frame" x="275" y="113" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="G7w-Zy-oLH" secondAttribute="height" multiplier="1:1" id="9qM-4Z-cif"/>
                                     <constraint firstAttribute="width" constant="50" id="RqH-ym-QJb"/>
@@ -83,7 +83,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ey-hV-sKI">
-                                <rect key="frame" x="16" y="200" width="42" height="20.5"/>
+                                <rect key="frame" x="16" y="133" width="42" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -100,6 +100,7 @@
                             <constraint firstItem="THL-8u-yAZ" firstAttribute="leading" secondItem="jdR-lY-JEE" secondAttribute="leading" constant="6" id="rMz-F1-rV0"/>
                             <constraint firstItem="8Ey-hV-sKI" firstAttribute="leading" secondItem="jdR-lY-JEE" secondAttribute="leading" constant="16" id="yhR-EZ-1tm"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="d0v-0r-ssD"/>
                     </view>
                     <connections>
                         <outlet property="audioView" destination="THL-8u-yAZ" id="SjB-Ys-SKV"/>

@@ -14,7 +14,7 @@
 		26E4CCD921FFA3CB009AC325 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4CCD821FFA3CA009AC325 /* Extensions.swift */; };
 		26E4CCDD21FFB1B4009AC325 /* StartRecording.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 26E4CCDB21FFB1B4009AC325 /* StartRecording.aiff */; };
 		26E4CCDE21FFB1B4009AC325 /* StopRecording.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 26E4CCDC21FFB1B4009AC325 /* StopRecording.aiff */; };
-		26E4CCE121FFB7A3009AC325 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4CCE021FFB7A3009AC325 /* RecordViewController.swift */; };
+		26E4CCE121FFB7A3009AC325 /* RecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4CCE021FFB7A3009AC325 /* RecorderViewController.swift */; };
 		26FDF21121B0923F008D73C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDF21021B0923F008D73C1 /* AppDelegate.swift */; };
 		26FDF21321B0923F008D73C1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDF21221B0923F008D73C1 /* MainViewController.swift */; };
 		26FDF21621B0923F008D73C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26FDF21421B0923F008D73C1 /* Main.storyboard */; };
@@ -56,7 +56,7 @@
 		26E4CCDA21FFA3D6009AC325 /* VoiceMemosClone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VoiceMemosClone-Bridging-Header.h"; sourceTree = "<group>"; };
 		26E4CCDB21FFB1B4009AC325 /* StartRecording.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = StartRecording.aiff; sourceTree = "<group>"; };
 		26E4CCDC21FFB1B4009AC325 /* StopRecording.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = StopRecording.aiff; sourceTree = "<group>"; };
-		26E4CCE021FFB7A3009AC325 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		26E4CCE021FFB7A3009AC325 /* RecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderViewController.swift; sourceTree = "<group>"; };
 		26FDF20D21B0923F008D73C1 /* lyrebird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lyrebird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26FDF21021B0923F008D73C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26FDF21221B0923F008D73C1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 		26E4CCD521FFA34E009AC325 /* RecorderView */ = {
 			isa = PBXGroup;
 			children = (
-				26E4CCE021FFB7A3009AC325 /* RecordViewController.swift */,
+				26E4CCE021FFB7A3009AC325 /* RecorderViewController.swift */,
 				26E4CCD221FF9F66009AC325 /* RecordingButton */,
 			);
 			path = RecorderView;
@@ -450,7 +450,7 @@
 				26E4CCD021FF9F55009AC325 /* RecordButton.swift in Sources */,
 				26FDF21321B0923F008D73C1 /* MainViewController.swift in Sources */,
 				26E4CCD721FFA375009AC325 /* AudioVisualizerView.swift in Sources */,
-				26E4CCE121FFB7A3009AC325 /* RecordViewController.swift in Sources */,
+				26E4CCE121FFB7A3009AC325 /* RecorderViewController.swift in Sources */,
 				26E4CCD921FFA3CB009AC325 /* Extensions.swift in Sources */,
 				26E4CCD121FF9F55009AC325 /* RecordButtonKit.swift in Sources */,
 				26FDF21121B0923F008D73C1 /* AppDelegate.swift in Sources */,

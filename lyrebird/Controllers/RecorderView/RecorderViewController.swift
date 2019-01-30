@@ -10,7 +10,18 @@ import UIKit
 import AVFoundation
 import Accelerate
 
-class RecordViewController: UIViewController {
+enum RecorderState {
+    case recording
+    case stopped
+    case denied
+}
+
+protocol RecorderViewControllerDelegate: class {
+    func didStartRecording()
+    func didFinishRecording()
+}
+
+class RecorderViewController: UIViewController {
     
     //MARK:- Properties
 //    var handleView = UIView()
