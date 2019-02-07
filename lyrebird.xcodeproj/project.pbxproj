@@ -15,6 +15,7 @@
 		26E4CCDD21FFB1B4009AC325 /* StartRecording.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 26E4CCDB21FFB1B4009AC325 /* StartRecording.aiff */; };
 		26E4CCDE21FFB1B4009AC325 /* StopRecording.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 26E4CCDC21FFB1B4009AC325 /* StopRecording.aiff */; };
 		26E4CCE121FFB7A3009AC325 /* RecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4CCE021FFB7A3009AC325 /* RecorderViewController.swift */; };
+		26F6B582220BDEAE009875BF /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26F6B581220BDEAE009875BF /* assets.xcassets */; };
 		26FDF21121B0923F008D73C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDF21021B0923F008D73C1 /* AppDelegate.swift */; };
 		26FDF21321B0923F008D73C1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDF21221B0923F008D73C1 /* MainViewController.swift */; };
 		26FDF21621B0923F008D73C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26FDF21421B0923F008D73C1 /* Main.storyboard */; };
@@ -57,6 +58,7 @@
 		26E4CCDB21FFB1B4009AC325 /* StartRecording.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = StartRecording.aiff; sourceTree = "<group>"; };
 		26E4CCDC21FFB1B4009AC325 /* StopRecording.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = StopRecording.aiff; sourceTree = "<group>"; };
 		26E4CCE021FFB7A3009AC325 /* RecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderViewController.swift; sourceTree = "<group>"; };
+		26F6B581220BDEAE009875BF /* assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = assets.xcassets; sourceTree = "<group>"; };
 		26FDF20D21B0923F008D73C1 /* lyrebird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lyrebird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26FDF21021B0923F008D73C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		26FDF21221B0923F008D73C1 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				26E4CCDB21FFB1B4009AC325 /* StartRecording.aiff */,
+				26F6B581220BDEAE009875BF /* assets.xcassets */,
 				26E4CCDC21FFB1B4009AC325 /* StopRecording.aiff */,
 			);
 			path = Resources;
@@ -331,6 +334,7 @@
 				26FDF21B21B09242008D73C1 /* LaunchScreen.storyboard in Resources */,
 				26E4CCDE21FFB1B4009AC325 /* StopRecording.aiff in Resources */,
 				26E4CCDD21FFB1B4009AC325 /* StartRecording.aiff in Resources */,
+				26F6B582220BDEAE009875BF /* assets.xcassets in Resources */,
 				26FDF21621B0923F008D73C1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

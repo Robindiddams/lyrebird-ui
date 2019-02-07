@@ -16,7 +16,7 @@ class AudioVisualizerView: UIView {
     var active = false {
         didSet {
             if self.active {
-                self.color = UIColor.red.cgColor
+                self.color = UIColor.purple.cgColor
             }
             else {
                 self.color = UIColor.gray.cgColor
