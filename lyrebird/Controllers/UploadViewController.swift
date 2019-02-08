@@ -49,12 +49,7 @@ class UploadViewController: UIViewController {
     func startUpload() {
         let hud = JGProgressHUD(style: .light)
         hud.vibrancyEnabled = true
-        if arc4random_uniform(2) == 0 {
-            hud.indicatorView = JGProgressHUDPieIndicatorView()
-        }
-        else {
-            hud.indicatorView = JGProgressHUDRingIndicatorView()
-        }
+        hud.indicatorView = JGProgressHUDPieIndicatorView()
         hud.detailTextLabel.text = "0% Complete"
         hud.textLabel.text = "Uploading"
         hud.show(in: self.view)
@@ -82,8 +77,7 @@ class UploadViewController: UIViewController {
     }
     
     func dowloadComplete() {
-//        self.prepa
-        print("benis")
+        self.performSegue(withIdentifier: "player", sender: self)
     }
     
     func incrementHUD(_ hud: JGProgressHUD, progress previousProgress: Int) {

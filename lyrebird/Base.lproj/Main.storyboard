@@ -180,6 +180,7 @@
                         <outlet property="UploadedMessage" destination="oI8-Xo-0pj" id="d1a-Pe-Zq7"/>
                         <outlet property="dlButton" destination="hW8-AN-u9T" id="amq-0N-iYa"/>
                         <outlet property="spinner" destination="Wkg-Rf-tki" id="Qn4-op-8uE"/>
+                        <segue destination="BrP-ng-zKA" kind="show" identifier="player" id="dHP-B9-RI4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wDo-lr-ha7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -189,6 +190,7 @@
         <!--Navigation Controller-->
         <scene sceneID="vwi-2k-ymc">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ao9-6C-dMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="f1z-Hh-LCS" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="C1S-rj-EjH">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -198,9 +200,43 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="2OY-KJ-kdz"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ao9-6C-dMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-502" y="-99"/>
+        </scene>
+        <!--Player View Controller-->
+        <scene sceneID="pvE-jX-9hL">
+            <objects>
+                <viewController id="BrP-ng-zKA" customClass="PlayerViewController" customModule="lyrebird" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RAr-Er-kCO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tada🎉" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWr-mL-cUk">
+                                <rect key="frame" x="142.5" y="240" width="90.5" height="32"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="26"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="the lyrebird worked really hard on this" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAI-LR-c7D">
+                                <rect key="frame" x="67" y="552" width="242" height="61"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qWr-mL-cUk" firstAttribute="top" secondItem="rpV-2f-FCt" secondAttribute="top" constant="176" id="1xR-lb-M7g"/>
+                            <constraint firstItem="rpV-2f-FCt" firstAttribute="bottom" secondItem="pAI-LR-c7D" secondAttribute="bottom" constant="54.5" id="KUe-xt-TWk"/>
+                            <constraint firstItem="pAI-LR-c7D" firstAttribute="centerX" secondItem="rpV-2f-FCt" secondAttribute="centerX" id="Owp-Lm-uh0"/>
+                            <constraint firstItem="qWr-mL-cUk" firstAttribute="centerX" secondItem="rpV-2f-FCt" secondAttribute="centerX" id="lCf-eo-uA2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rpV-2f-FCt"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zxN-qd-dfg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1956" y="278.41079460269867"/>
         </scene>
     </scenes>
 </document>
