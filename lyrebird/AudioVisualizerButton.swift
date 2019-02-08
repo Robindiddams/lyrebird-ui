@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AudioVisualizerView: UIView {
+class AudioVisualizerButton: UIButton{
     
     // Bar width
     var barWidth: CGFloat = 4.0
@@ -19,24 +19,34 @@ class AudioVisualizerView: UIView {
                 self.color = UIColor.purple.cgColor
             }
             else {
-                self.color = UIColor.gray.cgColor
+                self.color = UIColor.white.cgColor
             }
         }
     }
     // Color for bars
-    var color = UIColor.gray.cgColor
+    var color = UIColor.white.cgColor
     // Given waveforms
     var waveforms: [Int] = Array(repeating: 0, count: 100)
+    // State manager
+    var isRecording : Bool = false
     
     // MARK: - Init
     override init (frame : CGRect) {
         super.init(frame : frame)
         self.backgroundColor = UIColor.clear
+        self.drawBorder()
     }
     
     required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
         self.backgroundColor = UIColor.clear
+        self.drawBorder()
+    }
+    
+    func drawBorder() {
+        self.layer.borderColor = UIColor.white.cgColor
+        self.layer.borderWidth = 3.0
+        self.layer.cornerRadius = 10.0
     }
     
     // MARK: - Draw bars
@@ -47,7 +57,7 @@ class AudioVisualizerView: UIView {
         context.clear(rect)
         context.setFillColor(red: 0, green: 0, blue: 0, alpha: 0)
         context.fill(rect)
-        context.setLineWidth(1)
+        context.setLineWidth(2)
         context.setStrokeColor(self.color)
         let w = rect.size.width
         let h = rect.size.height

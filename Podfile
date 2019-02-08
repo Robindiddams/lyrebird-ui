@@ -6,8 +6,8 @@ target 'lyrebird' do
   use_frameworks!
 
   # Pods for lyrebird
-  # pod 'AudioKit', '~> 4.0'
-  pod 'PRTween', '~> 0.1'
+  pod 'JGProgressHUD'
+  pod 'NVActivityIndicatorView'
 
   target 'lyrebirdTests' do
     inherit! :search_paths

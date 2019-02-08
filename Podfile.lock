@@ -1,16 +1,26 @@
 PODS:
+  - JGProgressHUD (2.0.3)
+  - NVActivityIndicatorView (4.4.0):
+    - NVActivityIndicatorView/Presenter (= 4.4.0)
+  - NVActivityIndicatorView/Presenter (4.4.0)
   - PRTween (0.1.0)
 
 DEPENDENCIES:
+  - JGProgressHUD
+  - NVActivityIndicatorView
   - PRTween (~> 0.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - JGProgressHUD
+    - NVActivityIndicatorView
     - PRTween
 
 SPEC CHECKSUMS:
+  JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
+  NVActivityIndicatorView: ec7440a57af2450319d3a4181cca7da6fc127064
   PRTween: 6c58c7e32ebcf31e33e6a6e6bc727ebef3b668ef
 
-PODFILE CHECKSUM: 275fb133ff6cc26eda121784429c8610f2b67e0c
+PODFILE CHECKSUM: 6ddd41439d9ef95ca8a960ca23ac99f94ad65a27
 
 COCOAPODS: 1.5.3
