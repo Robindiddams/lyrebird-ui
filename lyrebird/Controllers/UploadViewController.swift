@@ -38,6 +38,7 @@ class UploadViewController: UIViewController {
     
     @IBAction func startDownload(_ sender: UIButton) {
         let hud = JGProgressHUD(style: .light)
+        hud.vibrancyEnabled = true
         hud.progress = 0.0
         hud.textLabel.text = "Downloading"
         hud.indicatorView = JGProgressHUDPieIndicatorView()

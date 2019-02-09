@@ -1,12 +1,4 @@
 //
-//  ViewController.swift
-//  lyrebird
-//
-//  Created by Robin Diddams on 11/29/18.
-//  Copyright © 2018 Robin Diddams. All rights reserved.
-//
-
-//
 //  RecordViewController.swift
 //  lyrebird
 //
@@ -38,18 +30,23 @@ class RecorderViewController: UIViewController {
     var gradientLayer: CAGradientLayer!
     
     //MARK:- Outlets
-    @IBOutlet weak var audioView: AudioVisualizerButton!
+    var audioView = Visualizer()
+    
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var recordButton: UIButton!
     
     //MARK:- Actions
-    @IBAction func recordViewTapped(_ sender: Any) {
+    @IBAction func recordButtonTapped(_ sender: UIButton) {
+        print("button slapped")
         timeLabel.isHidden = false
         if !self.audioView.isRecording {
             nextButton.isHidden = true
+            self.recordButton.setTitle("stop", for: .normal)
             self.checkPermissionAndRecord()
         } else {
             self.stopRecording()
+            self.recordButton.setTitle("record", for: .normal)
             nextButton.isHidden = false
         }
     }
@@ -57,9 +54,12 @@ class RecorderViewController: UIViewController {
     private func updateUI(_ recorderState: RecorderState) {
         switch recorderState {
         case .recording:
+            self.audioView.isHidden = false
+            
             UIApplication.shared.isIdleTimerDisabled = true
             break
         case .stopped:
+            self.audioView.isHidden = true
             UIApplication.shared.isIdleTimerDisabled = false
             break
         case .denied:
@@ -239,7 +239,7 @@ class RecorderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = true
+//        self.navigationController?.isNavigationBarHidden = true
         let colorTop = UIColor(red: 125.0 / 255.0, green: 199.0 / 255.0, blue: 195 / 255.0, alpha: 1.0).cgColor
         let colorBottom = UIColor(red: 46.0 / 255.0, green: 103.0 / 255.0, blue: 151.0 / 255.0, alpha: 1.0).cgColor
         let gl = CAGradientLayer()
@@ -248,13 +248,18 @@ class RecorderViewController: UIViewController {
         view.backgroundColor = UIColor.clear
         gl.frame = view.frame
         view.layer.insertSublayer(gl, at: 0)
-        // Do any additional setup after loading the view.
+        let vHeight: CGFloat = 225
+        self.audioView.frame = CGRect(x: 0, y: self.view!.frame.height - vHeight, width: self.view!.frame.width, height: vHeight)
+        // Add UIView as a Subview
+        self.audioView.isHidden = true
+        self.view.addSubview(self.audioView)
+        self.view.bringSubviewToFront(self.nextButton)
+        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        print("go!")
         if let a = segue.destination as? UploadViewController {
             a.startUpload()
         }

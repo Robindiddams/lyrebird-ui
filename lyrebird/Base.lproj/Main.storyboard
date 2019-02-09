@@ -18,24 +18,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="THL-8u-yAZ" customClass="AudioVisualizerButton" customModule="lyrebird" customModuleProvider="target">
-                                <rect key="frame" x="16" y="364.5" width="343" height="163"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="163" id="AMg-a9-lEY"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="recordViewTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eW0-Pj-R2G"/>
-                                </connections>
-                            </view>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ey-hV-sKI">
-                                <rect key="frame" x="168" y="535.5" width="39.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="record something! keep it around 10 seconds👌" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iS9-pF-ulu">
+                                <rect key="frame" x="60" y="220" width="255" height="41"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's hear it!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPc-ov-KWG">
+                                <rect key="frame" x="109" y="180" width="157" height="32"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="26"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWs-z0-3Z8">
-                                <rect key="frame" x="161" y="576" width="53" height="41"/>
+                                <rect key="frame" x="161" y="498" width="53" height="41"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <state key="normal" title="Next">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -44,45 +40,42 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Benis"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="pHo-vE-eMb" kind="show" id="Fzp-2D-qTh"/>
+                                    <segue destination="pHo-vE-eMb" kind="show" id="B9S-91-V61"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="record something! keep it around 10 seconds👌" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iS9-pF-ulu">
-                                <rect key="frame" x="60" y="264" width="255" height="41"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ey-hV-sKI">
+                                <rect key="frame" x="168" y="564" width="39.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's hear it!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPc-ov-KWG">
-                                <rect key="frame" x="109" y="224" width="157" height="32"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="26"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👇tap this thing to record👇" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4XW-Bw-5Uf">
-                                <rect key="frame" x="77.5" y="334" width="220.5" height="20.5"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lb2-Jh-cYD">
+                                <rect key="frame" x="147" y="323" width="81" height="41"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <state key="normal" title="Record">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Benis"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="recordButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v3m-WD-A4M"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="iS9-pF-ulu" firstAttribute="top" secondItem="cPc-ov-KWG" secondAttribute="bottom" constant="8" id="4Tq-67-6It"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hWs-z0-3Z8" secondAttribute="bottom" constant="50" id="52c-ny-auG"/>
-                            <constraint firstItem="8Ey-hV-sKI" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="73w-bD-Fvv"/>
-                            <constraint firstItem="hWs-z0-3Z8" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="80G-O0-Kki"/>
-                            <constraint firstItem="THL-8u-yAZ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="BMB-Ej-Q9L"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="THL-8u-yAZ" secondAttribute="trailing" constant="16" id="EoH-wf-t6o"/>
-                            <constraint firstItem="THL-8u-yAZ" firstAttribute="top" secondItem="4XW-Bw-5Uf" secondAttribute="bottom" constant="10" id="FXM-Rj-QgJ"/>
-                            <constraint firstItem="8Ey-hV-sKI" firstAttribute="top" secondItem="THL-8u-yAZ" secondAttribute="bottom" constant="8" id="MBv-wv-Y8Z"/>
-                            <constraint firstItem="hWs-z0-3Z8" firstAttribute="top" secondItem="8Ey-hV-sKI" secondAttribute="bottom" constant="20" id="P5g-PZ-qAU"/>
+                            <constraint firstItem="hWs-z0-3Z8" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="4Yv-Lv-i3k"/>
+                            <constraint firstItem="Lb2-Jh-cYD" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="JdY-Fr-raw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8Ey-hV-sKI" secondAttribute="bottom" constant="82.5" id="Npb-aS-dAr"/>
                             <constraint firstItem="cPc-ov-KWG" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="R70-C0-xS9"/>
+                            <constraint firstItem="8Ey-hV-sKI" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="YFM-ME-SlK"/>
                             <constraint firstItem="iS9-pF-ulu" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="bhz-PQ-TCj"/>
-                            <constraint firstItem="4XW-Bw-5Uf" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="d46-hQ-RTW"/>
                             <constraint firstItem="iS9-pF-ulu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="gOk-YI-NTf"/>
-                            <constraint firstItem="THL-8u-yAZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="oei-qU-mnw"/>
+                            <constraint firstItem="8Ey-hV-sKI" firstAttribute="top" secondItem="hWs-z0-3Z8" secondAttribute="bottom" constant="25" id="oq4-lC-1Lg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iS9-pF-ulu" secondAttribute="trailing" constant="60" id="q14-9x-A4K"/>
+                            <constraint firstItem="Lb2-Jh-cYD" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="sxR-Ff-1Sc"/>
                             <constraint firstItem="cPc-ov-KWG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="160" id="yYN-iV-VYk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -103,8 +96,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Record" id="1CS-dD-vim"/>
                     <connections>
-                        <outlet property="audioView" destination="THL-8u-yAZ" id="Vnb-Fp-EeS"/>
                         <outlet property="nextButton" destination="hWs-z0-3Z8" id="LY9-kP-D8Z"/>
+                        <outlet property="recordButton" destination="Lb2-Jh-cYD" id="xs5-w4-ybj"/>
                         <outlet property="timeLabel" destination="8Ey-hV-sKI" id="II0-pl-xjL"/>
                     </connections>
                 </viewController>
@@ -121,13 +114,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It's up there!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oI8-Xo-0pj">
-                                <rect key="frame" x="108" y="260" width="159" height="31.5"/>
+                                <rect key="frame" x="108" y="216" width="159" height="31.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="26"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lyrebird is generating your song" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zen-Jw-zeC">
-                                <rect key="frame" x="67" y="299.5" width="241.5" height="20.5"/>
+                                <rect key="frame" x="67" y="255.5" width="241.5" height="20.5"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -190,18 +183,20 @@
         <!--Navigation Controller-->
         <scene sceneID="vwi-2k-ymc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ao9-6C-dMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController id="f1z-Hh-LCS" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="f1z-Hh-LCS" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="C1S-rj-EjH">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mgr-HV-J0y">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="2OY-KJ-kdz"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ao9-6C-dMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-502" y="-99"/>
+            <point key="canvasLocation" x="-513" y="278"/>
         </scene>
         <!--Player View Controller-->
         <scene sceneID="pvE-jX-9hL">
@@ -212,7 +207,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tada🎉" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWr-mL-cUk">
-                                <rect key="frame" x="142.5" y="240" width="90.5" height="32"/>
+                                <rect key="frame" x="142.5" y="196" width="90.5" height="32"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="26"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>

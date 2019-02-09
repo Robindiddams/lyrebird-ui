@@ -1,17 +1,17 @@
 //
-//  AudioVisualizerView.swift
-//  VoiceMemosClone
+//  Visualizer.swift
+//  lyrebird
 //
-//  Created by Hassan El Desouky on 1/12/19.
-//  Copyright © 2019 Hassan El Desouky. All rights reserved.
+//  Created by Robin Diddams on 2/8/19.
+//  Copyright © 2019 Robin Diddams. All rights reserved.
 //
 
 import UIKit
 
-class AudioVisualizerButton: UIButton{
+class Visualizer: UIView{
     
     // Bar width
-    var barWidth: CGFloat = 4.0
+    var barWidth: CGFloat = 6.0
     // Indicate that waveform should draw active/inactive state
     var active = false {
         didSet {
@@ -33,20 +33,19 @@ class AudioVisualizerButton: UIButton{
     // MARK: - Init
     override init (frame : CGRect) {
         super.init(frame : frame)
-        self.backgroundColor = UIColor.clear
-        self.drawBorder()
+        self.setup()
     }
     
     required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
-        self.backgroundColor = UIColor.clear
-        self.drawBorder()
+        self.setup()
     }
     
-    func drawBorder() {
-        self.layer.borderColor = UIColor.white.cgColor
-        self.layer.borderWidth = 3.0
-        self.layer.cornerRadius = 10.0
+    func setup() {
+//        self.layer.borderColor = UIColor.white.cgColor
+//        self.layer.borderWidth = 3.0
+//        self.layer.cornerRadius = 10.0
+        self.backgroundColor = UIColor.clear
     }
     
     // MARK: - Draw bars
@@ -65,46 +64,23 @@ class AudioVisualizerButton: UIButton{
         let s = max(0, self.waveforms.count - t)
         let m = h / 2
         let r = self.barWidth / 2
-        let x = m - r
+        let x = h - r
         var bar: CGFloat = 0
         for i in s ..< self.waveforms.count {
             var v = h * CGFloat(self.waveforms[i]) / 50.0
             if v > x {
                 v = x
-            }
-            else if v < 3 {
+            } else if v < 3 {
                 v = 3
             }
             let oneX = bar * self.barWidth
-            var oneY: CGFloat = 0
-            let twoX = oneX + r
-            var twoY: CGFloat = 0
-            var twoS: CGFloat = 0
-            var twoE: CGFloat = 0
-            var twoC: Bool = false
-            let threeX = twoX + r
-            let threeY = m
-            if i % 2 == 1 {
-                oneY = m - v
-                twoY = m - v
-                twoS = -180.degreesToRadians
-                twoE = 0.degreesToRadians
-                twoC = false
-            }
-            else {
-                oneY = m + v
-                twoY = m + v
-                twoS = 180.degreesToRadians
-                twoE = 0.degreesToRadians
-                twoC = true
-            }
-            context.move(to: CGPoint(x: oneX, y: m))
-            context.addLine(to: CGPoint(x: oneX, y: oneY))
-            context.addArc(center: CGPoint(x: twoX, y: twoY), radius: r, startAngle: twoS, endAngle: twoE, clockwise: twoC)
-            context.addLine(to: CGPoint(x: threeX, y: threeY))
+            let oneY = v
+            context.move(to: CGPoint(x: oneX, y: h))
+            context.addLine(to: CGPoint(x: oneX, y: h - oneY * 2))
+            
             context.strokePath()
             bar += 1
         }
     }
-
+    
 }
