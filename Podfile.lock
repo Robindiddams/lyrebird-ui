@@ -1,26 +1,26 @@
 PODS:
+  - Alamofire (4.8.0)
   - JGProgressHUD (2.0.3)
   - NVActivityIndicatorView (4.4.0):
     - NVActivityIndicatorView/Presenter (= 4.4.0)
   - NVActivityIndicatorView/Presenter (4.4.0)
-  - PRTween (0.1.0)
 
 DEPENDENCIES:
+  - Alamofire
   - JGProgressHUD
   - NVActivityIndicatorView
-  - PRTween (~> 0.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Alamofire
     - JGProgressHUD
     - NVActivityIndicatorView
-    - PRTween
 
 SPEC CHECKSUMS:
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   NVActivityIndicatorView: ec7440a57af2450319d3a4181cca7da6fc127064
-  PRTween: 6c58c7e32ebcf31e33e6a6e6bc727ebef3b668ef
 
-PODFILE CHECKSUM: 6ddd41439d9ef95ca8a960ca23ac99f94ad65a27
+PODFILE CHECKSUM: 4ce5f32bf9a5b4d78f3a1e032c7eb7ee676cead1
 
 COCOAPODS: 1.5.3

@@ -11,6 +11,7 @@
 		2637979B220D680A006918E8 /* PrettyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2637979A220D680A006918E8 /* PrettyButton.swift */; };
 		2637979D220D81AB006918E8 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2637979C220D81AB006918E8 /* PlayerViewController.swift */; };
 		2637979F220E8F94006918E8 /* Visualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2637979E220E8F94006918E8 /* Visualizer.swift */; };
+		264067D1221263FF006D9C04 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264067D0221263FF006D9C04 /* Files.swift */; };
 		26E4CCCB21FF9E14009AC325 /* RecordingsViewController_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4CCCA21FF9E14009AC325 /* RecordingsViewController_old.swift */; };
 		26E4CCD921FFA3CB009AC325 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4CCD821FFA3CA009AC325 /* Extensions.swift */; };
 		26E4CCDD21FFB1B4009AC325 /* StartRecording.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 26E4CCDB21FFB1B4009AC325 /* StartRecording.aiff */; };
@@ -53,6 +54,7 @@
 		2637979A220D680A006918E8 /* PrettyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyButton.swift; sourceTree = "<group>"; };
 		2637979C220D81AB006918E8 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		2637979E220E8F94006918E8 /* Visualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visualizer.swift; sourceTree = "<group>"; };
+		264067D0221263FF006D9C04 /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
 		26E4CCCA21FF9E14009AC325 /* RecordingsViewController_old.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingsViewController_old.swift; sourceTree = "<group>"; };
 		26E4CCD821FFA3CA009AC325 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		26E4CCDB21FFB1B4009AC325 /* StartRecording.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = StartRecording.aiff; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				26FDF21921B09242008D73C1 /* LaunchScreen.storyboard */,
 				26E4CCDF21FFB1C1009AC325 /* Resources */,
 				26FDF21C21B09242008D73C1 /* Info.plist */,
+				264067D0221263FF006D9C04 /* Files.swift */,
 			);
 			path = lyrebird;
 			sourceTree = "<group>";
@@ -413,17 +416,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-lyrebird/Pods-lyrebird-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
-				"${BUILT_PRODUCTS_DIR}/PRTween/PRTween.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PRTween.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -439,6 +442,7 @@
 			files = (
 				26379797220D405C006918E8 /* UploadViewController.swift in Sources */,
 				2637979D220D81AB006918E8 /* PlayerViewController.swift in Sources */,
+				264067D1221263FF006D9C04 /* Files.swift in Sources */,
 				26FDF21321B0923F008D73C1 /* RecordViewController.swift in Sources */,
 				26E4CCD921FFA3CB009AC325 /* Extensions.swift in Sources */,
 				2637979F220E8F94006918E8 /* Visualizer.swift in Sources */,

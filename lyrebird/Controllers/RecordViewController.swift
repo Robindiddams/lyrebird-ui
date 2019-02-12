@@ -201,19 +201,9 @@ class RecorderViewController: UIViewController {
     
     
     // MARK:- Paths and files
-    private func createAudioRecordPath() -> URL? {
-        let format = DateFormatter()
-        format.dateFormat="yyyy-MM-dd-HH-mm-ss-SSS"
-        let currentFileName = "recording-\(format.string(from: Date()))" + ".wav"
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let url = documentsDirectory.appendingPathComponent(currentFileName)
-        return url
-    }
     
     private func createAudioRecordFile() -> AVAudioFile? {
-        guard let path = self.createAudioRecordPath() else {
-            return nil
-        }
+        let path = getAudioRecordPath()
         do {
             let file = try AVAudioFile(forWriting: path, settings: self.settings, commonFormat: .pcmFormatFloat32, interleaved: true)
             return file

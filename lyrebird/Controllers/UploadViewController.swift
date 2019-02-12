@@ -9,6 +9,9 @@
 import UIKit
 import JGProgressHUD
 import NVActivityIndicatorView
+import Alamofire
+
+let apiURL = "https://67j3dw6bhb.execute-api.us-east-1.amazonaws.com/dev"
 
 class UploadViewController: UIViewController {
 
@@ -27,9 +30,7 @@ class UploadViewController: UIViewController {
 
         spinner.color = UIColor.white
         spinner.type = NVActivityIndicatorType.lineScalePulseOutRapid
-        // Do any additional setup after loading the view.
     }
-    var dl :Bool = false
     
     @IBOutlet weak var spinner: NVActivityIndicatorView!
     @IBOutlet weak var UploadedMessage: UILabel!
@@ -43,7 +44,6 @@ class UploadViewController: UIViewController {
         hud.textLabel.text = "Downloading"
         hud.indicatorView = JGProgressHUDPieIndicatorView()
         hud.show(in: self.view)
-        self.dl = true
         self.incrementHUD(hud, progress: 0)
     }
     
@@ -55,8 +55,33 @@ class UploadViewController: UIViewController {
         hud.textLabel.text = "Uploading"
         hud.show(in: self.view)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(400)) {
-            self.incrementHUD(hud, progress: 0)
+        var encodedString: Data = Data()
+        if let encodedMusic = try? Data(contentsOf: getAudioRecordPath()) {
+            encodedString = encodedMusic.base64EncodedData()
+        } else {
+            // TODO: throw an error
+        }
+        
+        
+        Alamofire.upload(encodedString, to: apiURL + "/upload")
+            .uploadProgress { progress in // main queue by default
+                let currentProgress = Float(progress.fractionCompleted * 100.0)
+                hud.progress = currentProgress
+                hud.detailTextLabel.text = "\(currentProgress)% Complete"
+            }
+            .downloadProgress { progress in // main queue by default
+//                print("Download Progress: \(progress.fractionCompleted)")
+            }
+            .responseJSON { response in
+                debugPrint(response)
+                // TODO: check for errors
+                UIView.animate(withDuration: 0.1, animations: {
+                    hud.textLabel.text = "Success"
+                    hud.detailTextLabel.text = nil
+                    hud.indicatorView = JGProgressHUDSuccessIndicatorView()
+                })
+                hud.dismiss(afterDelay: 1.0)
+                self.uploadComplete()
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(10)) {
@@ -96,12 +121,8 @@ class UploadViewController: UIViewController {
                 })
                 
                 hud.dismiss(afterDelay: 1.0)
-                if self.dl {
-                    self.dowloadComplete()
-                } else {
-                    self.uploadComplete()
-                }
-                
+                self.dowloadComplete()
+
             }
         }
         else {
