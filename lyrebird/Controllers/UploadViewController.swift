@@ -15,6 +15,9 @@ let apiURL = "https://67j3dw6bhb.execute-api.us-east-1.amazonaws.com/dev"
 
 class UploadViewController: UIViewController {
 
+    var task_id: String = ""
+    weak var timer: Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,6 +50,34 @@ class UploadViewController: UIViewController {
         self.incrementHUD(hud, progress: 0)
     }
     
+    func startStatusRequests() {
+        timer?.invalidate()   // just in case you had existing `Timer`, `invalidate` it before we lose our reference to it
+        timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { [weak self] _ in
+            if let tID = self?.task_id {
+                Alamofire.request(apiURL + "/status?task_id=\(tID)").responseJSON { response in
+                    if response.response?.statusCode != 200 {
+                        if let json = response.result.value as? [String: Any], let resp = errorResponse(json: json) {
+                            // TODO: do something on errors
+                            print("ERROR: success: \(resp.success), message: \(resp.message)")
+                            return
+                        }
+                    }
+                    print("Success: \(response.result.isSuccess) code:\(response.response?.statusCode)")
+                    if let json = response.result.value as? [String: Any], let resp = statusResponse(json: json) {
+                        print("success: \(resp.success), task: \(resp.completed)")
+                        self?.stopStatusRequests()
+                        self?.downloadIsReady()
+                    }
+                }
+            }
+        }
+    }
+    
+    func stopStatusRequests() {
+        timer?.invalidate()
+    }
+
+    
     func startUpload() {
         let hud = JGProgressHUD(style: .light)
         hud.vibrancyEnabled = true
@@ -66,30 +97,47 @@ class UploadViewController: UIViewController {
         Alamofire.upload(encodedString, to: apiURL + "/upload")
             .uploadProgress { progress in // main queue by default
                 let currentProgress = Float(progress.fractionCompleted * 100.0)
-                hud.progress = currentProgress
-                hud.detailTextLabel.text = "\(currentProgress)% Complete"
-            }
-            .downloadProgress { progress in // main queue by default
-//                print("Download Progress: \(progress.fractionCompleted)")
+                print("upload progress: \(String(format: "%.2f", currentProgress)) \(currentProgress)")
+                hud.detailTextLabel.text = "\(String(format: "%.2f", currentProgress))% Complete"
+                hud.setProgress(currentProgress, animated: true)
             }
             .responseJSON { response in
-                debugPrint(response)
-                // TODO: check for errors
-                UIView.animate(withDuration: 0.1, animations: {
+                hud.detailTextLabel.text = "100.0% Complete"
+                hud.setProgress(100.0, animated: true)
+                UIView.animate(withDuration: 0.3, animations: {
                     hud.textLabel.text = "Success"
                     hud.detailTextLabel.text = nil
                     hud.indicatorView = JGProgressHUDSuccessIndicatorView()
                 })
                 hud.dismiss(afterDelay: 1.0)
+                if response.result.value is NSNull {
+                    // TODO do something here too
+                    return
+                }
+                if response.response?.statusCode != 200 {
+                    if let json = response.result.value as? [String: Any], let resp = errorResponse(json: json) {
+                        // TODO: do something on errors
+                        print("ERROR: success: \(resp.success), message: \(resp.message)")
+                        return
+                    }
+                }
+                if let json = response.result.value as? [String: Any], let resp = uploadResponse(json: json) {
+                    print("success: \(resp.success), task: \(resp.task_id)")
+                    self.task_id = resp.task_id
+                }
                 self.uploadComplete()
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(10)) {
-            self.downloadIsReady()
-        }
     }
     
     func uploadComplete() {
+        // Delete local recording
+        deleteAudioRecording()
+        
+        // Start requesting server for download
+        self.startStatusRequests()
+        
+        // Show new UI elements
         UploadedCaption.isHidden = false
         UploadedMessage.isHidden = false
         spinner.startAnimating()
@@ -131,15 +179,4 @@ class UploadViewController: UIViewController {
             }
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
