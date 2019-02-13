@@ -62,11 +62,13 @@ class UploadViewController: UIViewController {
                             return
                         }
                     }
-                    print("Success: \(response.result.isSuccess) code:\(response.response?.statusCode)")
+//                    print("Success: \(response.result.isSuccess) code:\(response.response?.statusCode)")
                     if let json = response.result.value as? [String: Any], let resp = statusResponse(json: json) {
                         print("success: \(resp.success), task: \(resp.completed)")
-                        self?.stopStatusRequests()
-                        self?.downloadIsReady()
+                        if resp.completed {
+                            self?.stopStatusRequests()
+                            self?.downloadIsReady()
+                        }
                     }
                 }
             }
@@ -102,30 +104,32 @@ class UploadViewController: UIViewController {
                 hud.setProgress(currentProgress, animated: true)
             }
             .responseJSON { response in
-                hud.detailTextLabel.text = "100.0% Complete"
-                hud.setProgress(100.0, animated: true)
-                UIView.animate(withDuration: 0.3, animations: {
-                    hud.textLabel.text = "Success"
-                    hud.detailTextLabel.text = nil
-                    hud.indicatorView = JGProgressHUDSuccessIndicatorView()
-                })
-                hud.dismiss(afterDelay: 1.0)
-                if response.result.value is NSNull {
-                    // TODO do something here too
-                    return
-                }
-                if response.response?.statusCode != 200 {
-                    if let json = response.result.value as? [String: Any], let resp = errorResponse(json: json) {
-                        // TODO: do something on errors
-                        print("ERROR: success: \(resp.success), message: \(resp.message)")
+                // wait a few miliseconds to dismiss
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+                    UIView.animate(withDuration: 0.3, animations: {
+                        hud.textLabel.text = "Success"
+                        hud.detailTextLabel.text = nil
+                        hud.indicatorView = JGProgressHUDSuccessIndicatorView()
+                    })
+                    hud.dismiss(afterDelay: 1.0)
+                    if response.result.value is NSNull {
+                        // TODO do something here too
                         return
                     }
+                    if response.response?.statusCode != 200 {
+                        if let json = response.result.value as? [String: Any], let resp = errorResponse(json: json) {
+                            // TODO: do something on errors
+                            print("ERROR: success: \(resp.success), message: \(resp.message)")
+                            return
+                        }
+                    }
+                    if let json = response.result.value as? [String: Any], let resp = uploadResponse(json: json) {
+                        print("success: \(resp.success), task: \(resp.task_id)")
+                        self.task_id = resp.task_id
+                    }
+                    self.uploadComplete()
                 }
-                if let json = response.result.value as? [String: Any], let resp = uploadResponse(json: json) {
-                    print("success: \(resp.success), task: \(resp.task_id)")
-                    self.task_id = resp.task_id
-                }
-                self.uploadComplete()
+                
         }
         
     }
