@@ -62,7 +62,6 @@ class Visualizer: UIView{
         let h = rect.size.height
         let t = Int(w / self.barWidth)
         let s = max(0, self.waveforms.count - t)
-        let m = h / 2
         let r = self.barWidth / 2
         let x = h - r
         var bar: CGFloat = 0

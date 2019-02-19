@@ -28,15 +28,18 @@ extension errorResponse {
 struct uploadResponse {
     let success: Bool
     let task_id: String
+    let URL: String
 }
 
 extension uploadResponse {
     init?(json: [String: Any]) {
         guard let success = json["success"] as? Bool,
-            let task_id = json["task_id"] as? String
+            let task_id = json["task_id"] as? String,
+            let URL = json["upload_url"] as? String
             else {
                 return nil
         }
+        self.URL = URL
         self.success = success
         self.task_id = task_id
     }
@@ -45,6 +48,7 @@ extension uploadResponse {
 struct statusResponse {
     let success: Bool
     let completed: Bool
+    var URL: String
 }
 
 extension statusResponse {
@@ -56,5 +60,9 @@ extension statusResponse {
         }
         self.success = success
         self.completed = completed
+        self.URL = ""
+        if let url = json["download_url"] as? String {
+            self.URL = url
+        }
     }
 }

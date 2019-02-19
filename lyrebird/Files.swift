@@ -8,8 +8,15 @@
 
 import Foundation
 
+func getSoundPath(name: String) -> URL {
+    let currentFileName = "\(name)-sound" + ".wav"
+    let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    let url = documentsDirectory.appendingPathComponent(currentFileName)
+    return url
+}
+
 func getAudioRecordPath() -> URL {
-    let currentFileName = "lyrebird-recording" + ".wav"
+    let currentFileName = "lyrebird-recording.wav"
     let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     let url = documentsDirectory.appendingPathComponent(currentFileName)
     return url

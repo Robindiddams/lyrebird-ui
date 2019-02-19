@@ -11,11 +11,12 @@ import JGProgressHUD
 import NVActivityIndicatorView
 import Alamofire
 
-let apiURL = "https://67j3dw6bhb.execute-api.us-east-1.amazonaws.com/dev"
+let apiURL = "https://p00plqfrp6.execute-api.us-east-1.amazonaws.com/dev"
 
 class UploadViewController: UIViewController {
 
     var task_id: String = ""
+    var downloadURL: String = ""
     weak var timer: Timer?
     
     override func viewDidLoad() {
@@ -29,7 +30,6 @@ class UploadViewController: UIViewController {
         view.backgroundColor = UIColor.clear
         gl.frame = view.frame
         view.layer.insertSublayer(gl, at: 0)
-        
 
         spinner.color = UIColor.white
         spinner.type = NVActivityIndicatorType.lineScalePulseOutRapid
@@ -47,12 +47,30 @@ class UploadViewController: UIViewController {
         hud.textLabel.text = "Downloading"
         hud.indicatorView = JGProgressHUDPieIndicatorView()
         hud.show(in: self.view)
-        self.incrementHUD(hud, progress: 0)
+        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+            let fileURL = getSoundPath(name: self.task_id)
+            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+        }
+        Alamofire.download(self.downloadURL, to: destination)
+            .downloadProgress { progress in
+                let currentProgress = Float(progress.fractionCompleted * 100.0)
+                print("download progress: \(String(format: "%.2f", currentProgress))% \(progress.fractionCompleted)")
+                hud.detailTextLabel.text = "\(String(format: "%.2f", currentProgress))% Complete"
+                hud.setProgress(Float(progress.fractionCompleted), animated: true)
+            }
+            .response { response in
+                print("status code\(response.response?.statusCode)")
+                if response.error == nil, let path = response.destinationURL?.path {
+                    print("no error path: \(path)")
+                    // TODO(robin): put path in some global thing
+                    self.dowloadComplete()
+                }
+            }
     }
     
     func startStatusRequests() {
-        timer?.invalidate()   // just in case you had existing `Timer`, `invalidate` it before we lose our reference to it
-        timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { [weak self] _ in
+        self.timer?.invalidate()   // just in case you had existing `Timer`, `invalidate` it before we lose our reference to it
+        self.timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { [weak self] _ in
             if let tID = self?.task_id {
                 Alamofire.request(apiURL + "/status?task_id=\(tID)").responseJSON { response in
                     if response.response?.statusCode != 200 {
@@ -64,10 +82,10 @@ class UploadViewController: UIViewController {
                     }
 //                    print("Success: \(response.result.isSuccess) code:\(response.response?.statusCode)")
                     if let json = response.result.value as? [String: Any], let resp = statusResponse(json: json) {
-                        print("success: \(resp.success), task: \(resp.completed)")
+                        print("success: \(resp.success), task: \(resp.completed), url: \(resp.URL)")
                         if resp.completed {
                             self?.stopStatusRequests()
-                            self?.downloadIsReady()
+                            self?.downloadIsReady(downloadURL: resp.URL)
                         }
                     }
                 }
@@ -76,62 +94,76 @@ class UploadViewController: UIViewController {
     }
     
     func stopStatusRequests() {
-        timer?.invalidate()
+        self.timer?.invalidate()
     }
-
     
-    func startUpload() {
+    func UploadRecording(url: String) {
         let hud = JGProgressHUD(style: .light)
         hud.vibrancyEnabled = true
         hud.indicatorView = JGProgressHUDPieIndicatorView()
         hud.detailTextLabel.text = "0% Complete"
         hud.textLabel.text = "Uploading"
         hud.show(in: self.view)
-        
-        var encodedString: Data = Data()
         if let encodedMusic = try? Data(contentsOf: getAudioRecordPath()) {
-            encodedString = encodedMusic.base64EncodedData()
-        } else {
-            // TODO: throw an error
-        }
-        
-        
-        Alamofire.upload(encodedString, to: apiURL + "/upload")
-            .uploadProgress { progress in // main queue by default
-                let currentProgress = Float(progress.fractionCompleted * 100.0)
-                print("upload progress: \(String(format: "%.2f", currentProgress)) \(currentProgress)")
-                hud.detailTextLabel.text = "\(String(format: "%.2f", currentProgress))% Complete"
-                hud.setProgress(currentProgress, animated: true)
-            }
-            .responseJSON { response in
-                // wait a few miliseconds to dismiss
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
-                    UIView.animate(withDuration: 0.3, animations: {
-                        hud.textLabel.text = "Success"
-                        hud.detailTextLabel.text = nil
-                        hud.indicatorView = JGProgressHUDSuccessIndicatorView()
-                    })
-                    hud.dismiss(afterDelay: 1.0)
-                    if response.result.value is NSNull {
-                        // TODO do something here too
-                        return
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/octet-stream"
+            ]
+            Alamofire.upload(encodedMusic, to: url, method: .put, headers: headers)
+                .uploadProgress { progress in // main queue by default
+                    let currentProgress = Float(progress.fractionCompleted * 100.0)
+                    print("upload progress: \(String(format: "%.2f", currentProgress))% \(progress.fractionCompleted)")
+                    hud.detailTextLabel.text = "\(String(format: "%.2f", currentProgress))% Complete"
+                    hud.setProgress(Float(progress.fractionCompleted), animated: true)
+                }
+                .response { response in
+                    if hud.progress < 1.0 {
+                        hud.detailTextLabel.text = "100.0% Complete"
+                        hud.setProgress(1.0, animated: true)
                     }
                     if response.response?.statusCode != 200 {
-                        if let json = response.result.value as? [String: Any], let resp = errorResponse(json: json) {
-                            // TODO: do something on errors
-                            print("ERROR: success: \(resp.success), message: \(resp.message)")
-                            return
+                        print("error \(response.response?.statusCode)")
+                        if let data = response.data {
+                            print("data:\(data.base64EncodedString())")
                         }
+                        // TODO: throw an error, tell user
+                        return
                     }
-                    if let json = response.result.value as? [String: Any], let resp = uploadResponse(json: json) {
-                        print("success: \(resp.success), task: \(resp.task_id)")
-                        self.task_id = resp.task_id
+                    // wait a few miliseconds to dismiss
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+                        UIView.animate(withDuration: 0.3, animations: {
+                            hud.textLabel.text = "Success"
+                            hud.detailTextLabel.text = nil
+                            hud.indicatorView = JGProgressHUDSuccessIndicatorView()
+                        })
+                        hud.dismiss(afterDelay: 1.0)
+                        self.uploadComplete()
                     }
-                    self.uploadComplete()
-                }
-                
+                    
+            }
+        } else {
+            // TODO: throw an error, tell user and go back to record
         }
         
+    }
+
+    func startUpload() {
+        // get our upload url
+        Alamofire.request(apiURL + "/upload")
+            .responseJSON { response in
+                print("success: \(response.result.isSuccess)")
+                if response.response?.statusCode != 200 {
+                    if let json = response.result.value as? [String: Any], let resp = errorResponse(json: json) {
+                        // TODO: do something on errors, show error and go back
+                        print("ERROR: success: \(resp.success), message: \(resp.message)")
+                        return
+                    }
+                }
+                if let json = response.result.value as? [String: Any], let resp = uploadResponse(json: json) {
+                    print("success: \(resp.success), task: \(resp.task_id), upload_url: \(resp.URL)")
+                    self.task_id = resp.task_id
+                    self.UploadRecording(url: resp.URL)
+                }
+        }
     }
     
     func uploadComplete() {
@@ -147,7 +179,8 @@ class UploadViewController: UIViewController {
         spinner.startAnimating()
     }
     
-    func downloadIsReady() {
+    func downloadIsReady(downloadURL: String) {
+        self.downloadURL = downloadURL
         spinner.stopAnimating()
         dlButton.isHidden = false
         UploadedMessage.text = "All set!"
@@ -156,31 +189,5 @@ class UploadViewController: UIViewController {
     
     func dowloadComplete() {
         self.performSegue(withIdentifier: "player", sender: self)
-    }
-    
-    func incrementHUD(_ hud: JGProgressHUD, progress previousProgress: Int) {
-        let progress = previousProgress + 1
-        hud.progress = Float(progress)/100.0
-        hud.detailTextLabel.text = "\(progress)% Complete"
-        
-        if progress == 100 {
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
-                UIView.animate(withDuration: 0.1, animations: {
-                    hud.textLabel.text = "Success"
-                    hud.detailTextLabel.text = nil
-                    hud.indicatorView = JGProgressHUDSuccessIndicatorView()
-                })
-                
-                hud.dismiss(afterDelay: 1.0)
-                self.dowloadComplete()
-
-            }
-        }
-        else {
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(20)) {
-                self.incrementHUD(hud, progress: progress)
-            }
-        }
     }
 }
