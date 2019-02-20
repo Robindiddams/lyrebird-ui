@@ -1,5 +1,5 @@
 //
-//  RecordViewController.swift
+//  RecorderViewController.swift
 //  lyrebird
 //
 //  Created by Robin Diddams on 1/28/19.
@@ -38,7 +38,6 @@ class RecorderViewController: UIViewController {
     
     //MARK:- Actions
     @IBAction func recordButtonTapped(_ sender: UIButton) {
-        print("button slapped")
         timeLabel.isHidden = false
         if !self.audioView.isRecording {
             nextButton.isHidden = true
@@ -229,15 +228,7 @@ class RecorderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.navigationController?.isNavigationBarHidden = true
-        let colorTop = UIColor(red: 125.0 / 255.0, green: 199.0 / 255.0, blue: 195 / 255.0, alpha: 1.0).cgColor
-        let colorBottom = UIColor(red: 46.0 / 255.0, green: 103.0 / 255.0, blue: 151.0 / 255.0, alpha: 1.0).cgColor
-        let gl = CAGradientLayer()
-        gl.colors = [colorTop, colorBottom]
-        gl.locations = [0.0, 1.0]
-        view.backgroundColor = UIColor.clear
-        gl.frame = view.frame
-        view.layer.insertSublayer(gl, at: 0)
+        self.view.setBackgroundGradient()
         let vHeight: CGFloat = 225
         self.audioView.frame = CGRect(x: 0, y: self.view!.frame.height - vHeight, width: self.view!.frame.width, height: vHeight)
         // Add UIView as a Subview

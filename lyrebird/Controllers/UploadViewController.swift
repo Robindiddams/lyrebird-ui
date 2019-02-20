@@ -17,27 +17,20 @@ class UploadViewController: UIViewController {
 
     var task_id: String = ""
     var downloadURL: String = ""
+    var downloadedSoundURL: URL!
     weak var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let colorTop = UIColor(red: 125.0 / 255.0, green: 199.0 / 255.0, blue: 195 / 255.0, alpha: 1.0).cgColor
-        let colorBottom = UIColor(red: 46.0 / 255.0, green: 103.0 / 255.0, blue: 151.0 / 255.0, alpha: 1.0).cgColor
-        let gl = CAGradientLayer()
-        gl.colors = [colorTop, colorBottom]
-        gl.locations = [0.0, 1.0]
-        view.backgroundColor = UIColor.clear
-        gl.frame = view.frame
-        view.layer.insertSublayer(gl, at: 0)
-
+        self.view.setBackgroundGradient()
         spinner.color = UIColor.white
-        spinner.type = NVActivityIndicatorType.lineScalePulseOutRapid
+        spinner.type = NVActivityIndicatorType.orbit
+        spinner.startAnimating()
     }
     
     @IBOutlet weak var spinner: NVActivityIndicatorView!
-    @IBOutlet weak var UploadedMessage: UILabel!
-    @IBOutlet weak var UploadedCaption: UILabel!
+    @IBOutlet weak var TitleLabel: UILabel!
+    @IBOutlet weak var SubtitleLabel: UILabel!
     @IBOutlet weak var dlButton: UIButton!
     
     @IBAction func startDownload(_ sender: UIButton) {
@@ -59,11 +52,20 @@ class UploadViewController: UIViewController {
                 hud.setProgress(Float(progress.fractionCompleted), animated: true)
             }
             .response { response in
-                print("status code\(response.response?.statusCode)")
-                if response.error == nil, let path = response.destinationURL?.path {
-                    print("no error path: \(path)")
-                    // TODO(robin): put path in some global thing
-                    self.dowloadComplete()
+//                print("status code\(response.response?.statusCode)")
+                if response.error == nil, let pathURL = response.destinationURL {
+                    print("no error path: \(pathURL.path)")
+                    // wait a few miliseconds to dismiss
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+                        UIView.animate(withDuration: 0.3, animations: {
+                            hud.textLabel.text = "Success"
+                            hud.detailTextLabel.text = nil
+                            hud.indicatorView = JGProgressHUDSuccessIndicatorView()
+                        })
+                        hud.dismiss(afterDelay: 1.0)
+                        self.downloadedSoundURL = pathURL
+                        self.dowloadComplete()
+                    }
                 }
             }
     }
@@ -128,17 +130,13 @@ class UploadViewController: UIViewController {
                         // TODO: throw an error, tell user
                         return
                     }
-                    // wait a few miliseconds to dismiss
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
-                        UIView.animate(withDuration: 0.3, animations: {
-                            hud.textLabel.text = "Success"
-                            hud.detailTextLabel.text = nil
-                            hud.indicatorView = JGProgressHUDSuccessIndicatorView()
-                        })
-                        hud.dismiss(afterDelay: 1.0)
-                        self.uploadComplete()
-                    }
-                    
+                    UIView.animate(withDuration: 0.3, animations: {
+                        hud.textLabel.text = "Success"
+                        hud.detailTextLabel.text = nil
+                        hud.indicatorView = JGProgressHUDSuccessIndicatorView()
+                    })
+                    hud.dismiss(afterDelay: 1.0)
+                    self.uploadComplete()
             }
         } else {
             // TODO: throw an error, tell user and go back to record
@@ -161,6 +159,7 @@ class UploadViewController: UIViewController {
                 if let json = response.result.value as? [String: Any], let resp = uploadResponse(json: json) {
                     print("success: \(resp.success), task: \(resp.task_id), upload_url: \(resp.URL)")
                     self.task_id = resp.task_id
+                    self.spinner.stopAnimating()
                     self.UploadRecording(url: resp.URL)
                 }
         }
@@ -174,8 +173,9 @@ class UploadViewController: UIViewController {
         self.startStatusRequests()
         
         // Show new UI elements
-        UploadedCaption.isHidden = false
-        UploadedMessage.isHidden = false
+        self.TitleLabel.text = "It's up there!"
+        self.SubtitleLabel.text = "lyrebird is generating your song"
+        spinner.type = NVActivityIndicatorType.lineScalePulseOutRapid
         spinner.startAnimating()
     }
     
@@ -183,11 +183,25 @@ class UploadViewController: UIViewController {
         self.downloadURL = downloadURL
         spinner.stopAnimating()
         dlButton.isHidden = false
-        UploadedMessage.text = "All set!"
-        UploadedCaption.text = "slam that download button!"
+        self.TitleLabel.text = "All set!"
+        self.SubtitleLabel.text = "slam that download button!"
     }
     
     func dowloadComplete() {
-        self.performSegue(withIdentifier: "player", sender: self)
+        // wait a few miliseconds to dismiss
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+            self.performSegue(withIdentifier: "player", sender: self)
+        }
+    }
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        if let player = segue.destination as? PlayerViewController {
+            player.soundPath = self.downloadedSoundURL;
+        }
     }
 }

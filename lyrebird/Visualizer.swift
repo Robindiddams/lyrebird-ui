@@ -42,9 +42,6 @@ class Visualizer: UIView{
     }
     
     func setup() {
-//        self.layer.borderColor = UIColor.white.cgColor
-//        self.layer.borderWidth = 3.0
-//        self.layer.cornerRadius = 10.0
         self.backgroundColor = UIColor.clear
     }
     

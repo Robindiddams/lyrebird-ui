@@ -36,9 +36,6 @@
                                 <state key="normal" title="Next">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Benis"/>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="pHo-vE-eMb" kind="show" id="B9S-91-V61"/>
                                 </connections>
@@ -55,9 +52,6 @@
                                 <state key="normal" title="Record">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Benis"/>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="recordButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v3m-WD-A4M"/>
                                 </connections>
@@ -79,20 +73,6 @@
                             <constraint firstItem="cPc-ov-KWG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="160" id="yYN-iV-VYk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="gradientColor1">
-                                <color key="value" red="0.36376228559926127" green="0.54299565110545434" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="gradientColor2">
-                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="point" keyPath="gradientStartPoint">
-                                <point key="value" x="0.0" y="0.0"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="point" keyPath="gradientEndPoint">
-                                <point key="value" x="0.0" y="1"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                     </view>
                     <navigationItem key="navigationItem" title="Record" id="1CS-dD-vim"/>
                     <connections>
@@ -113,14 +93,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It's up there!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oI8-Xo-0pj">
-                                <rect key="frame" x="108" y="216" width="159" height="31.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connecting..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oI8-Xo-0pj">
+                                <rect key="frame" x="102" y="216" width="171.5" height="31.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="26"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lyrebird is generating your song" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zen-Jw-zeC">
-                                <rect key="frame" x="67" y="255.5" width="241.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="give us a sec to connect to the lyrebird cloud" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zen-Jw-zeC">
+                                <rect key="frame" x="16" y="255.5" width="343" height="20.5"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -139,9 +119,6 @@
                                 <state key="normal" title="Download">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Benis"/>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="startDownload:" destination="pHo-vE-eMb" eventType="touchUpInside" id="bPR-Nd-c8v"/>
                                 </connections>
@@ -159,18 +136,10 @@
                             <constraint firstItem="zen-Jw-zeC" firstAttribute="centerX" secondItem="QKW-f6-PsJ" secondAttribute="centerX" id="jld-7f-7jB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QKW-f6-PsJ"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="gradientColor1">
-                                <color key="value" red="0.69306140061624411" green="0.35569301963715672" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="gradientColor2">
-                                <color key="value" red="0.29165692626266154" green="0.14968418773317291" blue="0.42082407994923854" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
-                        <outlet property="UploadedCaption" destination="zen-Jw-zeC" id="sCd-h5-PZz"/>
-                        <outlet property="UploadedMessage" destination="oI8-Xo-0pj" id="d1a-Pe-Zq7"/>
+                        <outlet property="SubtitleLabel" destination="zen-Jw-zeC" id="sCd-h5-PZz"/>
+                        <outlet property="TitleLabel" destination="oI8-Xo-0pj" id="d1a-Pe-Zq7"/>
                         <outlet property="dlButton" destination="hW8-AN-u9T" id="amq-0N-iYa"/>
                         <outlet property="spinner" destination="Wkg-Rf-tki" id="Qn4-op-8uE"/>
                         <segue destination="BrP-ng-zKA" kind="show" identifier="player" id="dHP-B9-RI4"/>
@@ -212,22 +181,38 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="the lyrebird worked really hard on this" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAI-LR-c7D">
-                                <rect key="frame" x="67" y="552" width="242" height="61"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="the lyrebird worked really hard on this" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAI-LR-c7D">
+                                <rect key="frame" x="44" y="592" width="287.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="red-FC-UaR">
+                                <rect key="frame" x="165.5" y="324" width="44" height="39"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <state key="normal" title="play">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="playpausepressed:" destination="BrP-ng-zKA" eventType="touchUpInside" id="MZ6-Pn-Xmg"/>
+                                    <action selector="startDownload:" destination="pHo-vE-eMb" eventType="touchUpInside" id="qUk-nb-h5k"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="qWr-mL-cUk" firstAttribute="top" secondItem="rpV-2f-FCt" secondAttribute="top" constant="176" id="1xR-lb-M7g"/>
+                            <constraint firstItem="red-FC-UaR" firstAttribute="centerX" secondItem="rpV-2f-FCt" secondAttribute="centerX" id="HRf-wx-dLM"/>
                             <constraint firstItem="rpV-2f-FCt" firstAttribute="bottom" secondItem="pAI-LR-c7D" secondAttribute="bottom" constant="54.5" id="KUe-xt-TWk"/>
                             <constraint firstItem="pAI-LR-c7D" firstAttribute="centerX" secondItem="rpV-2f-FCt" secondAttribute="centerX" id="Owp-Lm-uh0"/>
+                            <constraint firstItem="red-FC-UaR" firstAttribute="centerY" secondItem="rpV-2f-FCt" secondAttribute="centerY" id="awK-2U-RoW"/>
                             <constraint firstItem="qWr-mL-cUk" firstAttribute="centerX" secondItem="rpV-2f-FCt" secondAttribute="centerX" id="lCf-eo-uA2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rpV-2f-FCt"/>
                     </view>
+                    <connections>
+                        <outlet property="playpauseButton" destination="red-FC-UaR" id="cuA-vw-W0G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zxN-qd-dfg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
