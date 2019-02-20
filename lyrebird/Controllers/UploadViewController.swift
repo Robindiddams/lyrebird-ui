@@ -100,6 +100,7 @@ class UploadViewController: UIViewController {
     }
     
     func UploadRecording(url: String) {
+        self.spinner.stopAnimating()
         let hud = JGProgressHUD(style: .light)
         hud.vibrancyEnabled = true
         hud.indicatorView = JGProgressHUDPieIndicatorView()
@@ -159,7 +160,6 @@ class UploadViewController: UIViewController {
                 if let json = response.result.value as? [String: Any], let resp = uploadResponse(json: json) {
                     print("success: \(resp.success), task: \(resp.task_id), upload_url: \(resp.URL)")
                     self.task_id = resp.task_id
-                    self.spinner.stopAnimating()
                     self.UploadRecording(url: resp.URL)
                 }
         }
@@ -173,7 +173,9 @@ class UploadViewController: UIViewController {
         self.startStatusRequests()
         
         // Show new UI elements
+        self.TitleLabel.fadeTransition(0.4)
         self.TitleLabel.text = "It's up there!"
+        self.SubtitleLabel.fadeTransition(0.4)
         self.SubtitleLabel.text = "lyrebird is generating your song"
         spinner.type = NVActivityIndicatorType.lineScalePulseOutRapid
         spinner.startAnimating()
@@ -183,7 +185,9 @@ class UploadViewController: UIViewController {
         self.downloadURL = downloadURL
         spinner.stopAnimating()
         dlButton.isHidden = false
+        self.TitleLabel.fadeTransition(0.4)
         self.TitleLabel.text = "All set!"
+        self.SubtitleLabel.fadeTransition(0.4)
         self.SubtitleLabel.text = "slam that download button!"
     }
     
