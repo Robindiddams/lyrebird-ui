@@ -173,9 +173,9 @@ class UploadViewController: UIViewController {
         self.startStatusRequests()
         
         // Show new UI elements
-        self.TitleLabel.fadeTransition(0.4)
+        self.TitleLabel.fadeTransition(0.2)
         self.TitleLabel.text = "It's up there!"
-        self.SubtitleLabel.fadeTransition(0.4)
+        self.SubtitleLabel.fadeTransition(0.2)
         self.SubtitleLabel.text = "lyrebird is generating your song"
         spinner.type = NVActivityIndicatorType.lineScalePulseOutRapid
         spinner.startAnimating()
@@ -184,10 +184,11 @@ class UploadViewController: UIViewController {
     func downloadIsReady(downloadURL: String) {
         self.downloadURL = downloadURL
         spinner.stopAnimating()
+        self.dlButton.fadeTransition(0.2)
         dlButton.isHidden = false
-        self.TitleLabel.fadeTransition(0.4)
+        self.TitleLabel.fadeTransition(0.2)
         self.TitleLabel.text = "All set!"
-        self.SubtitleLabel.fadeTransition(0.4)
+        self.SubtitleLabel.fadeTransition(0.2)
         self.SubtitleLabel.text = "slam that download button!"
     }
     
