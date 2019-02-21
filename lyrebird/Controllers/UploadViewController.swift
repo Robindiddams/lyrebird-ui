@@ -100,6 +100,10 @@ class UploadViewController: UIViewController {
     }
     
     func UploadRecording(url: String) {
+        self.TitleLabel.fadeTransition(0.2)
+        self.TitleLabel.isHidden = true
+        self.SubtitleLabel.fadeTransition(0.2)
+        self.SubtitleLabel.isHidden = true
         self.spinner.stopAnimating()
         let hud = JGProgressHUD(style: .light)
         hud.vibrancyEnabled = true
@@ -173,10 +177,12 @@ class UploadViewController: UIViewController {
         self.startStatusRequests()
         
         // Show new UI elements
-        self.TitleLabel.fadeTransition(0.2)
         self.TitleLabel.text = "It's up there!"
-        self.SubtitleLabel.fadeTransition(0.2)
         self.SubtitleLabel.text = "lyrebird is generating your song"
+        self.TitleLabel.fadeTransition(0.2)
+        self.TitleLabel.isHidden = false
+        self.SubtitleLabel.fadeTransition(0.2)
+        self.SubtitleLabel.isHidden = false
         spinner.type = NVActivityIndicatorType.lineScalePulseOutRapid
         spinner.startAnimating()
     }
