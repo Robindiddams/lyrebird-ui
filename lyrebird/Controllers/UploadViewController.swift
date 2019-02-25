@@ -54,7 +54,7 @@ class UploadViewController: UIViewController {
             .response { response in
 //                print("status code\(response.response?.statusCode)")
                 if response.error == nil, let pathURL = response.destinationURL {
-                    print("no error path: \(pathURL.path)")
+                    print("path: \(pathURL.path)")
                     // wait a few miliseconds to dismiss
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
                         UIView.animate(withDuration: 0.3, animations: {

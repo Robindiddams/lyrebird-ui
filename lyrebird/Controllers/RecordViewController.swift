@@ -33,10 +33,12 @@
 import UIKit
 import AVFoundation
 import Accelerate
+import UICircularProgressRing
 
 enum RecorderState {
-    case recording
-    case stopped
+    case start
+    case canceled
+    case finished
     case denied
 }
 
@@ -44,7 +46,6 @@ enum RecorderState {
 class RecorderViewController: UIViewController {
     
     //MARK:- Properties
-
     let settings = [AVFormatIDKey: kAudioFormatLinearPCM, AVLinearPCMBitDepthKey: 16, AVLinearPCMIsFloatKey: true, AVSampleRateKey: Float64(44100), AVNumberOfChannelsKey: 1] as [String : Any]
     let audioEngine = AVAudioEngine()
     private var renderTs: Double = 0
@@ -53,51 +54,77 @@ class RecorderViewController: UIViewController {
     private var audioFile: AVAudioFile?
     var gradientLayer: CAGradientLayer!
     
-    //MARK:- Outlets
-    var audioView = Visualizer()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.setBackgroundGradient()
+//        let vHeight: CGFloat = 100
+        // use code defined constraints
+//        self.audioVisualizer.frame = CGRect(x: 0, y: self.view!.frame.height - vHeight, width: self.view!.frame.width, height: vHeight)
+//        self.audioVisualizer.isHidden = true
+//        self.view.addSubview(self.audioView)
+        self.progressRing.value = 0
+        self.progressRing.animationTimingFunction = .linear
+    }
     
-    @IBOutlet weak var timeLabel: UILabel!
+    //MARK:- Outlets
+//    var audioView = Visualizer()
+    
+    @IBOutlet weak var audioVisualizer: Visualizer!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var progressRing: UICircularProgressRing!
     
     //MARK:- Actions
     @IBAction func recordButtonTapped(_ sender: UIButton) {
-        timeLabel.isHidden = false
-        if !self.audioView.isRecording {
-            nextButton.isHidden = true
-            self.recordButton.setTitle("stop", for: .normal)
+        if !self.audioVisualizer.isRecording {
             self.checkPermissionAndRecord()
         } else {
             self.stopRecording()
-            self.recordButton.setTitle("record", for: .normal)
-            nextButton.isHidden = false
         }
     }
     
     private func updateUI(_ recorderState: RecorderState) {
         switch recorderState {
-        case .recording:
-            self.audioView.isHidden = false
-            
+        case .start:
+            self.progressRing.startProgress(to: 100, duration: 10.0) {
+                DispatchQueue.main.async {
+                    self.stopRecording(.finished)
+                    UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+                        self.progressRing.alpha = 0.0
+                    }, completion: { finished in
+                        self.progressRing.resetProgress()
+                        self.progressRing.alpha = 1.0
+                    })
+                }
+            }
+            self.audioVisualizer.isHidden = false
+            self.nextButton.isHidden = true
+            self.recordButton.setTitle("cancel", for: .normal)
             UIApplication.shared.isIdleTimerDisabled = true
             break
-        case .stopped:
-            self.audioView.isHidden = true
+        case .canceled:
+            self.audioVisualizer.isHidden = true
+            self.recordButton.setTitle("record", for: .normal)
+            self.progressRing.startProgress(to: 0, duration: 0.5)
+            UIApplication.shared.isIdleTimerDisabled = false
+            break
+        case .finished:
+            self.nextButton.isHidden = false
+            self.audioVisualizer.isHidden = true
+            self.recordButton.setTitle("try again", for: .normal)
             UIApplication.shared.isIdleTimerDisabled = false
             break
         case .denied:
             UIApplication.shared.isIdleTimerDisabled = false
-            self.audioView.isHidden = true
+            self.audioVisualizer.isHidden = true
             break
         }
     }
     
     // MARK:- Recording
-    private func startRecording() {
-        
+    private func startRecording(_ recorderState: RecorderState = .start) {
         self.recordingTs = NSDate().timeIntervalSince1970
         self.silenceTs = 0
-        
         do {
             let session = AVAudioSession.sharedInstance()
             try session.setCategory(.playAndRecord, mode: .default)
@@ -134,16 +161,15 @@ class RecorderViewController: UIViewController {
                 })
                 DispatchQueue.main.async {
                     let seconds = (ts - self.recordingTs)
-                    self.timeLabel.text = seconds.toTimeString
                     self.renderTs = ts
-                    let len = self.audioView.waveforms.count
+                    let len = self.audioVisualizer.waveforms.count
                     for i in 0 ..< len {
                         let idx = ((frame.count - 1) * i) / len
                         let f: Float = sqrt(1.5 * abs(Float(frame[idx])) / Float(Int16.max))
-                        self.audioView.waveforms[i] = min(49, Int(f * 50))
+                        self.audioVisualizer.waveforms[i] = min(49, Int(f * 50))
                     }
-                    self.audioView.active = !silent
-                    self.audioView.setNeedsDisplay()
+                    self.audioVisualizer.active = !silent
+                    self.audioVisualizer.setNeedsDisplay()
                 }
             }
             
@@ -168,11 +194,11 @@ class RecorderViewController: UIViewController {
             print(error.localizedDescription)
             return
         }
-        self.audioView.isRecording = true
-        self.updateUI(.recording)
+        self.audioVisualizer.isRecording = true
+        self.updateUI(recorderState)
     }
     
-    private func stopRecording() {
+    private func stopRecording(_ recorderState: RecorderState = .canceled) {
         self.audioFile = nil
         self.audioEngine.inputNode.removeTap(onBus: 0)
         self.audioEngine.stop()
@@ -182,8 +208,8 @@ class RecorderViewController: UIViewController {
             print(error.localizedDescription)
             return
         }
-        self.audioView.isRecording = false
-        self.updateUI(.stopped)
+        self.audioVisualizer.isRecording = false
+        self.updateUI(recorderState)
     }
     
     private func checkPermissionAndRecord() {
@@ -248,18 +274,6 @@ class RecorderViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.setBackgroundGradient()
-        let vHeight: CGFloat = 225
-        self.audioView.frame = CGRect(x: 0, y: self.view!.frame.height - vHeight, width: self.view!.frame.width, height: vHeight)
-        // Add UIView as a Subview
-        self.audioView.isHidden = true
-        self.view.addSubview(self.audioView)
-        self.view.bringSubviewToFront(self.nextButton)
-        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

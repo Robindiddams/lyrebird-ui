@@ -9,6 +9,7 @@ target 'lyrebird' do
   pod 'JGProgressHUD'
   pod 'NVActivityIndicatorView'
   pod 'Alamofire'
+  pod 'UICircularProgressRing'
 
   target 'lyrebirdTests' do
     inherit! :search_paths

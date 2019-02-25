@@ -19,66 +19,98 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="record something! keep it around 10 seconds👌" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iS9-pF-ulu">
-                                <rect key="frame" x="60" y="220" width="255" height="41"/>
+                                <rect key="frame" x="60" y="219.5" width="255" height="41"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's hear it!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPc-ov-KWG">
-                                <rect key="frame" x="109" y="180" width="157" height="32"/>
+                                <rect key="frame" x="109.5" y="180" width="156.5" height="31.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="26"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWs-z0-3Z8">
-                                <rect key="frame" x="161" y="498" width="53" height="41"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <state key="normal" title="Next">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <segue destination="pHo-vE-eMb" kind="show" id="B9S-91-V61"/>
-                                </connections>
-                            </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ey-hV-sKI">
-                                <rect key="frame" x="168" y="564" width="39.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lb2-Jh-cYD">
-                                <rect key="frame" x="147" y="323" width="81" height="41"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                <state key="normal" title="Record">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="recordButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v3m-WD-A4M"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="xZ0-dJ-3cC">
+                                <rect key="frame" x="96" y="516" width="183" height="41"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lb2-Jh-cYD">
+                                        <rect key="frame" x="0.0" y="0.0" width="74" height="41"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <state key="normal" title="record">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="recordButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v3m-WD-A4M"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWs-z0-3Z8">
+                                        <rect key="frame" x="109" y="0.0" width="74" height="41"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                        <state key="normal" title="next">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="pHo-vE-eMb" kind="show" id="B9S-91-V61"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5w-fk-AW9" customClass="Visualizer" customModule="lyrebird" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="557" width="375" height="110"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="cVS-8F-FqJ"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tec-ZY-Eoi" customClass="UICircularProgressRing" customModule="UICircularProgressRing">
+                                <rect key="frame" x="87.5" y="285.5" width="200" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="Iju-YA-7gH"/>
+                                    <constraint firstAttribute="width" constant="200" id="QhK-hQ-Tm1"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showsValueKnob" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
+                                        <real key="value" value="-90"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="outerRingColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="innerRingColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="shouldShowValueText" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="ibRingStyle">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Tec-ZY-Eoi" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="1Xu-zD-BLK"/>
                             <constraint firstItem="iS9-pF-ulu" firstAttribute="top" secondItem="cPc-ov-KWG" secondAttribute="bottom" constant="8" id="4Tq-67-6It"/>
-                            <constraint firstItem="hWs-z0-3Z8" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="4Yv-Lv-i3k"/>
-                            <constraint firstItem="Lb2-Jh-cYD" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="JdY-Fr-raw"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8Ey-hV-sKI" secondAttribute="bottom" constant="82.5" id="Npb-aS-dAr"/>
+                            <constraint firstItem="g5w-fk-AW9" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ImU-nX-nAw"/>
+                            <constraint firstItem="Tec-ZY-Eoi" firstAttribute="top" secondItem="iS9-pF-ulu" secondAttribute="bottom" constant="25" id="Jwh-Lx-yb9"/>
+                            <constraint firstItem="xZ0-dJ-3cC" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="QQo-Xi-FPr"/>
                             <constraint firstItem="cPc-ov-KWG" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="R70-C0-xS9"/>
-                            <constraint firstItem="8Ey-hV-sKI" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="YFM-ME-SlK"/>
+                            <constraint firstItem="g5w-fk-AW9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RLd-ye-2wG"/>
+                            <constraint firstItem="g5w-fk-AW9" firstAttribute="top" secondItem="xZ0-dJ-3cC" secondAttribute="bottom" id="Vcy-wd-kRT"/>
                             <constraint firstItem="iS9-pF-ulu" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="bhz-PQ-TCj"/>
+                            <constraint firstItem="g5w-fk-AW9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="cIk-1Y-yG1"/>
                             <constraint firstItem="iS9-pF-ulu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="60" id="gOk-YI-NTf"/>
-                            <constraint firstItem="8Ey-hV-sKI" firstAttribute="top" secondItem="hWs-z0-3Z8" secondAttribute="bottom" constant="25" id="oq4-lC-1Lg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iS9-pF-ulu" secondAttribute="trailing" constant="60" id="q14-9x-A4K"/>
-                            <constraint firstItem="Lb2-Jh-cYD" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="sxR-Ff-1Sc"/>
                             <constraint firstItem="cPc-ov-KWG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="160" id="yYN-iV-VYk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Record" id="1CS-dD-vim"/>
                     <connections>
+                        <outlet property="audioVisualizer" destination="g5w-fk-AW9" id="sol-Tj-PCo"/>
                         <outlet property="nextButton" destination="hWs-z0-3Z8" id="LY9-kP-D8Z"/>
+                        <outlet property="progressRing" destination="Tec-ZY-Eoi" id="YMO-ai-R8K"/>
                         <outlet property="recordButton" destination="Lb2-Jh-cYD" id="xs5-w4-ybj"/>
-                        <outlet property="timeLabel" destination="8Ey-hV-sKI" id="II0-pl-xjL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

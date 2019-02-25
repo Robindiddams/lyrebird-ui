@@ -4,23 +4,27 @@ PODS:
   - NVActivityIndicatorView (4.4.0):
     - NVActivityIndicatorView/Presenter (= 4.4.0)
   - NVActivityIndicatorView/Presenter (4.4.0)
+  - UICircularProgressRing (4.1.0)
 
 DEPENDENCIES:
   - Alamofire
   - JGProgressHUD
   - NVActivityIndicatorView
+  - UICircularProgressRing
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - JGProgressHUD
     - NVActivityIndicatorView
+    - UICircularProgressRing
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   NVActivityIndicatorView: ec7440a57af2450319d3a4181cca7da6fc127064
+  UICircularProgressRing: 5a32c01f54474571b1e66e8fa050c0f83d6d981b
 
-PODFILE CHECKSUM: 4ce5f32bf9a5b4d78f3a1e032c7eb7ee676cead1
+PODFILE CHECKSUM: 6e98051f7a45a4aa56807aa5ec7fc173c41c9ee9
 
 COCOAPODS: 1.5.3
