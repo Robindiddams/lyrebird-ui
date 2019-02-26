@@ -37,7 +37,7 @@ import AVFoundation
 class PlayerViewController: UIViewController {
     
     private var audioPlayer: AVAudioPlayer?
-    var soundPath: URL!
+    var task_id: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,14 +45,27 @@ class PlayerViewController: UIViewController {
     }
     
     @IBOutlet weak var playpauseButton: UIButton!
+    
+    // MARK:- Actions
     @IBAction func playpausepressed(_ sender: UIButton) {
         if self.isPlaying() {
             // pause
             self.stopPlay()
         } else {
             // play
-            self.play(url: self.soundPath)
+            let url = getSoundURL(name: self.task_id, recording: false)
+            print(url.absoluteString)
+            self.play(url: url)
         }
+    }
+    
+    @IBAction func keepPressed(_ sender: UIButton) {
+        // do exit
+    }
+    
+    @IBAction func discardPressed(_ sender: UIButton) {
+        deleteAudioRecordings(task_id: self.task_id)
+        performSegue(withIdentifier: "goHome", sender: self)
     }
     
     // MARK:- Playback

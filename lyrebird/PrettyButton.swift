@@ -28,12 +28,7 @@ class PrettyButton: UIButton {
 //    }
     var borderWidth = 2.0
     var boderColor = UIColor.white.cgColor
-//    @IBInspectable var titleText: String? {
-//        didSet {
-//            self.setTitle(titleText, for: .normal)
-//            self.setTitleColor(UIColor.white, for: .normal)
-//        }
-//    }
+
     
     override func layoutSubviews() {
         super.layoutSubviews()

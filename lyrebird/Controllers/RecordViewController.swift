@@ -57,18 +57,11 @@ class RecorderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.setBackgroundGradient()
-//        let vHeight: CGFloat = 100
-        // use code defined constraints
-//        self.audioVisualizer.frame = CGRect(x: 0, y: self.view!.frame.height - vHeight, width: self.view!.frame.width, height: vHeight)
-//        self.audioVisualizer.isHidden = true
-//        self.view.addSubview(self.audioView)
         self.progressRing.value = 0
         self.progressRing.animationTimingFunction = .linear
     }
     
     //MARK:- Outlets
-//    var audioView = Visualizer()
-    
     @IBOutlet weak var audioVisualizer: Visualizer!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
@@ -160,7 +153,7 @@ class RecorderViewController: UIViewController {
                     return Int(f * Float(Int16.max))
                 })
                 DispatchQueue.main.async {
-                    let seconds = (ts - self.recordingTs)
+//                    let seconds = (ts - self.recordingTs)
                     self.renderTs = ts
                     let len = self.audioVisualizer.waveforms.count
                     for i in 0 ..< len {
