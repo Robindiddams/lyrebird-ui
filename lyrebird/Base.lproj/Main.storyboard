@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f1z-Hh-LCS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49n-zC-HMZ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -125,53 +125,91 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LyreBird" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDz-37-WIb">
-                                <rect key="frame" x="134.5" y="252" width="106" height="31.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="26"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="85" translatesAutoresizingMaskIntoConstraints="NO" id="V1O-CW-7mQ">
-                                <rect key="frame" x="78" y="467" width="219" height="39"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0S-gb-gyt">
-                                        <rect key="frame" x="0.0" y="0.0" width="66" height="39"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                        <state key="normal" title="library">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="startDownload:" destination="pHo-vE-eMb" eventType="touchUpInside" id="V3P-BN-LH8"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="luX-Eo-rEs">
-                                        <rect key="frame" x="151" y="0.0" width="68" height="39"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                        <state key="normal" title="record">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="startDownload:" destination="pHo-vE-eMb" eventType="touchUpInside" id="FoO-L8-j7E"/>
-                                            <segue destination="BYZ-38-t0r" kind="show" id="cqn-UV-ww8"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KJt-pK-hjK">
+                                <rect key="frame" x="0.0" y="77" width="375" height="590"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="F3G-5N-q7w">
+                                    <size key="itemSize" width="249" height="101"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="HGz-qC-Yyc" customClass="SoundCell" customModule="lyrebird" customModuleProvider="target">
+                                        <rect key="frame" x="63" y="50" width="249" height="101"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="249" height="101"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="Header" id="Ulj-fQ-mA2">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sounds" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWX-nh-YKz">
+                                            <rect key="frame" x="15" y="3" width="127" height="44.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="37"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="AWX-nh-YKz" firstAttribute="leading" secondItem="Ulj-fQ-mA2" secondAttribute="leading" constant="15" id="D4n-M7-SFH"/>
+                                        <constraint firstItem="AWX-nh-YKz" firstAttribute="centerY" secondItem="Ulj-fQ-mA2" secondAttribute="centerY" id="LG5-t6-VjF"/>
+                                    </constraints>
+                                </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="XIX-wF-gdy" id="GLF-od-hPM"/>
+                                    <outlet property="delegate" destination="XIX-wF-gdy" id="foD-oY-bhn"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0S-gb-gyt" customClass="MDCFloatingButton">
+                                <rect key="frame" x="162.5" y="577" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.69306140059999999" green="0.35569301959999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="d5D-ah-eUo"/>
+                                    <constraint firstAttribute="height" constant="50" id="kVM-Kb-wSm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <state key="normal">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="addButton:" destination="49n-zC-HMZ" eventType="touchUpInside" id="kXi-AS-RgV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVr-14-H7x">
+                                <rect key="frame" x="16" y="32" width="46" height="30"/>
+                                <state key="normal" title="menu">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="fDz-37-WIb" firstAttribute="top" secondItem="2Zm-FR-tct" secondAttribute="top" constant="232" id="6Dg-hu-Z89"/>
-                            <constraint firstItem="V1O-CW-7mQ" firstAttribute="centerX" secondItem="2Zm-FR-tct" secondAttribute="centerX" id="Urg-Wo-DTR"/>
-                            <constraint firstItem="2Zm-FR-tct" firstAttribute="bottom" secondItem="V1O-CW-7mQ" secondAttribute="bottom" constant="161" id="lbV-kb-3H1"/>
-                            <constraint firstItem="fDz-37-WIb" firstAttribute="centerX" secondItem="2Zm-FR-tct" secondAttribute="centerX" id="rIr-ke-VGW"/>
+                            <constraint firstItem="KJt-pK-hjK" firstAttribute="trailing" secondItem="2Zm-FR-tct" secondAttribute="trailing" id="FNX-QD-UXV"/>
+                            <constraint firstItem="zVr-14-H7x" firstAttribute="top" secondItem="2Zm-FR-tct" secondAttribute="top" constant="12" id="Flp-DX-son"/>
+                            <constraint firstItem="zVr-14-H7x" firstAttribute="leading" secondItem="2Zm-FR-tct" secondAttribute="leading" constant="16" id="Y9l-LL-Lbh"/>
+                            <constraint firstItem="2Zm-FR-tct" firstAttribute="bottom" secondItem="E0S-gb-gyt" secondAttribute="bottom" constant="40" id="jsg-nP-Dqa"/>
+                            <constraint firstItem="KJt-pK-hjK" firstAttribute="trailing" secondItem="2Zm-FR-tct" secondAttribute="trailing" id="mjZ-8A-t9a"/>
+                            <constraint firstItem="KJt-pK-hjK" firstAttribute="top" secondItem="zVr-14-H7x" secondAttribute="bottom" constant="15" id="qyZ-gV-bqU"/>
+                            <constraint firstItem="KJt-pK-hjK" firstAttribute="leading" secondItem="2Zm-FR-tct" secondAttribute="leading" id="tq6-sD-CcK"/>
+                            <constraint firstItem="E0S-gb-gyt" firstAttribute="centerX" secondItem="2Zm-FR-tct" secondAttribute="centerX" id="uxh-mZ-Y2w"/>
+                            <constraint firstItem="KJt-pK-hjK" firstAttribute="bottom" secondItem="2Zm-FR-tct" secondAttribute="bottom" id="vcW-Hy-RN7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2Zm-FR-tct"/>
                     </view>
                     <navigationItem key="navigationItem" id="NQy-pl-mB4"/>
+                    <connections>
+                        <outlet property="AddButton" destination="E0S-gb-gyt" id="oZM-1n-GKg"/>
+                        <outlet property="collectionView" destination="KJt-pK-hjK" id="Xcg-pI-QH7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRW-sS-SvJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-431" y="278"/>
+            <point key="canvasLocation" x="-978.39999999999998" y="1028.6356821589206"/>
         </scene>
         <!--Upload View Controller-->
         <scene sceneID="fNE-Li-ydX">
@@ -253,12 +291,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="49n-zC-HMZ" kind="relationship" relationship="rootViewController" id="T57-YD-a76"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="eqs-D8-CJR"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ao9-6C-dMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1175" y="278"/>
+            <point key="canvasLocation" x="-535" y="279"/>
         </scene>
         <!--Player View Controller-->
         <scene sceneID="pvE-jX-9hL">
@@ -288,7 +326,6 @@
                                 </state>
                                 <connections>
                                     <action selector="playpausepressed:" destination="BrP-ng-zKA" eventType="touchUpInside" id="MZ6-Pn-Xmg"/>
-                                    <action selector="startDownload:" destination="pHo-vE-eMb" eventType="touchUpInside" id="qUk-nb-h5k"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="121" translatesAutoresizingMaskIntoConstraints="NO" id="WAL-YE-X8X">
@@ -300,11 +337,6 @@
                                         <state key="normal" title="keep">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <action selector="keepPressed:" destination="BrP-ng-zKA" eventType="touchUpInside" id="tPf-cl-Jd0"/>
-                                            <action selector="playpausepressed:" destination="BrP-ng-zKA" eventType="touchUpInside" id="jMh-kw-T5p"/>
-                                            <action selector="startDownload:" destination="pHo-vE-eMb" eventType="touchUpInside" id="eBb-0M-GVg"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EjT-L5-voL">
                                         <rect key="frame" x="172" y="0.0" width="77" height="39"/>
@@ -312,11 +344,6 @@
                                         <state key="normal" title="discard">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <connections>
-                                            <action selector="discardPressed:" destination="BrP-ng-zKA" eventType="touchUpInside" id="bmi-83-5Y2"/>
-                                            <action selector="playpausepressed:" destination="BrP-ng-zKA" eventType="touchUpInside" id="5ML-LH-xC1"/>
-                                            <action selector="startDownload:" destination="pHo-vE-eMb" eventType="touchUpInside" id="KTa-5O-h71"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>

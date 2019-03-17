@@ -1,6 +1,40 @@
 PODS:
   - Alamofire (4.8.0)
+  - BubbleTransition (3.0.2)
   - JGProgressHUD (2.0.3)
+  - MaterialComponents/Buttons (70.0.0):
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/private/Shapes
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Typography
+    - MDFInternationalization
+    - MDFTextAccessibility
+  - MaterialComponents/Cards (70.0.0):
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Icons/ic_check_circle
+    - MaterialComponents/private/Math
+    - MaterialComponents/private/Shapes
+    - MaterialComponents/ShadowLayer
+  - MaterialComponents/Ink (70.0.0):
+    - MaterialComponents/private/Math
+  - MaterialComponents/private/Application (70.0.0)
+  - MaterialComponents/private/Icons/Base (70.0.0)
+  - MaterialComponents/private/Icons/ic_check_circle (70.0.0):
+    - MaterialComponents/private/Icons/Base
+  - MaterialComponents/private/Math (70.0.0)
+  - MaterialComponents/private/Shapes (70.0.0):
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowLayer
+  - MaterialComponents/ShadowElevations (70.0.0)
+  - MaterialComponents/ShadowLayer (70.0.0):
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/Typography (70.0.0):
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/Math
+  - MDFInternationalization (1.1.0)
+  - MDFTextAccessibility (1.2.0)
   - NVActivityIndicatorView (4.4.0):
     - NVActivityIndicatorView/Presenter (= 4.4.0)
   - NVActivityIndicatorView/Presenter (4.4.0)
@@ -8,23 +42,34 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - BubbleTransition (~> 3.0.0)
   - JGProgressHUD
+  - MaterialComponents/Buttons
+  - MaterialComponents/Cards
   - NVActivityIndicatorView
   - UICircularProgressRing
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - BubbleTransition
     - JGProgressHUD
+    - MaterialComponents
+    - MDFInternationalization
+    - MDFTextAccessibility
     - NVActivityIndicatorView
     - UICircularProgressRing
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
+  BubbleTransition: 6bdf7d8af460b5c3696beb0adbf4bcb17176ee11
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
+  MaterialComponents: 7c107af5ae6566de2f1ba94bde3db99d1b874bab
+  MDFInternationalization: b5b8626628abf026e630e5ebaeee563037712cbb
+  MDFTextAccessibility: 94098925e0853551c5a311ce7c1ecefbe297cdb6
   NVActivityIndicatorView: ec7440a57af2450319d3a4181cca7da6fc127064
   UICircularProgressRing: 5a32c01f54474571b1e66e8fa050c0f83d6d981b
 
-PODFILE CHECKSUM: 6e98051f7a45a4aa56807aa5ec7fc173c41c9ee9
+PODFILE CHECKSUM: 6f8a77c63516744f625c9c0f4c572e8991d2978c
 
 COCOAPODS: 1.5.3

@@ -10,6 +10,9 @@ target 'lyrebird' do
   pod 'NVActivityIndicatorView'
   pod 'Alamofire'
   pod 'UICircularProgressRing'
+  pod 'BubbleTransition', '~> 3.0.0'
+  pod 'MaterialComponents/Cards'
+  pod 'MaterialComponents/Buttons'
 
   target 'lyrebirdTests' do
     inherit! :search_paths
