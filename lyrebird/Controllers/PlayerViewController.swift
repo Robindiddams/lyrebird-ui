@@ -53,7 +53,7 @@ class PlayerViewController: UIViewController {
             self.stopPlay()
         } else {
             // play
-            let url = getSoundURL(name: self.task_id, recording: false)
+            let url = getSoundURL(id: self.task_id, recording: false)
             print(url.absoluteString)
             self.play(url: url)
         }

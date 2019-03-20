@@ -14,14 +14,15 @@
 		2639AEBE2224D14800561314 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2639AEBD2224D14800561314 /* MainViewController.swift */; };
 		264067D1221263FF006D9C04 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264067D0221263FF006D9C04 /* Files.swift */; };
 		264067D32213CD2F006D9C04 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264067D22213CD2F006D9C04 /* Api.swift */; };
-		26A2874E223EF7B300B3C6DF /* SoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A2874D223EF7B300B3C6DF /* SoundCell.swift */; };
+		26D4E21C224202CE00275D3E /* SoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4E21B224202CE00275D3E /* SoundTableViewCell.swift */; };
 		26E4CCCB21FF9E14009AC325 /* RecordingsViewController_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4CCCA21FF9E14009AC325 /* RecordingsViewController_old.swift */; };
 		26E4CCD921FFA3CB009AC325 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4CCD821FFA3CA009AC325 /* Extensions.swift */; };
 		26E4CCDD21FFB1B4009AC325 /* StartRecording.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 26E4CCDB21FFB1B4009AC325 /* StartRecording.aiff */; };
 		26E4CCDE21FFB1B4009AC325 /* StopRecording.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 26E4CCDC21FFB1B4009AC325 /* StopRecording.aiff */; };
+		26E9A3F7224137C600CFDC54 /* LyrebirdNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9A3F6224137C600CFDC54 /* LyrebirdNavController.swift */; };
 		26F6B582220BDEAE009875BF /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26F6B581220BDEAE009875BF /* assets.xcassets */; };
 		26FDF21121B0923F008D73C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDF21021B0923F008D73C1 /* AppDelegate.swift */; };
-		26FDF21321B0923F008D73C1 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDF21221B0923F008D73C1 /* RecordViewController.swift */; };
+		26FDF21321B0923F008D73C1 /* RecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDF21221B0923F008D73C1 /* RecorderViewController.swift */; };
 		26FDF21621B0923F008D73C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26FDF21421B0923F008D73C1 /* Main.storyboard */; };
 		26FDF21B21B09242008D73C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26FDF21921B09242008D73C1 /* LaunchScreen.storyboard */; };
 		26FDF22621B09242008D73C1 /* lyrebirdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDF22521B09242008D73C1 /* lyrebirdTests.swift */; };
@@ -60,15 +61,16 @@
 		2639AEBD2224D14800561314 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		264067D0221263FF006D9C04 /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
 		264067D22213CD2F006D9C04 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
-		26A2874D223EF7B300B3C6DF /* SoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCell.swift; sourceTree = "<group>"; };
+		26D4E21B224202CE00275D3E /* SoundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundTableViewCell.swift; sourceTree = "<group>"; };
 		26E4CCCA21FF9E14009AC325 /* RecordingsViewController_old.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingsViewController_old.swift; sourceTree = "<group>"; };
 		26E4CCD821FFA3CA009AC325 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		26E4CCDB21FFB1B4009AC325 /* StartRecording.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = StartRecording.aiff; sourceTree = "<group>"; };
 		26E4CCDC21FFB1B4009AC325 /* StopRecording.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = StopRecording.aiff; sourceTree = "<group>"; };
+		26E9A3F6224137C600CFDC54 /* LyrebirdNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyrebirdNavController.swift; sourceTree = "<group>"; };
 		26F6B581220BDEAE009875BF /* assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = assets.xcassets; sourceTree = "<group>"; };
 		26FDF20D21B0923F008D73C1 /* lyrebird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lyrebird.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26FDF21021B0923F008D73C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		26FDF21221B0923F008D73C1 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		26FDF21221B0923F008D73C1 /* RecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderViewController.swift; sourceTree = "<group>"; };
 		26FDF21521B0923F008D73C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		26FDF21A21B09242008D73C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		26FDF21C21B09242008D73C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,7 +119,8 @@
 			isa = PBXGroup;
 			children = (
 				26E4CCCA21FF9E14009AC325 /* RecordingsViewController_old.swift */,
-				26FDF21221B0923F008D73C1 /* RecordViewController.swift */,
+				26E9A3F6224137C600CFDC54 /* LyrebirdNavController.swift */,
+				26FDF21221B0923F008D73C1 /* RecorderViewController.swift */,
 				26379796220D405C006918E8 /* UploadViewController.swift */,
 				2637979C220D81AB006918E8 /* PlayerViewController.swift */,
 				2639AEBD2224D14800561314 /* MainViewController.swift */,
@@ -163,7 +166,7 @@
 				26FDF21021B0923F008D73C1 /* AppDelegate.swift */,
 				26E4CCD821FFA3CA009AC325 /* Extensions.swift */,
 				2637979E220E8F94006918E8 /* Visualizer.swift */,
-				26A2874D223EF7B300B3C6DF /* SoundCell.swift */,
+				26D4E21B224202CE00275D3E /* SoundTableViewCell.swift */,
 				2637979A220D680A006918E8 /* PrettyButton.swift */,
 				26E4CCC921FF7A53009AC325 /* Controllers */,
 				26FDF21421B0923F008D73C1 /* Main.storyboard */,
@@ -432,6 +435,7 @@
 				"${BUILT_PRODUCTS_DIR}/MDFTextAccessibility/MDFTextAccessibility.framework",
 				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/Pastel/Pastel.framework",
 				"${BUILT_PRODUCTS_DIR}/UICircularProgressRing/UICircularProgressRing.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -445,6 +449,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFTextAccessibility.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pastel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICircularProgressRing.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -460,13 +465,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				264067D32213CD2F006D9C04 /* Api.swift in Sources */,
+				26D4E21C224202CE00275D3E /* SoundTableViewCell.swift in Sources */,
 				2639AEBE2224D14800561314 /* MainViewController.swift in Sources */,
 				26379797220D405C006918E8 /* UploadViewController.swift in Sources */,
-				26A2874E223EF7B300B3C6DF /* SoundCell.swift in Sources */,
 				2637979D220D81AB006918E8 /* PlayerViewController.swift in Sources */,
 				264067D1221263FF006D9C04 /* Files.swift in Sources */,
-				26FDF21321B0923F008D73C1 /* RecordViewController.swift in Sources */,
+				26FDF21321B0923F008D73C1 /* RecorderViewController.swift in Sources */,
 				26E4CCD921FFA3CB009AC325 /* Extensions.swift in Sources */,
+				26E9A3F7224137C600CFDC54 /* LyrebirdNavController.swift in Sources */,
 				2637979F220E8F94006918E8 /* Visualizer.swift in Sources */,
 				26FDF21121B0923F008D73C1 /* AppDelegate.swift in Sources */,
 				2637979B220D680A006918E8 /* PrettyButton.swift in Sources */,

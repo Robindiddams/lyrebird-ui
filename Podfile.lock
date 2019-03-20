@@ -38,6 +38,7 @@ PODS:
   - NVActivityIndicatorView (4.4.0):
     - NVActivityIndicatorView/Presenter (= 4.4.0)
   - NVActivityIndicatorView/Presenter (4.4.0)
+  - Pastel (0.5.1)
   - UICircularProgressRing (4.1.0)
 
 DEPENDENCIES:
@@ -47,6 +48,7 @@ DEPENDENCIES:
   - MaterialComponents/Buttons
   - MaterialComponents/Cards
   - NVActivityIndicatorView
+  - Pastel
   - UICircularProgressRing
 
 SPEC REPOS:
@@ -58,6 +60,7 @@ SPEC REPOS:
     - MDFInternationalization
     - MDFTextAccessibility
     - NVActivityIndicatorView
+    - Pastel
     - UICircularProgressRing
 
 SPEC CHECKSUMS:
@@ -68,8 +71,9 @@ SPEC CHECKSUMS:
   MDFInternationalization: b5b8626628abf026e630e5ebaeee563037712cbb
   MDFTextAccessibility: 94098925e0853551c5a311ce7c1ecefbe297cdb6
   NVActivityIndicatorView: ec7440a57af2450319d3a4181cca7da6fc127064
+  Pastel: b3dd5b8d612dac06ae7c63c97c45c900829bc139
   UICircularProgressRing: 5a32c01f54474571b1e66e8fa050c0f83d6d981b
 
-PODFILE CHECKSUM: 6f8a77c63516744f625c9c0f4c572e8991d2978c
+PODFILE CHECKSUM: 6460bb468a4084268c676ad8e3f5a93c00d02ff2
 
 COCOAPODS: 1.5.3

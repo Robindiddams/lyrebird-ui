@@ -9,33 +9,40 @@
 import UIKit
 
 class PrettyButton: UIButton {
-
-//    // Only override draw() if you perform custom drawing.
-//    // An empty implementation adversely affects performance during animation.
-//    override func draw(_ rect: CGRect) {
-//        // Drawing code
-//        let borderAlpha : CGFloat = 0.7
-//        let cornerRadius : CGFloat = 5.0
-//
-//        guard let context = UIGraphicsGetCurrentContext() else {
-//            return
-//        }
-//        context.clear(rect)
-//        context.setFillColor(red: 0, green: 0, blue: 0, alpha: 0)
-//        context.fill(rect)
-//        context.setLineWidth(2)
-//        context.setStrokeColor(UIColor.white)
-//    }
-    var borderWidth = 2.0
-    var boderColor = UIColor.white.cgColor
-
     
+    var gradient: CAGradientLayer?
+
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        updateCornerRadius()
+    }
+    
+    @IBInspectable var rounded: Bool = false {
+        didSet {
+            updateCornerRadius()
+        }
+    }
+    
+    func updateCornerRadius() {
+        self.layer.cornerRadius = rounded ? frame.size.height / 2 : 0
         self.clipsToBounds = true
-        self.layer.cornerRadius = 5.0
-        self.layer.borderColor = self.boderColor
-//        self.layer.backgroundColor =
-        self.layer.borderWidth = CGFloat(self.borderWidth)
+    }
+    
+    func setGradient(top: UIColor, bottom: UIColor) {
+        let colorTop = top.cgColor
+        let colorBottom = bottom.cgColor
+        self.setGradient(colors: [colorTop, colorBottom])
+    }
+    
+    func setGradient(colors: [CGColor]) {
+        self.gradient?.removeFromSuperlayer()
+        let gradient = CAGradientLayer()
+        gradient.colors = colors
+        gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
+        gradient.endPoint = CGPoint(x: 0.5, y: 0.0)
+        gradient.frame = self.bounds
+        self.gradient = gradient
+        self.layer.addSublayer(gradient)
     }
 }

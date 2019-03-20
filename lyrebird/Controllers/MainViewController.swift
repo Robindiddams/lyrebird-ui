@@ -7,10 +7,13 @@
 //
 
 import UIKit
-import MaterialComponents.MaterialCards
 
 private let cellReuseIdentifier = "Cell"
 private let headerReuseIdentifier = "Header"
+
+protocol UploadCompletedDelegate {
+    func uploadCompleted()
+}
 
 struct lyreSound {
     let name: String
@@ -19,57 +22,119 @@ struct lyreSound {
     let lyrebirdSoundURL: URL
 }
 
-class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class MainViewController: UIViewController, UploadCompletedDelegate {
     
-    var tracks: [lyreSound] = []
+    var sounds: [lyreSound] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.dataSource = self
-        self.collectionView!.register(SoundCell.self, forCellWithReuseIdentifier: cellReuseIdentifier)
-        self.view.setBackgroundGradient()
-        self.collectionView.backgroundColor = .clear
-        
+        self.loadRecordings()
+        self.tableView.dataSource = self
+        self.tableView.backgroundColor = .clear
         self.view.bringSubviewToFront(self.AddButton)
-        // Do any additional setup after loading the view.
-    }
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath)
-        return headerView
-    }
-
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        self.gussyUpButton()
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tracks.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! SoundCell
-        return cell
-    }
-    
-    @IBOutlet weak var collectionView: UICollectionView!
+    // MARK: - outlets
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var AddButton: UIButton!
     
-    @IBAction func addButton(_ sender: UIButton) {
-        let s = lyreSound(name: "Beans", task_id: "😅💎", originalSoundURL: URL(fileURLWithPath: ""), lyrebirdSoundURL: URL(fileURLWithPath: ""))
-        self.tracks.append(s)
-        self.collectionView.reloadData()
-        print("tracks: \(tracks.count)")
+    // MARK: - Controll
+    
+    func isPlaying() -> Bool {
+        return true
+    }
+    
+    func stopPlay() {
+        
+    }
+    
+    // MARK:- Data
+    func loadRecordings() {
+        self.sounds.removeAll()
+        let filemanager = FileManager.default
+        let documentsDirectory = filemanager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        do {
+            let paths = try filemanager.contentsOfDirectory(at: documentsDirectory, includingPropertiesForKeys: nil, options: [])
+            for path in paths {
+                let s = lyreSound(name: path.lastPathComponent, task_id: "😅💎", originalSoundURL: path, lyrebirdSoundURL: path)
+                self.sounds.append(s)
+            }
+            self.tableView.reloadData()
+        } catch {
+            print(error)
+        }
+    }
+    
+    // MARK: - UI mods
+    
+    func gussyUpButton() {
+        self.AddButton.prettyGradient()
+        self.AddButton.layer.cornerRadius = 0.5 * self.AddButton.bounds.size.width
+        self.AddButton.clipsToBounds = true
+    }
+    
+//     MARK: - Navigation
+    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? RecorderViewController {
+            controller.uploadDelegate = self
+        }
     }
     
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {}
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func uploadCompleted() {
+        self.loadRecordings()
     }
-    */
+}
 
+
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.isPlaying() {
+            self.stopPlay()
+        }
+        let sound = self.sounds[indexPath.row]
+//        self.play(url: sound.path)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let result = self.sounds.count
+        if result > 0 {
+            self.tableView.isHidden = false
+        }
+        else {
+            self.tableView.isHidden = true
+        }
+        return result
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellid)
+        if cell == nil {
+            cell = SoundTableViewCell(style: .subtitle, reuseIdentifier: cellid)
+        }
+        let sound = self.sounds[indexPath.row]
+        cell?.textLabel?.text = sound.name
+        cell?.backgroundColor = .clear
+        
+//        cell?.detailTextLabel?.text = sound.path.absoluteString
+        return cell!
+        
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let filemanager = FileManager.default
+            let sound = self.sounds[indexPath.row]
+            do {
+//                deleteAudioRecordings(task_id: <#T##String#>)
+                self.sounds.remove(at: indexPath.row)
+                self.tableView.reloadData()
+            }catch(let err){
+                print("Error while deleteing \(err)")
+            }
+        }
+    }
 }

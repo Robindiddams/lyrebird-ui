@@ -11,7 +11,7 @@ import JGProgressHUD
 import NVActivityIndicatorView
 import Alamofire
 
-let apiURL = "https://p00plqfrp6.execute-api.us-east-1.amazonaws.com/dev"
+//let apiURL = "https://p00plqfrp6.execute-api.us-east-1.amazonaws.com/dev"
 
 enum networkState {
     case connecting
@@ -26,10 +26,10 @@ class UploadViewController: UIViewController {
     var task_id: String = ""
     var downloadURL: String = ""
     weak var timer: Timer?
+    var uploadCompletedDelegate: UploadCompletedDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.setBackgroundGradient()
         spinner.type = NVActivityIndicatorType.orbit
         spinner.startAnimating()
     }
@@ -95,7 +95,7 @@ class UploadViewController: UIViewController {
         
         // Get destination of download
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-            let fileURL = getSoundURL(name: self.task_id)
+            let fileURL = getSoundURL(id: self.task_id)
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
         
@@ -178,7 +178,7 @@ class UploadViewController: UIViewController {
         hud.show(in: self.view)
         
         // Get recording
-        if let encodedMusic = try? Data(contentsOf: getSoundURL(name: self.task_id, recording: true)) {
+        if let encodedMusic = try? Data(contentsOf: getSoundURL(id: self.task_id, recording: true)) {
             let headers: HTTPHeaders = [
                 "Content-Type": "application/octet-stream"
             ]
@@ -216,6 +216,7 @@ class UploadViewController: UIViewController {
                     })
 
                     hud.dismiss(afterDelay: 1.0)
+                    
                     self.uploadComplete()
             }
         } else {
@@ -248,9 +249,12 @@ class UploadViewController: UIViewController {
     func uploadComplete() {
         // Update UI
         self.updateUI(.waiting)
-        
+        self.uploadCompletedDelegate.uploadCompleted()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+            self.performSegue(withIdentifier: "goHome", sender: self)
+        }
         // Start requesting server for download
-        self.startStatusRequests()
+//        self.startStatusRequests()
     }
     
     func downloadIsReady(downloadURL: String) {

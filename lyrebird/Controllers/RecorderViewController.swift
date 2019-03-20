@@ -34,6 +34,8 @@ import UIKit
 import AVFoundation
 import Accelerate
 import UICircularProgressRing
+import JGProgressHUD
+import Alamofire
 
 enum RecorderState {
     case start
@@ -45,6 +47,7 @@ enum RecorderState {
 let redColorSet = [UIColor(r: 245, g: 78, b: 162).cgColor, UIColor(r: 255, g: 118, b: 118).cgColor]
 let greenColorSet = [UIColor(r: 59, g: 178, b: 184).cgColor, UIColor(r: 36, g: 240, b: 149).cgColor]
 
+
 class RecorderViewController: UIViewController {
     
     //MARK:- Properties
@@ -54,6 +57,8 @@ class RecorderViewController: UIViewController {
     private var recordingTs: Double = 0
     private var silenceTs: Double = 0
     private var audioFile: AVAudioFile?
+    var task_id: String = ""
+    let hud: JGProgressHUD = JGProgressHUD(style: .dark)
     
     var uploadDelegate: UploadCompletedDelegate!
     
@@ -292,12 +297,106 @@ class RecorderViewController: UIViewController {
             }
         }
     }
+    
+    // MARK:- Networking
+    @IBAction func startUpload(_ sender: PrettyButton) {
+//        // Setup hud modal
+        self.hud.vibrancyEnabled = true
+        self.hud.indicatorView = JGProgressHUDPieIndicatorView()
+        self.hud.textLabel.text = "Connecting..."
+        self.hud.detailTextLabel.text = "0% Complete"
+        self.hud.show(in: self.view)
+//
+        // get our upload url
+        Alamofire.request(apiURL + "/upload")
+            .responseJSON { response in
+                print("success: \(response.result.isSuccess)")
+                if response.response?.statusCode != 200 {
+                    if let json = response.result.value as? [String: Any], let resp = errorResponse(json: json) {
+                        // TODO: do something on errors, show error and go back
+                        print("ERROR: success: \(resp.success), message: \(resp.message)")
+                        return
+                    }
+                }
+                if let json = response.result.value as? [String: Any], let resp = uploadResponse(json: json) {
+                    print("success: \(resp.success), task: \(resp.task_id), upload_url: \(resp.URL)")
+                    self.task_id = resp.task_id
+                    renameAudioRecord(task_id: resp.task_id)
+                    UIView.animate(withDuration: 0.5, animations: {
+                        self.hud.textLabel.text = "Connected!"
+                    }, completion: { finished in
+                        self.uploadRecording(url: resp.URL)
+                    })
+                    
+                }
+        }
+    }
+    
+    func uploadRecording(url: String) {
 
+        self.hud.textLabel.text = "Uploading"
+        
+        // Get recording
+        if let encodedMusic = try? Data(contentsOf: getSoundURL(id: self.task_id, recording: true)) {
+            let headers: HTTPHeaders = [
+                "Content-Type": "application/octet-stream"
+            ]
+            
+            // Begin Upload
+            Alamofire.upload(encodedMusic, to: url, method: .put, headers: headers)
+                .uploadProgress { progress in // Update Hud with progress
+                    let currentProgress = Float(progress.fractionCompleted * 100.0)
+                    print("upload progress: \(String(format: "%.2f", currentProgress))% \(progress.fractionCompleted)")
+                    self.hud.detailTextLabel.text = "\(String(format: "%.2f", currentProgress))% Complete"
+                    self.hud.setProgress(Float(progress.fractionCompleted), animated: true)
+                }
+                .response { response in // Completed upload
+                    // Its weird when we get to 87% and then complete
+                    if self.hud.progress < 1.0 {
+                        self.hud.detailTextLabel.text = "100.0% Complete"
+                        self.hud.setProgress(1.0, animated: true)
+                    }
+                    
+                    // Check for errors
+                    if response.response?.statusCode != 200 {
+                        print("error \(response.response?.statusCode)")
+                        if let data = response.data {
+                            print("data:\(data.base64EncodedString())")
+                        }
+                        // TODO: throw an error, tell user
+                        return
+                    }
+                    
+                    // Go to waiting state
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.hud.textLabel.text = "Success"
+                        self.hud.detailTextLabel.text = nil
+                        self.hud.indicatorView = JGProgressHUDSuccessIndicatorView()
+                    })
+                    
+                    self.hud.dismiss(afterDelay: 1.0)
+                    
+                    self.uploadComplete()
+            }
+        } else {
+            // TODO: throw an error, tell user and go back to record
+        }
+        
+    }
+    
+    func uploadComplete() {
+        self.uploadDelegate.uploadCompleted()
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+            self.performSegue(withIdentifier: "goHome", sender: self)
+        }
+    }
+    
+    // MARK:- Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        if let a = segue.destination as? UploadViewController {
-            a.startUpload()
+        if let controller = segue.destination as? UploadViewController {
+            controller.startUpload()
         }
     }
     

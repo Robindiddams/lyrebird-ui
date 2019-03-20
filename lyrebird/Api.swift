@@ -13,6 +13,8 @@ struct errorResponse {
     let message: String
 }
 
+let apiURL = "https://p00plqfrp6.execute-api.us-east-1.amazonaws.com/dev"
+
 extension errorResponse {
     init?(json: [String: Any]) {
         guard let success = json["success"] as? Bool,

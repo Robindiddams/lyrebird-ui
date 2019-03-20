@@ -13,6 +13,7 @@ target 'lyrebird' do
   pod 'BubbleTransition', '~> 3.0.0'
   pod 'MaterialComponents/Cards'
   pod 'MaterialComponents/Buttons'
+  pod 'Pastel'
 
   target 'lyrebirdTests' do
     inherit! :search_paths

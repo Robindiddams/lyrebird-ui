@@ -41,15 +41,15 @@ class Visualizer: UIView{
     var active = false {
         didSet {
             if self.active {
-                self.color = UIColor.purple.cgColor
+                self.color = UIColor.lightGray.cgColor
             }
             else {
-                self.color = UIColor.white.cgColor
+                self.color = UIColor.lightGray.cgColor
             }
         }
     }
     // Color for bars
-    var color = UIColor.white.cgColor
+    var color = UIColor.lightGray.cgColor
     // Given waveforms
     var waveforms: [Int] = Array(repeating: 0, count: 100)
     // State manager
