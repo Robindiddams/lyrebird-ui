@@ -42,6 +42,8 @@ enum RecorderState {
     case denied
 }
 
+let redColorSet = [UIColor(r: 245, g: 78, b: 162).cgColor, UIColor(r: 255, g: 118, b: 118).cgColor]
+let greenColorSet = [UIColor(r: 59, g: 178, b: 184).cgColor, UIColor(r: 36, g: 240, b: 149).cgColor]
 
 class RecorderViewController: UIViewController {
     
@@ -52,19 +54,21 @@ class RecorderViewController: UIViewController {
     private var recordingTs: Double = 0
     private var silenceTs: Double = 0
     private var audioFile: AVAudioFile?
-    var gradientLayer: CAGradientLayer!
+    
+    var uploadDelegate: UploadCompletedDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.setBackgroundGradient()
+        self.recordButton.setGradient(colors: redColorSet)
+        self.nextButton.setGradient(colors: greenColorSet)
         self.progressRing.value = 0
         self.progressRing.animationTimingFunction = .linear
     }
     
     //MARK:- Outlets
     @IBOutlet weak var audioVisualizer: Visualizer!
-    @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var nextButton: PrettyButton!
+    @IBOutlet weak var recordButton: PrettyButton!
     @IBOutlet weak var progressRing: UICircularProgressRing!
     
     //MARK:- Actions
@@ -82,27 +86,47 @@ class RecorderViewController: UIViewController {
             self.progressRing.startProgress(to: 100, duration: 10.0) {
                 DispatchQueue.main.async {
                     self.stopRecording(.finished)
-                    UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseOut, animations: {
+                    UIView.animate(withDuration: 0.1, delay: 0.0, animations: {
                         self.progressRing.alpha = 0.0
                     }, completion: { finished in
+                        UIView.animate(withDuration: 0.3) {
+                            self.progressRing.isHidden = true
+                            self.nextButton.isHidden = false
+                        }
                         self.progressRing.resetProgress()
                         self.progressRing.alpha = 1.0
                     })
                 }
             }
             self.audioVisualizer.isHidden = false
-            self.nextButton.isHidden = true
+            if self.nextButton.isHidden {
+                UIView.animate(withDuration: 0.3) {
+                    self.progressRing.isHidden = false
+                }
+            } else {
+                print("executing") // NEED HELP HERE
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.nextButton.isHidden = true
+                    self.progressRing.isHidden = false
+//                    self.nextButton.layoutIfNeeded()
+                }, completion: { finished in
+                    
+                })
+            }
             self.recordButton.setTitle("cancel", for: .normal)
             UIApplication.shared.isIdleTimerDisabled = true
             break
         case .canceled:
             self.audioVisualizer.isHidden = true
-            self.recordButton.setTitle("record", for: .normal)
-            self.progressRing.startProgress(to: 0, duration: 0.5)
+            self.recordButton.setTitle("Start", for: .normal)
+            self.progressRing.startProgress(to: 0, duration: 0.5) {
+                UIView.animate(withDuration: 0.3) {
+                    self.progressRing.isHidden = true
+                }
+            }
             UIApplication.shared.isIdleTimerDisabled = false
             break
         case .finished:
-            self.nextButton.isHidden = false
             self.audioVisualizer.isHidden = true
             self.recordButton.setTitle("try again", for: .normal)
             UIApplication.shared.isIdleTimerDisabled = false
