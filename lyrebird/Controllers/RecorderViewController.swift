@@ -75,6 +75,8 @@ class RecorderViewController: UIViewController {
     @IBOutlet weak var nextButton: PrettyButton!
     @IBOutlet weak var recordButton: PrettyButton!
     @IBOutlet weak var progressRing: UICircularProgressRing!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subTitleLabel: UILabel!
     
     //MARK:- Actions
     @IBAction func recordButtonTapped(_ sender: UIButton) {
@@ -111,6 +113,8 @@ class RecorderViewController: UIViewController {
             } else {
                 print("executing") // NEED HELP HERE
                 UIView.animate(withDuration: 0.3, animations: {
+                    self.titleLabel.text = "One more time!"
+                    self.subTitleLabel.text = "you can even record your farts!👍"
                     self.nextButton.isHidden = true
                     self.progressRing.isHidden = false
 //                    self.nextButton.layoutIfNeeded()
@@ -134,6 +138,10 @@ class RecorderViewController: UIViewController {
         case .finished:
             self.audioVisualizer.isHidden = true
             self.recordButton.setTitle("try again", for: .normal)
+            UIView.animate(withDuration: 0.3) {
+                self.titleLabel.text = "Yeah, cool, whatever!"
+                self.subTitleLabel.text = "just hit next! what do you got to lose?"
+            }
             UIApplication.shared.isIdleTimerDisabled = false
             break
         case .denied:

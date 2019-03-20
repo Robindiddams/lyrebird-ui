@@ -11,7 +11,6 @@ import JGProgressHUD
 import NVActivityIndicatorView
 import Alamofire
 
-//let apiURL = "https://p00plqfrp6.execute-api.us-east-1.amazonaws.com/dev"
 
 enum networkState {
     case connecting

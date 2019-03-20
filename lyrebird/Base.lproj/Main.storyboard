@@ -127,6 +127,8 @@
                         <outlet property="nextButton" destination="hWs-z0-3Z8" id="LY9-kP-D8Z"/>
                         <outlet property="progressRing" destination="Tec-ZY-Eoi" id="YMO-ai-R8K"/>
                         <outlet property="recordButton" destination="Lb2-Jh-cYD" id="xs5-w4-ybj"/>
+                        <outlet property="subTitleLabel" destination="iS9-pF-ulu" id="9Qx-dI-dve"/>
+                        <outlet property="titleLabel" destination="cPc-ov-KWG" id="SK5-23-k0E"/>
                         <segue destination="I06-mS-H3c" kind="unwind" identifier="goHome" unwindAction="unwindToHomeWithSegue:" id="7Ib-5R-xat"/>
                     </connections>
                 </viewController>
@@ -198,7 +200,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRW-sS-SvJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="392.80000000000001" y="286.50674662668666"/>
+            <point key="canvasLocation" x="391" y="278"/>
         </scene>
         <!--Upload View Controller-->
         <scene sceneID="fNE-Li-ydX">
