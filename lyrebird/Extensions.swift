@@ -29,6 +29,8 @@
 import UIKit
 import Pastel
 
+let pastelViewTag: Int = 100
+
 public extension UIColor {
     
     public convenience init(r: CGFloat, g: CGFloat, b: CGFloat) {
@@ -92,7 +94,7 @@ extension UIButton {
         pastelView.endPastelPoint = .topRight
         
         // Custom Duration
-        pastelView.animationDuration = 3.0
+        pastelView.animationDuration = 2.0
         
         // Custom Color
         pastelView.setColors([UIColor(red: 156/255, green: 39/255, blue: 176/255, alpha: 1.0),
@@ -105,6 +107,7 @@ extension UIButton {
         
         pastelView.startAnimation()
         pastelView.isUserInteractionEnabled = false
+        pastelView.tag = pastelViewTag
         self.insertSubview(pastelView, at: 0)
     }
 }

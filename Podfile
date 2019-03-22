@@ -10,10 +10,13 @@ target 'lyrebird' do
   pod 'NVActivityIndicatorView'
   pod 'Alamofire'
   pod 'UICircularProgressRing'
-  pod 'BubbleTransition', '~> 3.0.0'
-  pod 'MaterialComponents/Cards'
-  pod 'MaterialComponents/Buttons'
+#  pod 'BubbleTransition', '~> 3.0.0'
+#  pod 'MaterialComponents/Cards'
+#  pod 'MaterialComponents/Buttons'
   pod 'Pastel'
+  pod 'NFDownloadButton', '~> 0.0.6'
+#  pod 'VIWaveformView', :git => 'https://github.com/Robindiddams/VIWaveformView.git', :commit => '38ed18cf0a4288024e8dd22ac0d79665537261d2'
+#  pod 'VIWaveformView', :path => '~/Documents/VIWaveformView/'
 
   target 'lyrebirdTests' do
     inherit! :search_paths

@@ -25,7 +25,7 @@ class PrettyButton: UIButton {
     }
     
     func updateCornerRadius() {
-        self.layer.cornerRadius = rounded ? frame.size.height / 2 : 0
+        self.layer.cornerRadius = rounded ? 5 : 0
         self.clipsToBounds = true
     }
     

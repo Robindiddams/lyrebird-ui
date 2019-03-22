@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Pastel
 
 private let cellReuseIdentifier = "Cell"
 private let headerReuseIdentifier = "Header"
@@ -35,6 +36,19 @@ class MainViewController: UIViewController, UploadCompletedDelegate {
         self.gussyUpButton()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Start fun button animations
+        for subview in self.AddButton.subviews {
+            if subview.tag == pastelViewTag {
+                if let pastelView = subview as? PastelView {
+                    pastelView.startAnimation()
+                }
+            }
+        }
+    }
+    
     // MARK: - outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var AddButton: UIButton!
@@ -57,7 +71,7 @@ class MainViewController: UIViewController, UploadCompletedDelegate {
         do {
             let paths = try filemanager.contentsOfDirectory(at: documentsDirectory, includingPropertiesForKeys: nil, options: [])
             for path in paths {
-                let s = lyreSound(name: path.lastPathComponent, task_id: "😅💎", originalSoundURL: path, lyrebirdSoundURL: path)
+                let s = lyreSound(name: String(path.lastPathComponent.split(separator: "-")[0]), task_id: "😅💎", originalSoundURL: path, lyrebirdSoundURL: path)
                 self.sounds.append(s)
             }
             self.tableView.reloadData()
@@ -67,14 +81,13 @@ class MainViewController: UIViewController, UploadCompletedDelegate {
     }
     
     // MARK: - UI mods
-    
     func gussyUpButton() {
         self.AddButton.prettyGradient()
         self.AddButton.layer.cornerRadius = 0.5 * self.AddButton.bounds.size.width
         self.AddButton.clipsToBounds = true
     }
     
-//     MARK: - Navigation
+    // MARK: - Navigation
     public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? RecorderViewController {
             controller.uploadDelegate = self
@@ -99,6 +112,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 //        self.play(url: sound.path)
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let result = self.sounds.count
         if result > 0 {
@@ -111,17 +125,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: cellid)
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as? SoundTableViewCell
         if cell == nil {
-            cell = SoundTableViewCell(style: .subtitle, reuseIdentifier: cellid)
+            cell = SoundTableViewCell(style: .default, reuseIdentifier: cellReuseIdentifier)
         }
         let sound = self.sounds[indexPath.row]
-        cell?.textLabel?.text = sound.name
+        cell?.nameLabel?.text = sound.name
         cell?.backgroundColor = .clear
-        
-//        cell?.detailTextLabel?.text = sound.path.absoluteString
         return cell!
-        
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -132,7 +143,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 //                deleteAudioRecordings(task_id: <#T##String#>)
                 self.sounds.remove(at: indexPath.row)
                 self.tableView.reloadData()
-            }catch(let err){
+            } catch (let err) {
                 print("Error while deleteing \(err)")
             }
         }

@@ -111,14 +111,17 @@ class RecorderViewController: UIViewController {
                     self.progressRing.isHidden = false
                 }
             } else {
-                print("executing") // NEED HELP HERE
                 UIView.animate(withDuration: 0.3, animations: {
                     self.titleLabel.text = "One more time!"
                     self.subTitleLabel.text = "you can even record your farts!👍"
-                    self.nextButton.isHidden = true
-                    self.progressRing.isHidden = false
-//                    self.nextButton.layoutIfNeeded()
+                    self.nextButton.alpha = 0.0
                 }, completion: { finished in
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.nextButton.isHidden = true
+                        self.progressRing.isHidden = false
+                    }, completion: { finished in
+                        self.nextButton.alpha = 1.0
+                    })
                     
                 })
             }
