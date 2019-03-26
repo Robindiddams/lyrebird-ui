@@ -1,7 +1,6 @@
 PODS:
   - Alamofire (4.8.1)
   - JGProgressHUD (2.0.3)
-  - NFDownloadButton (0.0.6)
   - NVActivityIndicatorView (4.6.1):
     - NVActivityIndicatorView/Presenter (= 4.6.1)
   - NVActivityIndicatorView/Presenter (4.6.1)
@@ -11,7 +10,6 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - JGProgressHUD
-  - NFDownloadButton (~> 0.0.6)
   - NVActivityIndicatorView
   - Pastel
   - UICircularProgressRing
@@ -20,7 +18,6 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - JGProgressHUD
-    - NFDownloadButton
     - NVActivityIndicatorView
     - Pastel
     - UICircularProgressRing
@@ -28,11 +25,10 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
-  NFDownloadButton: c35241034b1fb298c903e676be2c38dd53329b5c
   NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
   Pastel: b3dd5b8d612dac06ae7c63c97c45c900829bc139
   UICircularProgressRing: 2ef1293241b83d8020ede21a8fe3b3d859525730
 
-PODFILE CHECKSUM: c6be4363caa59d9926f35dd7f893a59c59ee92a8
+PODFILE CHECKSUM: 6b18e611bdcc0513d5f02a9106de8516fcf716e6
 
 COCOAPODS: 1.5.3

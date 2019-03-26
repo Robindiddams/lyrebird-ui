@@ -8,19 +8,31 @@
 
 import Foundation
 
+struct lyreSound {
+    let name: String
+    let task_id: String
+    var originalSoundURL: URL?
+    var lyrebirdSoundURL: URL?
+}
+
+enum lyrebirdSoundType {
+    case recording
+    case sound
+}
+
 func getSoundURL(id: String, recording: Bool = false) -> URL {
     var postfix = "sound"
     if recording {
         postfix = "recording"
     }
-    let currentFileName = "\(id)-\(postfix)" + ".wav"
+    let currentFileName = "\(id)_\(postfix)" + ".wav"
     let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     let url = documentsDirectory.appendingPathComponent(currentFileName)
     return url
 }
 
 func getAudioRecordPath() -> URL {
-    let currentFileName = "lyrebird-recording.wav"
+    let currentFileName = "lyrebird_recording.wav"
     let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     let url = documentsDirectory.appendingPathComponent(currentFileName)
     return url
@@ -43,7 +55,71 @@ func deleteAudioRecordings(task_id: String) {
     do {
         try filemanager.removeItem(at: recordPath)
         try filemanager.removeItem(at: soundPath)
-    }catch(let err){
+    } catch(let err) {
         print("Error while deleteing \(err)")
     }
+}
+
+func parseSoundPath(_ path: URL) -> (type: lyrebirdSoundType, task_id: String)? {
+    if !path.lastPathComponent.contains(".wav") {
+        return nil
+    }
+    let filename = path.deletingPathExtension().lastPathComponent
+    let components = filename.split(separator: "_")
+    if components.count != 2 {
+        return nil
+    }
+    if components[0] == "lyrebird" {
+        return nil
+    }
+    switch components[1] {
+    case "sound":
+        return (lyrebirdSoundType.sound, String(components[0]))
+    case "recording":
+        return (lyrebirdSoundType.recording, String(components[0]))
+    default:
+        return nil
+    }
+    
+}
+
+func getSounds() -> [lyreSound] {
+    var soundMap = [String : lyreSound]()
+    let filemanager = FileManager.default
+    let documentsDirectory = filemanager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    
+    do {
+        let paths = try filemanager.contentsOfDirectory(at: documentsDirectory, includingPropertiesForKeys: nil, options: [])
+        for path in paths {
+            if let sound = parseSoundPath(path) {
+                switch sound.type {
+                case .recording:
+                    if soundMap[sound.task_id] == nil {
+                        soundMap[sound.task_id] = lyreSound(name: sound.task_id,
+                                                          task_id: sound.task_id,
+                                                          originalSoundURL: path,
+                                                          lyrebirdSoundURL: nil)
+                    } else {
+                        soundMap[sound.task_id]?.originalSoundURL = path
+                    }
+                case .sound:
+                    if soundMap[sound.task_id] == nil {
+                        soundMap[sound.task_id] = lyreSound(name: sound.task_id,
+                                                          task_id: sound.task_id,
+                                                          originalSoundURL: nil,
+                                                          lyrebirdSoundURL: path)
+                    } else {
+                        soundMap[sound.task_id]?.lyrebirdSoundURL = path
+                    }
+                }
+            }
+        }
+    } catch let e {
+        print("error: \(e)")
+    }
+    var sounds = [lyreSound]()
+    for (_, v) in soundMap {
+        sounds.append(v)
+    }
+    return sounds
 }

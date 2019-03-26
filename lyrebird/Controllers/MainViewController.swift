@@ -16,13 +16,6 @@ protocol UploadCompletedDelegate {
     func uploadCompleted()
 }
 
-struct lyreSound {
-    let name: String
-    let task_id: String
-    let originalSoundURL: URL
-    let lyrebirdSoundURL: URL
-}
-
 class MainViewController: UIViewController, UploadCompletedDelegate {
     
     var sounds: [lyreSound] = []
@@ -38,7 +31,6 @@ class MainViewController: UIViewController, UploadCompletedDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         // Start fun button animations
         for subview in self.AddButton.subviews {
             if subview.tag == pastelViewTag {
@@ -66,18 +58,8 @@ class MainViewController: UIViewController, UploadCompletedDelegate {
     // MARK:- Data
     func loadRecordings() {
         self.sounds.removeAll()
-        let filemanager = FileManager.default
-        let documentsDirectory = filemanager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        do {
-            let paths = try filemanager.contentsOfDirectory(at: documentsDirectory, includingPropertiesForKeys: nil, options: [])
-            for path in paths {
-                let s = lyreSound(name: String(path.lastPathComponent.split(separator: "-")[0]), task_id: "😅💎", originalSoundURL: path, lyrebirdSoundURL: path)
-                self.sounds.append(s)
-            }
-            self.tableView.reloadData()
-        } catch {
-            print(error)
-        }
+        self.sounds = getSounds()
+        self.tableView.reloadData()
     }
     
     // MARK: - UI mods
@@ -131,7 +113,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         }
         let sound = self.sounds[indexPath.row]
         cell?.nameLabel?.text = sound.name
-        cell?.backgroundColor = .clear
+        if sound.lyrebirdSoundURL == nil {
+                cell?.startLoading()
+        }
         return cell!
     }
     

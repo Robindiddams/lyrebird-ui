@@ -41,10 +41,10 @@ class PlayerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.setBackgroundGradient()
+        
+        self.playButton.setGradient(colors: redColorSet)
+        self.lyreBirdButton.setGradient(colors: redColorSet)
     }
-    
-    @IBOutlet weak var playpauseButton: UIButton!
     
     // MARK:- Actions
     @IBAction func playpausepressed(_ sender: UIButton) {
@@ -59,6 +59,10 @@ class PlayerViewController: UIViewController {
         }
     }
     
+    
+    @IBOutlet weak var playButton: PrettyButton!
+    @IBOutlet weak var lyreBirdButton: PrettyButton!
+    
     @IBAction func keepPressed(_ sender: UIButton) {
         // do exit
     }
@@ -70,7 +74,7 @@ class PlayerViewController: UIViewController {
     
     // MARK:- Playback
     private func play(url: URL) {
-        playpauseButton.setTitle("stop", for: .normal)
+        playButton.setTitle("stop", for: .normal)
         do {
             let session = AVAudioSession.sharedInstance()
             try session.setCategory(.playAndRecord, mode: .default)
@@ -95,7 +99,7 @@ class PlayerViewController: UIViewController {
     }
     
     func stopPlay() {
-        self.playpauseButton.setTitle("play", for: .normal)
+        playButton.setTitle("play", for: .normal)
         if let player = self.audioPlayer {
             player.pause()
         }
