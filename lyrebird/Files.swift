@@ -13,6 +13,8 @@ struct lyreSound {
     let task_id: String
     var originalSoundURL: URL?
     var lyrebirdSoundURL: URL?
+    var downloadURL: String?
+    var downloadProgress: Double
 }
 
 enum lyrebirdSoundType {
@@ -98,7 +100,9 @@ func getSounds() -> [lyreSound] {
                         soundMap[sound.task_id] = lyreSound(name: sound.task_id,
                                                           task_id: sound.task_id,
                                                           originalSoundURL: path,
-                                                          lyrebirdSoundURL: nil)
+                                                          lyrebirdSoundURL: nil,
+                                                          downloadURL: nil,
+                                                          downloadProgress: 0.0)
                     } else {
                         soundMap[sound.task_id]?.originalSoundURL = path
                     }
@@ -107,7 +111,9 @@ func getSounds() -> [lyreSound] {
                         soundMap[sound.task_id] = lyreSound(name: sound.task_id,
                                                           task_id: sound.task_id,
                                                           originalSoundURL: nil,
-                                                          lyrebirdSoundURL: path)
+                                                          lyrebirdSoundURL: path,
+                                                          downloadURL: nil,
+                                                          downloadProgress: 0.0)
                     } else {
                         soundMap[sound.task_id]?.lyrebirdSoundURL = path
                     }
@@ -119,7 +125,9 @@ func getSounds() -> [lyreSound] {
     }
     var sounds = [lyreSound]()
     for (_, v) in soundMap {
-        sounds.append(v)
+        if v.originalSoundURL != nil {
+            sounds.append(v)
+        }
     }
     return sounds
 }

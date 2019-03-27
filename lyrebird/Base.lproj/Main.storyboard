@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Ri-wu-vco">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Ri-wu-vco">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -130,7 +130,7 @@
                         <outlet property="recordButton" destination="Lb2-Jh-cYD" id="xs5-w4-ybj"/>
                         <outlet property="subTitleLabel" destination="iS9-pF-ulu" id="9Qx-dI-dve"/>
                         <outlet property="titleLabel" destination="cPc-ov-KWG" id="SK5-23-k0E"/>
-                        <segue destination="I06-mS-H3c" kind="unwind" identifier="goHome" unwindAction="unwindToHomeWithSegue:" id="7Ib-5R-xat"/>
+                        <segue destination="I06-mS-H3c" kind="unwind" identifier="goHome" unwindAction="unwindToHomeWithSegue:" id="n8N-52-UbA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -157,30 +157,38 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JdN-Og-0PD" userLabel="Card View">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JdN-Og-0PD" userLabel="Card View" customClass="CardView" customModule="lyrebird" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="0.0" width="345" height="70"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pco-a4-L7t">
-                                                            <rect key="frame" x="14" y="25" width="46" height="20.5"/>
+                                                            <rect key="frame" x="14" y="24.5" width="46" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b59-K0-sOr" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
                                                             <rect key="frame" x="293" y="16.5" width="37" height="37"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="37" id="LCt-ma-N9F"/>
                                                                 <constraint firstAttribute="width" secondItem="b59-K0-sOr" secondAttribute="height" multiplier="1:1" id="zwe-4n-uiZ"/>
                                                             </constraints>
                                                         </view>
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tap to download" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZV-oo-svT">
+                                                            <rect key="frame" x="213" y="24.5" width="124" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="70" id="1yP-gO-MIy"/>
                                                         <constraint firstItem="Pco-a4-L7t" firstAttribute="leading" secondItem="JdN-Og-0PD" secondAttribute="leading" constant="14" id="BGF-4D-fQZ"/>
+                                                        <constraint firstAttribute="trailing" secondItem="wZV-oo-svT" secondAttribute="trailing" constant="8" id="HjE-p6-FdC"/>
                                                         <constraint firstItem="Pco-a4-L7t" firstAttribute="centerY" secondItem="JdN-Og-0PD" secondAttribute="centerY" id="QOr-1O-S5e"/>
                                                         <constraint firstItem="b59-K0-sOr" firstAttribute="centerY" secondItem="JdN-Og-0PD" secondAttribute="centerY" id="fan-rh-r7c"/>
                                                         <constraint firstAttribute="trailing" secondItem="b59-K0-sOr" secondAttribute="trailing" constant="15" id="jgK-cB-6MH"/>
+                                                        <constraint firstItem="wZV-oo-svT" firstAttribute="centerY" secondItem="JdN-Og-0PD" secondAttribute="centerY" id="uVT-Bz-MRs"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -197,6 +205,7 @@
                                             <outlet property="activityIndicatior" destination="b59-K0-sOr" id="SRT-YG-nRq"/>
                                             <outlet property="cardView" destination="JdN-Og-0PD" id="HOC-TI-GkI"/>
                                             <outlet property="nameLabel" destination="Pco-a4-L7t" id="KVR-fH-Do2"/>
+                                            <outlet property="statusLabel" destination="wZV-oo-svT" id="f41-YA-Apy"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

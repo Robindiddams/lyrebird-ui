@@ -98,7 +98,6 @@ class Visualizer: UIView{
             let oneY = v
             context.move(to: CGPoint(x: oneX, y: h))
             context.addLine(to: CGPoint(x: oneX, y: h - oneY * 2))
-            
             context.strokePath()
             bar += 1
         }

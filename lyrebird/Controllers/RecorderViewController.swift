@@ -320,25 +320,31 @@ class RecorderViewController: UIViewController {
 //
         // get our upload url
         Alamofire.request(apiURL + "/upload")
-            .responseJSON { response in
+            .responseData { response in
                 print("success: \(response.result.isSuccess)")
-                if response.response?.statusCode != 200 {
-                    if let json = response.result.value as? [String: Any], let resp = errorResponse(json: json) {
-                        // TODO: do something on errors, show error and go back
-                        print("ERROR: success: \(resp.success), message: \(resp.message)")
-                        return
+                if let data = response.result.value {
+                    do {
+                        let decoder = JSONDecoder()
+                        print("error \(data.base64EncodedString())")
+                        if response.response?.statusCode != 200 {
+                            
+                            // TODO: do something on errors, show error and go back
+                            let errorRez = try decoder.decode(ErrorResponse.self, from: data)
+                            print("ERROR: success: \(errorRez.success), message: \(errorRez.message)")
+                            return
+                        }
+                        let resp = try decoder.decode(UploadResponse.self, from: data)
+                        print("success: \(resp.success), task: \(resp.task_id), upload_url: \(resp.upload_url)")
+                        self.task_id = resp.task_id
+                        renameAudioRecord(task_id: resp.task_id)
+                        UIView.animate(withDuration: 0.5, animations: {
+                            self.hud.textLabel.text = "Connected!"
+                        }, completion: { finished in
+                            self.uploadRecording(url: resp.upload_url)
+                        })
+                    } catch let parseError {
+                        print("upload parsingError: \(parseError)")
                     }
-                }
-                if let json = response.result.value as? [String: Any], let resp = uploadResponse(json: json) {
-                    print("success: \(resp.success), task: \(resp.task_id), upload_url: \(resp.URL)")
-                    self.task_id = resp.task_id
-                    renameAudioRecord(task_id: resp.task_id)
-                    UIView.animate(withDuration: 0.5, animations: {
-                        self.hud.textLabel.text = "Connected!"
-                    }, completion: { finished in
-                        self.uploadRecording(url: resp.URL)
-                    })
-                    
                 }
         }
     }
@@ -401,14 +407,4 @@ class RecorderViewController: UIViewController {
             self.performSegue(withIdentifier: "goHome", sender: self)
         }
     }
-    
-    // MARK:- Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        if let controller = segue.destination as? UploadViewController {
-            controller.startUpload()
-        }
-    }
-    
 }

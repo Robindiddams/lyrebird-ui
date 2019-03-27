@@ -8,6 +8,15 @@
 
 import UIKit
 import NVActivityIndicatorView
+import AHDownloadButton
+
+enum soundCardState {
+    case notDoneYet
+    case readyToDownload
+    case downloading
+    case readyToPlay
+    case playing
+}
 
 class SoundTableViewCell: UITableViewCell {
 
@@ -15,16 +24,21 @@ class SoundTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         self.setupCard()
+        self.statusLabel.isHidden = true
         self.backgroundColor = .clear
+//        self.cardView.setProgress(1.0)
     }
     
     // MARK: - params
     let defaultBackGroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.1)
+    var progress: Double = 0.0
+    var task_id: String = ""
     
     // MARK: - Outlets
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var activityIndicatior: NVActivityIndicatorView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var cardView: UIView!
+    @IBOutlet weak var cardView: CardView!
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -46,19 +60,54 @@ class SoundTableViewCell: UITableViewCell {
         }
     }
     
+    // MARK: - UI Mods
     func setupCard() {
         self.cardView.layer.cornerRadius = 8
-//        self.cardView.layer.borderColor = UIColor.white.cgColor
-//        self.cardView.layer.borderWidth = 2.0
         self.cardView.clipsToBounds = true
     }
     
-    func startLoading() {
-        self.activityIndicatior.type = .lineScalePulseOutRapid
-        self.activityIndicatior.startAnimating()
+    func finishDownload() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000)) {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.statusLabel.text = "done"
+            }, completion: { finished in
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.statusLabel.alpha = 0
+                }, completion: { finished in
+                    self.statusLabel.isHidden = true
+                    self.statusLabel.alpha = 1
+                })
+            })
+        }
     }
     
-    func stopLoading() {
-        self.activityIndicatior.stopAnimating()
+    func updateUI(_ state: soundCardState) {
+        self.nameLabel.text = self.task_id
+        switch state {
+        case .notDoneYet:
+            self.activityIndicatior.type = .lineScalePulseOutRapid
+            self.activityIndicatior.startAnimating()
+            self.statusLabel.isHidden = true
+        case .readyToDownload:
+            if statusLabel.isHidden {
+                self.statusLabel.alpha = 0
+                self.statusLabel.isHidden = false
+                UIView.animate(withDuration: 0.3, animations:{
+                    self.activityIndicatior.alpha = 0
+                    self.statusLabel.alpha = 1.0
+                }, completion: { finished in
+                    self.activityIndicatior.isHidden = true
+                    self.activityIndicatior.alpha = 1.0
+                    self.activityIndicatior.stopAnimating()
+                })
+            }
+            self.cardView.backgroundColor = .red
+        case .downloading:
+            self.cardView.setProgress(CGFloat(self.progress))
+        case .readyToPlay:
+            self.cardView.backgroundColor = .blue
+        case .playing:
+            self.cardView.backgroundColor = .green
+        }
     }
 }
