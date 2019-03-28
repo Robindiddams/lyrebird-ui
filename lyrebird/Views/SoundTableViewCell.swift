@@ -108,6 +108,7 @@ class SoundTableViewCell: UITableViewCell {
             self.cardView.backgroundColor = .red
         case .downloading:
             self.cardView.setProgress(CGFloat(self.progress))
+            self.statusLabel.text = "downloading"
         case .readyToPlay:
             self.cardView.backgroundColor = .blue
         case .playing:

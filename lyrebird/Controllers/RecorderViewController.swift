@@ -266,6 +266,8 @@ class RecorderViewController: UIViewController {
         case .denied:
             self.updateUI(.denied)
             break
+        @unknown default:
+            self.updateUI(.denied)
         }
     }
     
@@ -376,7 +378,7 @@ class RecorderViewController: UIViewController {
                     
                     // Check for errors
                     if response.response?.statusCode != 200 {
-                        print("error \(response.response?.statusCode)")
+                        print("error \(response.response!.statusCode)")
                         if let data = response.data {
                             print("data:\(data.base64EncodedString())")
                         }

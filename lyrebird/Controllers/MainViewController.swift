@@ -9,6 +9,7 @@
 import UIKit
 import Pastel
 import Alamofire
+import AVFoundation
 
 private let cellReuseIdentifier = "Cell"
 private let headerReuseIdentifier = "Header"
@@ -23,6 +24,7 @@ class MainViewController: UIViewController, UploadCompletedDelegate {
     weak var timer: Timer?
     var downloadQueue: [String] = []
     var downloading: Bool = false
+    private var audioPlayer: AVAudioPlayer?
     let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
@@ -57,12 +59,53 @@ class MainViewController: UIViewController, UploadCompletedDelegate {
     @IBOutlet weak var AddButton: UIButton!
     
     // MARK: - Controll
-    func isPlaying() -> Bool {
-        return true
+    // MARK:- Playback
+    private func play(url: URL) {
+        do {
+            let session = AVAudioSession.sharedInstance()
+            try session.setCategory(.playback, mode: .default)
+            try session.setActive(true)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+            return
+        }
+        do {
+            let data = try Data(contentsOf: url)
+            self.audioPlayer = try AVAudioPlayer(data: data, fileTypeHint: AVFileType.caf.rawValue)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+            return
+        }
+        if let player = self.audioPlayer {
+            player.prepareToPlay()
+            player.volume = 1.0
+            player.play()
+        }
     }
     
     func stopPlay() {
-        
+        if let paths = self.tableView.indexPathsForSelectedRows {
+            for path in paths {
+                self.tableView.deselectRow(at: path, animated: true)
+            }
+        }
+        if let player = self.audioPlayer {
+            player.pause()
+        }
+        self.audioPlayer = nil
+        do {
+            try AVAudioSession.sharedInstance().setActive(false)
+        } catch  let error as NSError {
+            print(error.localizedDescription)
+            return
+        }
+    }
+    
+    private func isPlaying() -> Bool {
+        if let player = self.audioPlayer {
+            return player.isPlaying
+        }
+        return false
     }
     
     // MARK:- Data
@@ -232,11 +275,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             print("downloading \(sound.task_id)")
             self.downloadSound(task_id: sound.task_id)
         }
-//        if self.isPlaying() {
-//            self.stopPlay()
-//        }
-//        let sound = self.sounds[indexPath.row]
-//        self.play(url: sound.path)
+        if self.isPlaying() {
+            self.stopPlay()
+        }
+        self.play(url: sound.lyrebirdSoundURL!)
     }
     
     
