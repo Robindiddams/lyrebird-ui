@@ -136,7 +136,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="I06-mS-H3c" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1630" y="278"/>
+            <point key="canvasLocation" x="1292" y="278"/>
         </scene>
         <!--Sounds-->
         <scene sceneID="acd-dh-p4C">
@@ -180,14 +180,22 @@
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2W-ZQ-zW4">
+                                                            <rect key="frame" x="14" y="8" width="27" height="16"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="70" id="1yP-gO-MIy"/>
                                                         <constraint firstItem="Pco-a4-L7t" firstAttribute="leading" secondItem="JdN-Og-0PD" secondAttribute="leading" constant="14" id="BGF-4D-fQZ"/>
                                                         <constraint firstAttribute="trailing" secondItem="wZV-oo-svT" secondAttribute="trailing" constant="8" id="HjE-p6-FdC"/>
                                                         <constraint firstItem="Pco-a4-L7t" firstAttribute="centerY" secondItem="JdN-Og-0PD" secondAttribute="centerY" id="QOr-1O-S5e"/>
+                                                        <constraint firstItem="k2W-ZQ-zW4" firstAttribute="top" secondItem="JdN-Og-0PD" secondAttribute="top" constant="8" id="VYk-Cx-C8N"/>
                                                         <constraint firstItem="b59-K0-sOr" firstAttribute="centerY" secondItem="JdN-Og-0PD" secondAttribute="centerY" id="fan-rh-r7c"/>
                                                         <constraint firstAttribute="trailing" secondItem="b59-K0-sOr" secondAttribute="trailing" constant="15" id="jgK-cB-6MH"/>
+                                                        <constraint firstItem="k2W-ZQ-zW4" firstAttribute="leading" secondItem="JdN-Og-0PD" secondAttribute="leading" constant="14" id="n8h-kn-SM7"/>
                                                         <constraint firstItem="wZV-oo-svT" firstAttribute="centerY" secondItem="JdN-Og-0PD" secondAttribute="centerY" id="uVT-Bz-MRs"/>
                                                     </constraints>
                                                 </view>
@@ -204,6 +212,7 @@
                                         <connections>
                                             <outlet property="activityIndicatior" destination="b59-K0-sOr" id="SRT-YG-nRq"/>
                                             <outlet property="cardView" destination="JdN-Og-0PD" id="HOC-TI-GkI"/>
+                                            <outlet property="dateLabel" destination="k2W-ZQ-zW4" id="ZXq-gt-s3j"/>
                                             <outlet property="nameLabel" destination="Pco-a4-L7t" id="KVR-fH-Do2"/>
                                             <outlet property="statusLabel" destination="wZV-oo-svT" id="f41-YA-Apy"/>
                                         </connections>

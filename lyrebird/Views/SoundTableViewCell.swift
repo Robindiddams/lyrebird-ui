@@ -8,7 +8,6 @@
 
 import UIKit
 import NVActivityIndicatorView
-import AHDownloadButton
 
 enum soundCardState {
     case notDoneYet
@@ -38,6 +37,7 @@ class SoundTableViewCell: UITableViewCell {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var activityIndicatior: NVActivityIndicatorView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var cardView: CardView!
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -67,7 +67,9 @@ class SoundTableViewCell: UITableViewCell {
     }
     
     func finishDownload() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1000)) {
+        self.cardView.setProgress(1.0)
+        self.statusLabel.isHidden = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
             UIView.animate(withDuration: 0.3, animations: {
                 self.statusLabel.text = "done"
             }, completion: { finished in
@@ -82,13 +84,15 @@ class SoundTableViewCell: UITableViewCell {
     }
     
     func updateUI(_ state: soundCardState) {
-        self.nameLabel.text = self.task_id
+        self.statusLabel.isHidden = true
+        self.activityIndicatior.stopAnimating()
         switch state {
         case .notDoneYet:
             self.activityIndicatior.type = .lineScalePulseOutRapid
             self.activityIndicatior.startAnimating()
-            self.statusLabel.isHidden = true
+//            self.statusLabel.isHidden = true
         case .readyToDownload:
+            self.statusLabel.text = "tap to download"
             if statusLabel.isHidden {
                 self.statusLabel.alpha = 0
                 self.statusLabel.isHidden = false

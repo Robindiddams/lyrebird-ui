@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CryptoSwift
 
 struct lyreSound {
     let name: String
@@ -15,6 +16,7 @@ struct lyreSound {
     var lyrebirdSoundURL: URL?
     var downloadURL: String?
     var downloadProgress: Double
+    var createdAtDate: Date?
 }
 
 enum lyrebirdSoundType {
@@ -94,26 +96,33 @@ func getSounds() -> [lyreSound] {
         let paths = try filemanager.contentsOfDirectory(at: documentsDirectory, includingPropertiesForKeys: nil, options: [])
         for path in paths {
             if let sound = parseSoundPath(path) {
+                let dat = Array<UInt8>(hex: sound.task_id)
+                let name = encode(data: Data(bytes: dat, count: dat.count))
                 switch sound.type {
                 case .recording:
+                    let attrs = try filemanager.attributesOfItem(atPath: path.path)
+                    let created_at = attrs[.creationDate] as! Date
                     if soundMap[sound.task_id] == nil {
-                        soundMap[sound.task_id] = lyreSound(name: sound.task_id,
+                        soundMap[sound.task_id] = lyreSound(name: name,
                                                           task_id: sound.task_id,
                                                           originalSoundURL: path,
                                                           lyrebirdSoundURL: nil,
                                                           downloadURL: nil,
-                                                          downloadProgress: 0.0)
+                                                          downloadProgress: 0.0,
+                                                          createdAtDate: created_at)
                     } else {
                         soundMap[sound.task_id]?.originalSoundURL = path
+                        soundMap[sound.task_id]?.createdAtDate = created_at
                     }
                 case .sound:
                     if soundMap[sound.task_id] == nil {
-                        soundMap[sound.task_id] = lyreSound(name: sound.task_id,
+                        soundMap[sound.task_id] = lyreSound(name: name,
                                                           task_id: sound.task_id,
                                                           originalSoundURL: nil,
                                                           lyrebirdSoundURL: path,
                                                           downloadURL: nil,
-                                                          downloadProgress: 0.0)
+                                                          downloadProgress: 0.0,
+                                                          createdAtDate: nil)
                     } else {
                         soundMap[sound.task_id]?.lyrebirdSoundURL = path
                     }

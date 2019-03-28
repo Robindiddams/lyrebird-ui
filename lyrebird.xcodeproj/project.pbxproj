@@ -13,6 +13,8 @@
 		2639AEBE2224D14800561314 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2639AEBD2224D14800561314 /* MainViewController.swift */; };
 		264067D1221263FF006D9C04 /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264067D0221263FF006D9C04 /* Files.swift */; };
 		264067D32213CD2F006D9C04 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264067D22213CD2F006D9C04 /* Api.swift */; };
+		268B14E6224C17CC00A4A036 /* Ecoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B14E5224C17CC00A4A036 /* Ecoji.swift */; };
+		268B14E8224C17D700A4A036 /* Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B14E7224C17D700A4A036 /* Mapping.swift */; };
 		26BB0FFF224BD1E0003139A2 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BB0FFE224BD1E0003139A2 /* CardView.swift */; };
 		26D4E21C224202CE00275D3E /* SoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4E21B224202CE00275D3E /* SoundTableViewCell.swift */; };
 		26E4CCCB21FF9E14009AC325 /* RecordingsViewController_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4CCCA21FF9E14009AC325 /* RecordingsViewController_old.swift */; };
@@ -60,6 +62,8 @@
 		2639AEBD2224D14800561314 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		264067D0221263FF006D9C04 /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
 		264067D22213CD2F006D9C04 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		268B14E5224C17CC00A4A036 /* Ecoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ecoji.swift; sourceTree = "<group>"; };
+		268B14E7224C17D700A4A036 /* Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapping.swift; sourceTree = "<group>"; };
 		26BB0FFE224BD1E0003139A2 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		26D4E21B224202CE00275D3E /* SoundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundTableViewCell.swift; sourceTree = "<group>"; };
 		26E4CCCA21FF9E14009AC325 /* RecordingsViewController_old.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingsViewController_old.swift; sourceTree = "<group>"; };
@@ -115,9 +119,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		268B14E4224C17AB00A4A036 /* Ecoji */ = {
+			isa = PBXGroup;
+			children = (
+				268B14E5224C17CC00A4A036 /* Ecoji.swift */,
+				268B14E7224C17D700A4A036 /* Mapping.swift */,
+			);
+			path = Ecoji;
+			sourceTree = "<group>";
+		};
 		26BB1000224BD1EF003139A2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				26D4E21B224202CE00275D3E /* SoundTableViewCell.swift */,
 				2637979E220E8F94006918E8 /* Visualizer.swift */,
 				2637979A220D680A006918E8 /* PrettyButton.swift */,
 				26BB0FFE224BD1E0003139A2 /* CardView.swift */,
@@ -174,7 +188,7 @@
 			children = (
 				26FDF21021B0923F008D73C1 /* AppDelegate.swift */,
 				26E4CCD821FFA3CA009AC325 /* Extensions.swift */,
-				26D4E21B224202CE00275D3E /* SoundTableViewCell.swift */,
+				268B14E4224C17AB00A4A036 /* Ecoji */,
 				26BB1000224BD1EF003139A2 /* Views */,
 				26E4CCC921FF7A53009AC325 /* Controllers */,
 				26FDF21421B0923F008D73C1 /* Main.storyboard */,
@@ -439,8 +453,8 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-lyrebird/Pods-lyrebird-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AHDownloadButton/AHDownloadButton.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/Pastel/Pastel.framework",
@@ -450,8 +464,8 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AHDownloadButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pastel.framework",
@@ -478,9 +492,11 @@
 				26FDF21321B0923F008D73C1 /* RecorderViewController.swift in Sources */,
 				26E4CCD921FFA3CB009AC325 /* Extensions.swift in Sources */,
 				26E9A3F7224137C600CFDC54 /* LyrebirdNavController.swift in Sources */,
+				268B14E8224C17D700A4A036 /* Mapping.swift in Sources */,
 				2637979F220E8F94006918E8 /* Visualizer.swift in Sources */,
 				26FDF21121B0923F008D73C1 /* AppDelegate.swift in Sources */,
 				2637979B220D680A006918E8 /* PrettyButton.swift in Sources */,
+				268B14E6224C17CC00A4A036 /* Ecoji.swift in Sources */,
 				26E4CCCB21FF9E14009AC325 /* RecordingsViewController_old.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

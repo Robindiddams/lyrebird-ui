@@ -13,6 +13,7 @@ target 'lyrebird' do
   pod 'Pastel'
 #  pod 'VIWaveformView', :git => 'https://github.com/Robindiddams/VIWaveformView.git', :commit => '38ed18cf0a4288024e8dd22ac0d79665537261d2'
 #  pod 'VIWaveformView', :path => '~/Documents/VIWaveformView/'
+  pod 'CryptoSwift'
 
   target 'lyrebirdTests' do
     inherit! :search_paths

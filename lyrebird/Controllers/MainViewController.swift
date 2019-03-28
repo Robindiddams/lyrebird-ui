@@ -9,7 +9,6 @@
 import UIKit
 import Pastel
 import Alamofire
-import AHDownloadButton
 
 private let cellReuseIdentifier = "Cell"
 private let headerReuseIdentifier = "Header"
@@ -18,12 +17,18 @@ protocol UploadCompletedDelegate {
     func uploadCompleted()
 }
 
-class MainViewController: UIViewController, UploadCompletedDelegate, AHDownloadButtonDelegate {
+class MainViewController: UIViewController, UploadCompletedDelegate {
     
     var sounds: [lyreSound] = []
     weak var timer: Timer?
     var downloadQueue: [String] = []
     var downloading: Bool = false
+    let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        return dateFormatter
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -164,7 +169,6 @@ class MainViewController: UIViewController, UploadCompletedDelegate, AHDownloadB
                 let fileURL = getSoundURL(id: task_id)
                 return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
             }
-//            let cell = self.tableView.cellForRow(at: IndexPath(row: index, section: 0))
             // Start download
             Alamofire.download(url, to: destination)
                 .downloadProgress { progress in
@@ -177,13 +181,10 @@ class MainViewController: UIViewController, UploadCompletedDelegate, AHDownloadB
                     self.tableView.reloadData()
                     // Get path for downloaded file
                     if response.error == nil, let pathURL = response.destinationURL {
-                        print("path: \(pathURL.path)")
                         self.sounds[index].lyrebirdSoundURL = pathURL
                         // wait a few miliseconds to dismiss
                         for c in self.tableView.visibleCells {
-//                            if cell.
                             if let soundCell = c as? SoundTableViewCell, soundCell.task_id == task_id {
-                                print("it was visible")
                                 soundCell.finishDownload()
                             }
                         }
@@ -256,7 +257,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             cell = SoundTableViewCell(style: .default, reuseIdentifier: cellReuseIdentifier)
         }
         let sound = self.sounds[indexPath.row]
+        cell?.nameLabel.text = sound.name
         cell?.task_id = sound.task_id
+        cell?.dateLabel.text = dateFormatter.string(from: sound.createdAtDate!)
         let state = objectiveState(sound)
         if state == .downloading {
             cell?.progress = sound.downloadProgress
@@ -277,5 +280,14 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 //                print("Error while deleteing \(err)")
 //            }
 //        }
+//    }
+//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//        let deleteButton = UITableViewRowAction(style: .default, title: "Delete") { (action, indexPath) in
+//            self.tableView.dataSource?.tableView!(self.tableView, commit: .delete, forRowAt: indexPath)
+//            return
+//        }
+//        deleteButton.backgroundColor = UIColor.black
+////        deleteButton.
+//        return [deleteButton]
 //    }
 }

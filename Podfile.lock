@@ -1,6 +1,6 @@
 PODS:
-  - AHDownloadButton (1.1.0)
   - Alamofire (4.8.1)
+  - CryptoSwift (0.14.0)
   - JGProgressHUD (2.0.3)
   - NVActivityIndicatorView (4.6.1):
     - NVActivityIndicatorView/Presenter (= 4.6.1)
@@ -9,8 +9,8 @@ PODS:
   - UICircularProgressRing (6.0.2)
 
 DEPENDENCIES:
-  - AHDownloadButton
   - Alamofire
+  - CryptoSwift
   - JGProgressHUD
   - NVActivityIndicatorView
   - Pastel
@@ -18,21 +18,21 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - AHDownloadButton
     - Alamofire
+    - CryptoSwift
     - JGProgressHUD
     - NVActivityIndicatorView
     - Pastel
     - UICircularProgressRing
 
 SPEC CHECKSUMS:
-  AHDownloadButton: fd053efc7b15c4c35d2704c9a5336930f01abe1e
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  CryptoSwift: 35a10419f4dbf0619c13f8c1c180037e115323fa
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
   Pastel: b3dd5b8d612dac06ae7c63c97c45c900829bc139
   UICircularProgressRing: 2ef1293241b83d8020ede21a8fe3b3d859525730
 
-PODFILE CHECKSUM: 7152765f2096bdaa9d208a32fe431b3a857cd19b
+PODFILE CHECKSUM: ad3aaca0f46c7a58a92cffe6b6052aa6daeb0b9a
 
 COCOAPODS: 1.5.3
