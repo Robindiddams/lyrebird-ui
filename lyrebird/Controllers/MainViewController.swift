@@ -5,6 +5,30 @@
 //  Created by Robin Diddams on 2/25/19.
 //  Copyright © 2019 Robin Diddams. All rights reserved.
 //
+/*
+ Some code stolen from github.com/HassanElDesouky/VoiceMemosClone, here's their license
+ MIT License
+ 
+ Copyright (c) 2019 Hassan El Desouky
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ 
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+ */
 
 import UIKit
 import Pastel
@@ -12,18 +36,20 @@ import Alamofire
 import AVFoundation
 
 private let cellReuseIdentifier = "Cell"
-private let headerReuseIdentifier = "Header"
+//private let headerReuseIdentifier = "Header"
+let mainBackgroundColor = UIColor(r: 42, g: 40, b: 63)
 
 protocol UploadCompletedDelegate {
     func uploadCompleted()
 }
 
-class MainViewController: UIViewController, UploadCompletedDelegate {
+class MainViewController: UIViewController, UploadCompletedDelegate, AVAudioPlayerDelegate {
     
     var sounds: [lyreSound] = []
     weak var timer: Timer?
     var downloadQueue: [String] = []
     var downloading: Bool = false
+    var currentlyPlaying: String = ""
     private var audioPlayer: AVAudioPlayer?
     let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -54,6 +80,11 @@ class MainViewController: UIViewController, UploadCompletedDelegate {
         self.startStatusRequests()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.stopPlay()
+    }
+    
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var AddButton: UIButton!
@@ -72,6 +103,7 @@ class MainViewController: UIViewController, UploadCompletedDelegate {
         do {
             let data = try Data(contentsOf: url)
             self.audioPlayer = try AVAudioPlayer(data: data, fileTypeHint: AVFileType.caf.rawValue)
+            self.audioPlayer?.delegate = self
         } catch let error as NSError {
             print(error.localizedDescription)
             return
@@ -83,7 +115,18 @@ class MainViewController: UIViewController, UploadCompletedDelegate {
         }
     }
     
+    func clearPlaying() {
+        for c in self.tableView.visibleCells {
+            if let soundCell = c as? SoundTableViewCell, soundCell.task_id == self.currentlyPlaying {
+                soundCell.updateUI(.readyToPlay)
+                print("clearplaying \(soundCell.task_id)")
+            }
+        }
+        self.currentlyPlaying = ""
+    }
+    
     func stopPlay() {
+        self.clearPlaying()
         if let paths = self.tableView.indexPathsForSelectedRows {
             for path in paths {
                 self.tableView.deselectRow(at: path, animated: true)
@@ -108,10 +151,15 @@ class MainViewController: UIViewController, UploadCompletedDelegate {
         return false
     }
     
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        self.clearPlaying()
+    }
+    
     // MARK:- Data
     func loadRecordings() {
         self.sounds.removeAll()
         self.sounds = getSounds()
+        self.sounds.sort() { $0.createdAtDate! > $1.createdAtDate! }
         self.tableView.reloadData()
     }
     
@@ -120,6 +168,26 @@ class MainViewController: UIViewController, UploadCompletedDelegate {
         self.AddButton.prettyGradient()
         self.AddButton.layer.cornerRadius = 0.5 * self.AddButton.bounds.size.width
         self.AddButton.clipsToBounds = true
+    }
+    
+    private func drawCurvedChart() {
+//        guard let dataPoints = dataPoints, dataPoints.count > 0 else {
+//            return
+//        }
+//        let dataPoints = [
+//            CGPoint(x: 0, y: 100),
+//            CGPoint(x: 25, y: 150),
+//            CGPoint(x: 50, y: 200),
+//            CGPoint(x: 75, y: 200),
+//            CGPoint(x: 100, y: 100)
+//        ]
+//        if let path = CurveAlgorithm.shared.createCurvedPath(dataPoints) {
+//            let lineLayer = CAShapeLayer()
+//            lineLayer.path = path.cgPath
+//            lineLayer.strokeColor = UIColor.white.cgColor
+//            lineLayer.fillColor = UIColor.clear.cgColor
+//            self.view.layer.addSublayer(lineLayer)
+//        }
     }
     
     
@@ -262,9 +330,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             }
         } else {
             
-            // we have both sounds we are good
+            if sound.task_id == self.currentlyPlaying {
+                return soundCardState.playing
+            }
+            // we have both sounds we are good to play
             return soundCardState.readyToPlay
-            // TODO: check if this cell is playing
         }
     }
     
@@ -274,11 +344,20 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         if state == .readyToDownload {
             print("downloading \(sound.task_id)")
             self.downloadSound(task_id: sound.task_id)
-        }
-        if self.isPlaying() {
+        } else if state == .readyToPlay {
+            if self.isPlaying() {
+                self.stopPlay()
+            }
+            self.currentlyPlaying = sound.task_id
+            for c in self.tableView.visibleCells {
+                if let soundCell = c as? SoundTableViewCell, soundCell.task_id == sound.task_id {
+                    soundCell.updateUI(.playing)
+                }
+            }
+            self.play(url: sound.lyrebirdSoundURL!)
+        } else if state == .playing {
             self.stopPlay()
         }
-        self.play(url: sound.lyrebirdSoundURL!)
     }
     
     
@@ -310,26 +389,16 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return cell!
     }
     
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            let filemanager = FileManager.default
-//            let sound = self.sounds[indexPath.row]
-//            do {
-////                deleteAudioRecordings(task_id: <#T##String#>)
-//                self.sounds.remove(at: indexPath.row)
-//                self.tableView.reloadData()
-//            } catch (let err) {
-//                print("Error while deleteing \(err)")
-//            }
-//        }
-//    }
-//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-//        let deleteButton = UITableViewRowAction(style: .default, title: "Delete") { (action, indexPath) in
-//            self.tableView.dataSource?.tableView!(self.tableView, commit: .delete, forRowAt: indexPath)
-//            return
-//        }
-//        deleteButton.backgroundColor = UIColor.black
-////        deleteButton.
-//        return [deleteButton]
-//    }
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteButton = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            let sound = self.sounds[indexPath.row]
+            if self.isPlaying() {
+                self.stopPlay()
+            }
+            deleteAudioRecordings(task_id: sound.task_id)
+            self.loadRecordings()
+        }
+//        deleteButton.backgroundColor = mainBackgroundColor
+        return [deleteButton]
+    }
 }

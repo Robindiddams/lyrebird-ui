@@ -88,7 +88,7 @@ class SoundTableViewCell: UITableViewCell {
         self.activityIndicatior.stopAnimating()
         switch state {
         case .notDoneYet:
-            self.activityIndicatior.type = .lineScalePulseOutRapid
+            self.activityIndicatior.type = .ballClipRotateMultiple
             self.activityIndicatior.startAnimating()
 //            self.statusLabel.isHidden = true
         case .readyToDownload:
@@ -105,14 +105,20 @@ class SoundTableViewCell: UITableViewCell {
                     self.activityIndicatior.stopAnimating()
                 })
             }
-            self.cardView.backgroundColor = .red
         case .downloading:
             self.cardView.setProgress(CGFloat(self.progress))
             self.statusLabel.text = "downloading"
         case .readyToPlay:
-            self.cardView.backgroundColor = .blue
+            break
         case .playing:
-            self.cardView.backgroundColor = .green
+            self.activityIndicatior.alpha = 0
+            self.activityIndicatior.type = .lineScalePulseOut
+            self.activityIndicatior.startAnimating()
+            UIView.animate(withDuration: 0.3, animations:{
+                self.activityIndicatior.alpha = 1.0
+            }, completion: { finished in
+                
+            })
         }
     }
 }

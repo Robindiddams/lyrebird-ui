@@ -158,7 +158,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JdN-Og-0PD" userLabel="Card View" customClass="CardView" customModule="lyrebird" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="70"/>
+                                                    <rect key="frame" x="15" y="2.5" width="345" height="70"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pco-a4-L7t">
                                                             <rect key="frame" x="14" y="24.5" width="46" height="21"/>
@@ -203,9 +203,9 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="JdN-Og-0PD" secondAttribute="trailing" constant="15" id="Oek-as-mV2"/>
-                                                <constraint firstItem="JdN-Og-0PD" firstAttribute="top" secondItem="BHc-QT-WeN" secondAttribute="top" id="f64-Ze-8sd"/>
+                                                <constraint firstItem="JdN-Og-0PD" firstAttribute="top" secondItem="BHc-QT-WeN" secondAttribute="top" constant="2.5" id="f64-Ze-8sd"/>
                                                 <constraint firstItem="JdN-Og-0PD" firstAttribute="leading" secondItem="BHc-QT-WeN" secondAttribute="leading" constant="15" id="hGr-bx-YnH"/>
-                                                <constraint firstAttribute="bottom" secondItem="JdN-Og-0PD" secondAttribute="bottom" constant="5" id="qJJ-4R-RKG"/>
+                                                <constraint firstAttribute="bottom" secondItem="JdN-Og-0PD" secondAttribute="bottom" constant="2.5" id="qJJ-4R-RKG"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
