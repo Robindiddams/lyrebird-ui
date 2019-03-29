@@ -29,8 +29,8 @@ class CardView: UIView {
         gradientLayer.colors = [UIColor.magenta.cgColor, UIColor.cyan.cgColor]
         
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: bounds.minX, y: frame.maxY))
-        path.addLine(to: CGPoint(x: bounds.maxX, y: frame.maxY))
+        path.move(to: CGPoint(x: bounds.minX, y: bounds.maxY))
+        path.addLine(to: CGPoint(x: bounds.maxX, y: bounds.maxY))
         
         shape.fillColor = UIColor.clear.cgColor
         shape.strokeColor = UIColor.white.cgColor
