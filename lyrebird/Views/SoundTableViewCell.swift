@@ -69,7 +69,7 @@ class SoundTableViewCell: UITableViewCell {
     func finishDownload() {
         self.cardView.setProgress(1.0)
         self.statusLabel.isHidden = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
             UIView.animate(withDuration: 0.3, animations: {
                 self.statusLabel.text = "done"
             }, completion: { finished in

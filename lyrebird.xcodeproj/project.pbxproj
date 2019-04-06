@@ -14,7 +14,6 @@
 		264067D32213CD2F006D9C04 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264067D22213CD2F006D9C04 /* Api.swift */; };
 		268B14E6224C17CC00A4A036 /* Ecoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B14E5224C17CC00A4A036 /* Ecoji.swift */; };
 		268B14E8224C17D700A4A036 /* Mapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B14E7224C17D700A4A036 /* Mapping.swift */; };
-		268B14EC224D786D00A4A036 /* CurveAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268B14EB224D786D00A4A036 /* CurveAlgorithm.swift */; };
 		26BB0FFF224BD1E0003139A2 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BB0FFE224BD1E0003139A2 /* CardView.swift */; };
 		26D4E21C224202CE00275D3E /* SoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4E21B224202CE00275D3E /* SoundTableViewCell.swift */; };
 		26E4CCD921FFA3CB009AC325 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4CCD821FFA3CA009AC325 /* Extensions.swift */; };
@@ -62,7 +61,6 @@
 		264067D22213CD2F006D9C04 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		268B14E5224C17CC00A4A036 /* Ecoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ecoji.swift; sourceTree = "<group>"; };
 		268B14E7224C17D700A4A036 /* Mapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapping.swift; sourceTree = "<group>"; };
-		268B14EB224D786D00A4A036 /* CurveAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurveAlgorithm.swift; sourceTree = "<group>"; };
 		26BB0FFE224BD1E0003139A2 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		26D4E21B224202CE00275D3E /* SoundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundTableViewCell.swift; sourceTree = "<group>"; };
 		26E4CCD821FFA3CA009AC325 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 				26FDF21C21B09242008D73C1 /* Info.plist */,
 				264067D22213CD2F006D9C04 /* Api.swift */,
 				264067D0221263FF006D9C04 /* Files.swift */,
-				268B14EB224D786D00A4A036 /* CurveAlgorithm.swift */,
 			);
 			path = lyrebird;
 			sourceTree = "<group>";
@@ -485,7 +482,6 @@
 				26D4E21C224202CE00275D3E /* SoundTableViewCell.swift in Sources */,
 				2639AEBE2224D14800561314 /* MainViewController.swift in Sources */,
 				264067D1221263FF006D9C04 /* Files.swift in Sources */,
-				268B14EC224D786D00A4A036 /* CurveAlgorithm.swift in Sources */,
 				26FDF21321B0923F008D73C1 /* RecorderViewController.swift in Sources */,
 				26E4CCD921FFA3CB009AC325 /* Extensions.swift in Sources */,
 				26E9A3F7224137C600CFDC54 /* LyrebirdNavController.swift in Sources */,

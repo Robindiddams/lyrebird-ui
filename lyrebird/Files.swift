@@ -84,7 +84,6 @@ func parseSoundPath(_ path: URL) -> (type: lyrebirdSoundType, task_id: String)? 
     default:
         return nil
     }
-    
 }
 
 func getSounds() -> [lyreSound] {

@@ -18,15 +18,14 @@ struct ErrorResponse: Codable {
 struct UploadResponse: Codable {
     let success: Bool
     let task_id: String
-    let upload_url: String
 }
 
 struct StatusResponse: Codable {
     let success: Bool
     struct Task: Codable {
         let task_id: String
-        let completed: Bool
-        var download_url: String
+        let status: String
+        var download_url: String?
     }
     let tasks: [Task]
 }

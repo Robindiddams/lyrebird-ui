@@ -42,6 +42,7 @@ enum RecorderState {
     case canceled
     case finished
     case denied
+    case error
 }
 
 let redColorSet = [UIColor(r: 245, g: 78, b: 162).cgColor, UIColor(r: 255, g: 118, b: 118).cgColor]
@@ -141,9 +142,20 @@ class RecorderViewController: UIViewController {
         case .finished:
             self.audioVisualizer.isHidden = true
             self.recordButton.setTitle("try again", for: .normal)
+            self.nextButton.setTitle("upload", for: .normal)
             UIView.animate(withDuration: 0.3) {
                 self.titleLabel.text = "Yeah, cool, whatever!"
-                self.subTitleLabel.text = "just hit next! what do you got to lose?"
+                self.subTitleLabel.text = "just hit upload! what do you got to lose?"
+            }
+            UIApplication.shared.isIdleTimerDisabled = false
+            break
+        case .error:
+            self.audioVisualizer.isHidden = true
+            self.recordButton.setTitle("re-record", for: .normal)
+            self.nextButton.setTitle("retry", for: .normal)
+            UIView.animate(withDuration: 0.3) {
+                self.titleLabel.text = "Uh oh!😰"
+                self.subTitleLabel.text = "Upload failed! Make sure you're connected to the internet and try agian."
             }
             UIApplication.shared.isIdleTimerDisabled = false
             break
@@ -313,94 +325,57 @@ class RecorderViewController: UIViewController {
     
     // MARK:- Networking
     @IBAction func startUpload(_ sender: PrettyButton) {
-//        // Setup hud modal
+        // Setup hud modal
         self.hud.vibrancyEnabled = true
         self.hud.indicatorView = JGProgressHUDPieIndicatorView()
-        self.hud.textLabel.text = "Connecting..."
-        self.hud.detailTextLabel.text = "0% Complete"
+        self.hud.textLabel.text = "Uploading..."
         self.hud.show(in: self.view)
-//
+        
+        let parameters: Parameters = [
+            "seed": "1234",
+        ]
         // get our upload url
-        Alamofire.request(apiURL + "/upload")
+        Alamofire.request(apiURL + "/upload", method: .get, parameters: parameters)
             .responseData { response in
-                print("success: \(response.result.isSuccess)")
                 if let data = response.result.value {
                     do {
                         let decoder = JSONDecoder()
-                        print("error \(data.base64EncodedString())")
                         if response.response?.statusCode != 200 {
                             
                             // TODO: do something on errors, show error and go back
+                            print("error \(data.base64EncodedString())")
                             let errorRez = try decoder.decode(ErrorResponse.self, from: data)
                             print("ERROR: success: \(errorRez.success), message: \(errorRez.message)")
+                            UIView.animate(withDuration: 0.5, animations: {
+                                self.hud.textLabel.text = "Error!"
+                                self.hud.indicatorView = JGProgressHUDErrorIndicatorView()
+                            }, completion: { finished in
+                                self.updateUI(.error)
+                            })
+                            self.hud.dismiss(afterDelay: 1.0)
                             return
                         }
                         let resp = try decoder.decode(UploadResponse.self, from: data)
-                        print("success: \(resp.success), task: \(resp.task_id), upload_url: \(resp.upload_url)")
+                        print("success: \(resp.success), task: \(resp.task_id)")
                         self.task_id = resp.task_id
+                        self.hud.setProgress(1.0, animated: true)
                         renameAudioRecord(task_id: resp.task_id)
-                        UIView.animate(withDuration: 0.5, animations: {
-                            self.hud.textLabel.text = "Connected!"
-                        }, completion: { finished in
-                            self.uploadRecording(url: resp.upload_url)
-                        })
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) {
+                            UIView.animate(withDuration: 0.5, animations: {
+                                self.hud.textLabel.text = "Success!"
+                                self.hud.indicatorView = JGProgressHUDSuccessIndicatorView()
+                            }, completion: { finished in
+                                // Go to waiting state
+                                self.hud.dismiss(afterDelay: 1.0)
+                                self.uploadComplete()
+                            })
+                        }
+                       
                     } catch let parseError {
                         print("upload parsingError: \(parseError)")
                     }
                 }
         }
-    }
-    
-    func uploadRecording(url: String) {
-
-        self.hud.textLabel.text = "Uploading"
-        
-        // Get recording
-        if let encodedMusic = try? Data(contentsOf: getSoundURL(id: self.task_id, recording: true)) {
-            let headers: HTTPHeaders = [
-                "Content-Type": "application/octet-stream"
-            ]
-            
-            // Begin Upload
-            Alamofire.upload(encodedMusic, to: url, method: .put, headers: headers)
-                .uploadProgress { progress in // Update Hud with progress
-                    let currentProgress = Float(progress.fractionCompleted * 100.0)
-                    print("upload progress: \(String(format: "%.2f", currentProgress))% \(progress.fractionCompleted)")
-                    self.hud.detailTextLabel.text = "\(String(format: "%.2f", currentProgress))% Complete"
-                    self.hud.setProgress(Float(progress.fractionCompleted), animated: true)
-                }
-                .response { response in // Completed upload
-                    // Its weird when we get to 87% and then complete
-                    if self.hud.progress < 1.0 {
-                        self.hud.detailTextLabel.text = "100.0% Complete"
-                        self.hud.setProgress(1.0, animated: true)
-                    }
-                    
-                    // Check for errors
-                    if response.response?.statusCode != 200 {
-                        print("error \(response.response!.statusCode)")
-                        if let data = response.data {
-                            print("data:\(data.base64EncodedString())")
-                        }
-                        // TODO: throw an error, tell user
-                        return
-                    }
-                    
-                    // Go to waiting state
-                    UIView.animate(withDuration: 0.3, animations: {
-                        self.hud.textLabel.text = "Success"
-                        self.hud.detailTextLabel.text = nil
-                        self.hud.indicatorView = JGProgressHUDSuccessIndicatorView()
-                    })
-                    
-                    self.hud.dismiss(afterDelay: 1.0)
-                    
-                    self.uploadComplete()
-            }
-        } else {
-            // TODO: throw an error, tell user and go back to record
-        }
-        
     }
     
     func uploadComplete() {

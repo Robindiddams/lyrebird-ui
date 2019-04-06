@@ -170,27 +170,6 @@ class MainViewController: UIViewController, UploadCompletedDelegate, AVAudioPlay
         self.AddButton.clipsToBounds = true
     }
     
-    private func drawCurvedChart() {
-//        guard let dataPoints = dataPoints, dataPoints.count > 0 else {
-//            return
-//        }
-//        let dataPoints = [
-//            CGPoint(x: 0, y: 100),
-//            CGPoint(x: 25, y: 150),
-//            CGPoint(x: 50, y: 200),
-//            CGPoint(x: 75, y: 200),
-//            CGPoint(x: 100, y: 100)
-//        ]
-//        if let path = CurveAlgorithm.shared.createCurvedPath(dataPoints) {
-//            let lineLayer = CAShapeLayer()
-//            lineLayer.path = path.cgPath
-//            lineLayer.strokeColor = UIColor.white.cgColor
-//            lineLayer.fillColor = UIColor.clear.cgColor
-//            self.view.layer.addSublayer(lineLayer)
-//        }
-    }
-    
-    
     // MARK: - Navigation
     @IBAction func unwindToHome(segue:UIStoryboardSegue) { }
     
@@ -235,18 +214,23 @@ class MainViewController: UIViewController, UploadCompletedDelegate, AVAudioPlay
                             print("error: \(errorRez.message)")
                             return
                         }
+//                        print("data \(String(decoding: response.data!, as: UTF8.self))")
                         let rez = try decoder.decode(StatusResponse.self, from: data)
-                        print("success: \(rez.success)")
+                        print("status success: \(rez.success)")
                         for task in rez.tasks {
-                            if task.completed {
+                            if task.status == "done" {
                                 for (index, sound) in self!.sounds.enumerated() {
                                     if sound.task_id == task.task_id {
                                         self!.sounds[index].downloadURL = task.download_url
+                                        for c in self!.tableView.visibleCells {
+                                            if let soundCell = c as? SoundTableViewCell, soundCell.task_id == task.task_id {
+                                                soundCell.updateUI(.readyToDownload)
+                                            }
+                                        }
                                     }
                                 }
                             }
                         }
-                        self!.tableView.reloadData()
                     } catch let parsingError {
                         print("status parsingError: \(parsingError)")
                     }
@@ -285,11 +269,21 @@ class MainViewController: UIViewController, UploadCompletedDelegate, AVAudioPlay
                 .downloadProgress { progress in
                     print("download progress: \(progress.fractionCompleted)")
                     self.sounds[index].downloadProgress = progress.fractionCompleted
-                    self.tableView.reloadData()
+                    for c in self.tableView.visibleCells {
+                        if let soundCell = c as? SoundTableViewCell, soundCell.task_id == task_id {
+                            soundCell.progress = self.sounds[index].downloadProgress
+                            soundCell.updateUI(.downloading)
+                        }
+                    }
                 }
                 .response { response in // Download complete
                     self.sounds[index].downloadProgress = 1.0
-                    self.tableView.reloadData()
+                    for c in self.tableView.visibleCells {
+                        if let soundCell = c as? SoundTableViewCell, soundCell.task_id == task_id {
+                            soundCell.progress = self.sounds[index].downloadProgress
+                            soundCell.updateUI(.downloading)
+                        }
+                    }
                     // Get path for downloaded file
                     if response.error == nil, let pathURL = response.destinationURL {
                         self.sounds[index].lyrebirdSoundURL = pathURL
