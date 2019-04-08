@@ -36,6 +36,7 @@ import Accelerate
 import UICircularProgressRing
 import JGProgressHUD
 import Alamofire
+import CryptoSwift
 
 enum RecorderState {
     case start
@@ -205,7 +206,6 @@ class RecorderViewController: UIViewController {
                     return Int(f * Float(Int16.max))
                 })
                 DispatchQueue.main.async {
-//                    let seconds = (ts - self.recordingTs)
                     self.renderTs = ts
                     let len = self.audioVisualizer.waveforms.count
                     for i in 0 ..< len {
@@ -330,9 +330,16 @@ class RecorderViewController: UIViewController {
         self.hud.indicatorView = JGProgressHUDPieIndicatorView()
         self.hud.textLabel.text = "Uploading..."
         self.hud.show(in: self.view)
+        var seed = 0
+        do {
+            let fileData = try Data(contentsOf: getAudioRecordPath())
+            seed = fileData.bytes.hashValue
+        } catch let error {
+            print("does this happen: \(error)")
+        }
         
         let parameters: Parameters = [
-            "seed": "1234",
+            "seed": seed,
         ]
         // get our upload url
         Alamofire.request(apiURL + "/upload", method: .get, parameters: parameters)

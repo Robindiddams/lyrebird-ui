@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26005D79225B883E00B3B358 /* GeneralUser_GS_v1.471.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 26005D78225B882500B3B358 /* GeneralUser_GS_v1.471.sf2 */; };
 		2637979B220D680A006918E8 /* PrettyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2637979A220D680A006918E8 /* PrettyButton.swift */; };
 		2637979F220E8F94006918E8 /* Visualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2637979E220E8F94006918E8 /* Visualizer.swift */; };
 		2639AEBE2224D14800561314 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2639AEBD2224D14800561314 /* MainViewController.swift */; };
@@ -17,8 +18,6 @@
 		26BB0FFF224BD1E0003139A2 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BB0FFE224BD1E0003139A2 /* CardView.swift */; };
 		26D4E21C224202CE00275D3E /* SoundTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D4E21B224202CE00275D3E /* SoundTableViewCell.swift */; };
 		26E4CCD921FFA3CB009AC325 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E4CCD821FFA3CA009AC325 /* Extensions.swift */; };
-		26E4CCDD21FFB1B4009AC325 /* StartRecording.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 26E4CCDB21FFB1B4009AC325 /* StartRecording.aiff */; };
-		26E4CCDE21FFB1B4009AC325 /* StopRecording.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 26E4CCDC21FFB1B4009AC325 /* StopRecording.aiff */; };
 		26E9A3F7224137C600CFDC54 /* LyrebirdNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E9A3F6224137C600CFDC54 /* LyrebirdNavController.swift */; };
 		26F6B582220BDEAE009875BF /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26F6B581220BDEAE009875BF /* assets.xcassets */; };
 		26FDF21121B0923F008D73C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FDF21021B0923F008D73C1 /* AppDelegate.swift */; };
@@ -54,6 +53,7 @@
 		03D6BBD1B207A28703B35CB0 /* Pods-lyrebirdTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lyrebirdTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lyrebirdTests/Pods-lyrebirdTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0DE1142A9A72EB44D042AB0B /* Pods_lyrebirdTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lyrebirdTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E5E6E9E2FA4D30CA00CAA34 /* Pods-lyrebirdTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lyrebirdTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-lyrebirdTests/Pods-lyrebirdTests.release.xcconfig"; sourceTree = "<group>"; };
+		26005D78225B882500B3B358 /* GeneralUser_GS_v1.471.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = GeneralUser_GS_v1.471.sf2; sourceTree = "<group>"; };
 		2637979A220D680A006918E8 /* PrettyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyButton.swift; sourceTree = "<group>"; };
 		2637979E220E8F94006918E8 /* Visualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visualizer.swift; sourceTree = "<group>"; };
 		2639AEBD2224D14800561314 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -64,8 +64,6 @@
 		26BB0FFE224BD1E0003139A2 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		26D4E21B224202CE00275D3E /* SoundTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundTableViewCell.swift; sourceTree = "<group>"; };
 		26E4CCD821FFA3CA009AC325 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		26E4CCDB21FFB1B4009AC325 /* StartRecording.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = StartRecording.aiff; sourceTree = "<group>"; };
-		26E4CCDC21FFB1B4009AC325 /* StopRecording.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = StopRecording.aiff; sourceTree = "<group>"; };
 		26E9A3F6224137C600CFDC54 /* LyrebirdNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyrebirdNavController.swift; sourceTree = "<group>"; };
 		26F6B581220BDEAE009875BF /* assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = assets.xcassets; sourceTree = "<group>"; };
 		26FDF20D21B0923F008D73C1 /* lyrebird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lyrebird.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,9 +146,8 @@
 		26E4CCDF21FFB1C1009AC325 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				26E4CCDB21FFB1B4009AC325 /* StartRecording.aiff */,
+				26005D78225B882500B3B358 /* GeneralUser_GS_v1.471.sf2 */,
 				26F6B581220BDEAE009875BF /* assets.xcassets */,
-				26E4CCDC21FFB1B4009AC325 /* StopRecording.aiff */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -347,9 +344,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26005D79225B883E00B3B358 /* GeneralUser_GS_v1.471.sf2 in Resources */,
 				26FDF21B21B09242008D73C1 /* LaunchScreen.storyboard in Resources */,
-				26E4CCDE21FFB1B4009AC325 /* StopRecording.aiff in Resources */,
-				26E4CCDD21FFB1B4009AC325 /* StartRecording.aiff in Resources */,
 				26F6B582220BDEAE009875BF /* assets.xcassets in Resources */,
 				26FDF21621B0923F008D73C1 /* Main.storyboard in Resources */,
 			);

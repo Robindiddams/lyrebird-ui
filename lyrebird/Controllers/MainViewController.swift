@@ -43,6 +43,7 @@ protocol UploadCompletedDelegate {
     func uploadCompleted()
 }
 
+
 class MainViewController: UIViewController, UploadCompletedDelegate, AVAudioPlayerDelegate {
     
     var sounds: [lyreSound] = []
@@ -50,7 +51,7 @@ class MainViewController: UIViewController, UploadCompletedDelegate, AVAudioPlay
     var downloadQueue: [String] = []
     var downloading: Bool = false
     var currentlyPlaying: String = ""
-    private var audioPlayer: AVAudioPlayer?
+    private var midiPlayer: AVMIDIPlayer?
     let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
@@ -82,6 +83,12 @@ class MainViewController: UIViewController, UploadCompletedDelegate, AVAudioPlay
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+//        do {
+//            try AVAudioSession.sharedInstance().setActive(false)
+//        } catch  let error as NSError {
+//            print(error.localizedDescription)
+//            return
+//        }
         self.stopPlay()
     }
     
@@ -92,6 +99,10 @@ class MainViewController: UIViewController, UploadCompletedDelegate, AVAudioPlay
     // MARK: - Controll
     // MARK:- Playback
     private func play(url: URL) {
+        guard let soundfont = Bundle.main.url(forResource: "GeneralUser_GS_v1.471", withExtension: "sf2") else {
+            print("could not find soundfonts")
+            return
+        }
         do {
             let session = AVAudioSession.sharedInstance()
             try session.setCategory(.playback, mode: .default)
@@ -102,15 +113,13 @@ class MainViewController: UIViewController, UploadCompletedDelegate, AVAudioPlay
         }
         do {
             let data = try Data(contentsOf: url)
-            self.audioPlayer = try AVAudioPlayer(data: data, fileTypeHint: AVFileType.caf.rawValue)
-            self.audioPlayer?.delegate = self
+            self.midiPlayer = try AVMIDIPlayer(data: data, soundBankURL: soundfont)
         } catch let error as NSError {
             print(error.localizedDescription)
             return
         }
-        if let player = self.audioPlayer {
+        if let player = self.midiPlayer {
             player.prepareToPlay()
-            player.volume = 1.0
             player.play()
         }
     }
@@ -132,10 +141,10 @@ class MainViewController: UIViewController, UploadCompletedDelegate, AVAudioPlay
                 self.tableView.deselectRow(at: path, animated: true)
             }
         }
-        if let player = self.audioPlayer {
-            player.pause()
+        if let player = self.midiPlayer {
+            player.stop()
         }
-        self.audioPlayer = nil
+        self.midiPlayer = nil
         do {
             try AVAudioSession.sharedInstance().setActive(false)
         } catch  let error as NSError {
@@ -145,7 +154,7 @@ class MainViewController: UIViewController, UploadCompletedDelegate, AVAudioPlay
     }
     
     private func isPlaying() -> Bool {
-        if let player = self.audioPlayer {
+        if let player = self.midiPlayer {
             return player.isPlaying
         }
         return false
