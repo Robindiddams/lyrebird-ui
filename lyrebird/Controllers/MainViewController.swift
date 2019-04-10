@@ -83,12 +83,6 @@ class MainViewController: UIViewController, UploadCompletedDelegate, AVAudioPlay
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        do {
-//            try AVAudioSession.sharedInstance().setActive(false)
-//        } catch  let error as NSError {
-//            print(error.localizedDescription)
-//            return
-//        }
         self.stopPlay()
     }
     

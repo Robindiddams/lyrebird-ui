@@ -92,7 +92,7 @@ class RecorderViewController: UIViewController {
     private func updateUI(_ recorderState: RecorderState) {
         switch recorderState {
         case .start:
-            self.progressRing.startProgress(to: 100, duration: 10.0) {
+            self.progressRing.startProgress(to: 100, duration: 5.0) {
                 DispatchQueue.main.async {
                     self.stopRecording(.finished)
                     UIView.animate(withDuration: 0.1, delay: 0.0, animations: {
@@ -337,9 +337,9 @@ class RecorderViewController: UIViewController {
         } catch let error {
             print("does this happen: \(error)")
         }
-        
+        let smallseed = (seed >> 10) & 0xffff
         let parameters: Parameters = [
-            "seed": seed,
+            "seed": smallseed,
         ]
         // get our upload url
         Alamofire.request(apiURL + "/upload", method: .get, parameters: parameters)
