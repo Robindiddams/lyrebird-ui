@@ -95,8 +95,13 @@ func getSounds() -> [lyreSound] {
         let paths = try filemanager.contentsOfDirectory(at: documentsDirectory, includingPropertiesForKeys: nil, options: [])
         for path in paths {
             if let sound = parseSoundPath(path) {
-                let dat = Array<UInt8>(hex: sound.task_id)
-                let name = encode(data: Data(bytes: dat, count: dat.count))
+                var name: String = ""
+                if let udName = UserDefaults.standard.string(forKey: "\(sound.task_id)_alias") {
+                    name = udName
+                } else {
+                    let dat = Array<UInt8>(hex: sound.task_id)
+                    name = encode(data: Data(bytes: dat, count: dat.count))
+                }
                 switch sound.type {
                 case .recording:
                     let attrs = try filemanager.attributesOfItem(atPath: path.path)

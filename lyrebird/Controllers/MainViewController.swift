@@ -387,15 +387,35 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let sound = self.sounds[indexPath.row]
         let deleteButton = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
-            let sound = self.sounds[indexPath.row]
             if self.isPlaying() {
                 self.stopPlay()
             }
             deleteAudioRecordings(task_id: sound.task_id)
             self.loadRecordings()
         }
-//        deleteButton.backgroundColor = mainBackgroundColor
-        return [deleteButton]
+        
+        let editButton = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
+            if self.isPlaying() {
+                self.stopPlay()
+            }
+            let alert = UIAlertController(title: "Rename Sound" , message: "give this sound a new name", preferredStyle: .alert)
+            alert.addTextField { (textField:UITextField) in
+                textField.placeholder = sound.name
+                textField.keyboardType = .default
+            }
+            alert.addAction(UIAlertAction(title: "Rename", style: .default, handler: { (action:UIAlertAction) in
+                guard let textField =  alert.textFields?.first else {
+                    return
+                }
+                UserDefaults.standard.set(textField.text, forKey: "\(sound.task_id)_alias")
+                self.loadRecordings()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        return [deleteButton, editButton]
     }
 }
